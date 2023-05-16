@@ -79,25 +79,23 @@ local opts = {
 }
 
 local mappings = {
-	-- ["a"] = { "<cmd>AerialToggle!<cr>", "Aerial" },
 	["b"] = {
 		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 		"Buffers",
 	},
-	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-	["w"] = { "<cmd>w!<CR>", "Save" },
+	["e"] = { "<cmd>Neotree toggle<cr>", "Explorer" },
+	-- ["w"] = { "<cmd>w!<CR>", "Save" },
 	-- ["q"] = { "<cmd>wqa!<CR>", "Quit" },
-	["c"] = { "<cmd>bdelete!<CR>", "Close Buffer" },
+	["c"] = { "<cmd>lua require('mini.bufremove').delete(0, false)<CR>", "Close Buffer" },
+	["C"] = { "<cmd>lua require('mini.bufremove').delete(0, true)<CR>", "Force Close Buffer" },
 	["x"] = { "<cmd>quit<CR>", "Close Window" },
 	["u"] = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
 	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
 	["<space>"] = {
 		"<cmd>lua require('telescope.builtin').oldfiles()<cr>",
-		"Find files",
+		"Find recent files",
 	},
-	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 	["/"] = { "<cmd>Telescope live_grep<CR>", "Grep" },
-
 	f = {
 		name = "Find",
 		f = {

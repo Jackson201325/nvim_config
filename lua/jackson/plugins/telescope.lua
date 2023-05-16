@@ -6,7 +6,6 @@ end
 telescope.load_extension("fzf")
 telescope.load_extension("media_files")
 telescope.load_extension("persisted")
-telescope.load_extension("aerial")
 
 local actions = require("telescope.actions")
 
@@ -67,7 +66,6 @@ telescope.setup({
 				["<Up>"] = actions.move_selection_previous,
 				["gg"] = actions.move_to_top,
 				["G"] = actions.move_to_bottom,
-
 				["<C-u>"] = actions.preview_scrolling_up,
 				["<C-d>"] = actions.preview_scrolling_down,
 
@@ -108,13 +106,6 @@ telescope.setup({
 				width = 0.5,
 				height = 0.5,
 				prompt_position = "top",
-			},
-		},
-		aerial = {
-			show_nesting = {
-				["_"] = false, -- This key will be the default
-				json = true, -- You can set the option for specific filetypes
-				yaml = true,
 			},
 		},
 	},

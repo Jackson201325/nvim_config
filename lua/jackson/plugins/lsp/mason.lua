@@ -6,11 +6,10 @@ local servers = {
 	"rust_analyzer",
 	"tailwindcss",
 	"sqlls",
-  -- "rubocop",
 	"tsserver",
 	"pyright",
 	"jsonls",
-  "stylua",
+	"stylua",
 }
 
 local settings = {
@@ -20,7 +19,7 @@ local settings = {
 			package_installed = "◍",
 			package_pending = "◍",
 			package_uninstalled = "◍",
-    },
+		},
 	},
 	log_level = vim.log.levels.INFO,
 	max_concurrent_installers = 4,

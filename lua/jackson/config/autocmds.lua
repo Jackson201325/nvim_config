@@ -25,6 +25,8 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 	end,
 })
 
+vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+
 -- go to last loc when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = augroup("last_loc"),
@@ -34,6 +36,13 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 		if mark[1] > 0 and mark[1] <= lcount then
 			pcall(vim.api.nvim_win_set_cursor, 0, mark)
 		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
+	callback = function()
+		vim.b.miniindentscope_disable = true
 	end,
 })
 
@@ -81,6 +90,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
-    pattern = { "*" },
-    command = "normal zx zR",
+	pattern = { "*" },
+	command = "normal  zR",
 })

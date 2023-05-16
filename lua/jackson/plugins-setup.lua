@@ -92,7 +92,6 @@ packer.startup(function(use)
 	use("windwp/nvim-ts-autotag")
 	use("windwp/nvim-autopairs")
 	use("numToStr/Comment.nvim")
-	use("simrat39/rust-tools.nvim")
 	use({
 		"ahmedkhalf/project.nvim",
 		config = function()
@@ -106,7 +105,8 @@ packer.startup(function(use)
 	use("NvChad/nvim-colorizer.lua")
 	use("folke/which-key.nvim")
 	use("RRethy/vim-illuminate")
-	-- use("stevearc/aerial.nvim")
+
+	-- Outliner
 	use("simrat39/symbols-outline.nvim")
 
 	-- Movement
@@ -114,10 +114,18 @@ packer.startup(function(use)
 	use("ThePrimeagen/harpoon")
 	use("christoomey/vim-tmux-navigator") -- Navigate between vim and tmux panes seamlessly
 
-	-- Nvim tree
-	use("nvim-tree/nvim-tree.lua")
-	use("nvim-tree/nvim-web-devicons")
+	-- Neo Tree
+	use({
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v2.x",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+		},
+	})
 
+	-- Bufferline
 	use("akinsho/bufferline.nvim")
 
 	-- Status line
@@ -130,15 +138,15 @@ packer.startup(function(use)
 	use("zbirenbaum/copilot.lua")
 	use("zbirenbaum/copilot-cmp")
 
-	-- Debugging
-	use("mfussenegger/nvim-dap")
-
 	-- Sessions Management
 	use("olimorris/persisted.nvim")
 
 	-- Indentation line
 	use("lukas-reineke/indent-blankline.nvim")
 	use("echasnovski/mini.indentscope")
+
+	-- Delete buffer but not split
+	use("echasnovski/mini.bufremove")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
