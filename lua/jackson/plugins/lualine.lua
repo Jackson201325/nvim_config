@@ -252,22 +252,6 @@ ins_left({
 	end,
 })
 
--- ins_left({
--- 	function()
--- 		local icon = require("lazyvim.config").icons.kinds.Copilot
--- 		local status = require("copilot.api").status.data
--- 		return icon .. (status.message or "")
--- 	end,
--- 	cond = function()
--- 		local ok, clients = pcall(vim.lsp.get_active_clients, { name = "copilot", bufnr = 0 })
--- 		return ok and #clients > 0
--- 	end,
--- 	color = function()
--- 		local status = require("copilot.api").status.data
--- 		return colors[status.status] or colors[""]
--- 	end,
--- })
-
 ins_left({
 	-- Lsp server name .
 	function()
@@ -293,26 +277,6 @@ ins_left({
 	icon = " LSP:",
 	color = { fg = "#ffffff", gui = "bold" },
 })
-
--- Add components to right sections
--- ins_right({
---   "copilot"
--- 	icon = " ",
--- 	-- icon = function()
--- 	-- 	local icon = " "
--- 	-- 	-- local status = require("copilot.api").status.data
--- 	-- 	-- return icon .. (status.message or "")
--- 	-- 	return icon
--- 	-- end,
--- 	-- cond = function()
--- 	-- 	local ok, clients = pcall(vim.lsp.get_active_clients, { name = "copilot", bufnr = 0 })
--- 	-- 	return ok and #clients > 0
--- 	-- end,
--- 	-- color = function()
--- 	-- 	local status = require("copilot.api").status.data
--- 	-- 	return colors[status.status] or colors[""]
--- 	-- end,
--- })
 
 ins_right({
 	"o:encoding", -- option component same as &encoding in viml

@@ -106,6 +106,8 @@ packer.startup(function(use)
 	use("NvChad/nvim-colorizer.lua")
 	use("folke/which-key.nvim")
 	use("RRethy/vim-illuminate")
+	-- use("stevearc/aerial.nvim")
+	use("simrat39/symbols-outline.nvim")
 
 	-- Movement
 	use("mbbill/undotree")
@@ -126,12 +128,6 @@ packer.startup(function(use)
 
 	-- Copilot
 	use("zbirenbaum/copilot.lua")
-	-- use({
-	-- 	"zbirenbaum/copilot-cmp",
-	-- 	after = { "copilot.lua" },
-	-- 	config = function()
-	-- 		require("copilot_cmp").setup()
-	-- 	end,
 	use("zbirenbaum/copilot-cmp")
 
 	-- Debugging

@@ -79,6 +79,7 @@ local opts = {
 }
 
 local mappings = {
+	-- ["a"] = { "<cmd>AerialToggle!<cr>", "Aerial" },
 	["b"] = {
 		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 		"Buffers",
@@ -144,7 +145,7 @@ local mappings = {
 			"Undo Stage Hunk",
 		},
 		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-		-- b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
 		d = {
 			"<cmd>Gitsigns diffthis HEAD<cr>",

@@ -6,15 +6,16 @@ end
 telescope.load_extension("fzf")
 telescope.load_extension("media_files")
 telescope.load_extension("persisted")
+telescope.load_extension("aerial")
 
 local actions = require("telescope.actions")
 
 telescope.setup({
 	defaults = {
-    sorting_strategy = "ascending",
-    layout_config = {
-      prompt_position = "top",
-    },
+		sorting_strategy = "ascending",
+		layout_config = {
+			prompt_position = "top",
+		},
 		prompt_prefix = " ",
 		selection_caret = " ",
 		path_display = { "smart" },
@@ -36,8 +37,8 @@ telescope.setup({
 				["<C-u>"] = actions.preview_scrolling_up,
 				["<C-d>"] = actions.preview_scrolling_down,
 
-				-- ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-				-- ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+				["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+				["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
 				["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
 				["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 				-- ["<C-l>"] = actions.complete_tag,
@@ -102,12 +103,19 @@ telescope.setup({
 			case_mode = "smart_case", -- or "ignore_case" or "respect_case"
 			-- the default case_mode is "smart_case"
 		},
-    persisted = {
-      layout_config = {
-        width = 0.5,
-        height = 0.5,
-        prompt_position = "top",
-      },
-    },
+		persisted = {
+			layout_config = {
+				width = 0.5,
+				height = 0.5,
+				prompt_position = "top",
+			},
+		},
+		aerial = {
+			show_nesting = {
+				["_"] = false, -- This key will be the default
+				json = true, -- You can set the option for specific filetypes
+				yaml = true,
+			},
+		},
 	},
 })
