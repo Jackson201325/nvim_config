@@ -27,18 +27,11 @@ dashboard.section.buttons.val = {
 	dashboard.button("p", "  Find project", ":Telescope projects <CR>"),
 	dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
 	dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
-	dashboard.button("s", " " .. " Restore Session", [[:lua require("persistence").load() <cr>]]),
+	dashboard.button("s", " " .. " Restore Session", ":SessionLoad<CR>"),
+ 	dashboard.button("p", " " .. "  Session", ":Telescope persisted<CR>"),
 	dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
 	dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
 }
-
-local width = 46
-local height = 25 -- two pixels per vertical space
-dashboard.section.terminal.command = "cat | ~/.art/thisifine.sh"
-dashboard.section.terminal.width = width
-dashboard.section.terminal.height = height
-dashboard.section.terminal.opts.redraw = true
-
 
 local function footer()
 	-- NOTE: requires the fortune-mod package to work

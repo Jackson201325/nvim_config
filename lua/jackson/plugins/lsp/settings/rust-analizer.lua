@@ -52,12 +52,5 @@ return {
 	-- 		crates.show()
 	-- 	end,
 	-- },
-	-- {
-	-- 	"hrsh7th/nvim-cmp",
-	-- 	opt = function()
-	-- 		local cmp = require("cmp")
-	-- 		table.insert(cmp.sources, { name = "crates" })
-	-- 		return cmp
-	-- 	end,
-	-- },
+
 }

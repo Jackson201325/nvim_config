@@ -6,10 +6,3 @@ end
 
 indent_scope.setup({})
 
--- local status_map_ok, map = pcall(require, "mini.map")
--- if not status_map_ok then
--- 	print("map not ok")
--- 	return
--- end
---
--- map.setup({})

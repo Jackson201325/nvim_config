@@ -79,3 +79,8 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    pattern = { "*" },
+    command = "normal zx zR",
+})

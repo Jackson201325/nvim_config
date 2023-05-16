@@ -1,4 +1,4 @@
-local colorscheme = "kanagawa"
+local colorscheme = "tokyonight-night"
 
 local status_ok, _ = pcall(function()
 	vim.cmd("colorscheme " .. colorscheme)

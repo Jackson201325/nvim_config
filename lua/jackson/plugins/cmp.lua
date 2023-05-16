@@ -72,6 +72,7 @@ cmp.setup({
 				luasnip = "[LuaSnip]",
 				nvim_lsp = "[LSP]",
 				nvim_lua = "[LUA]",
+        crates = "[Crates]",
 				buffer = "[Buffer]",
 				path = "[Path]",
 				cmdline = "[CmdLine]",
@@ -84,6 +85,7 @@ cmp.setup({
 	sources = {
 		{ name = "copilot" },
 		{ name = "nvim_lsp" },
+		{ name = "crates" },
 		{ name = "luasnip", keyword_length = 1 },
 		{ name = "nvim_lua", keyword_length = 2 },
 		{ name = "path", keyword_length = 2 },

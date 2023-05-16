@@ -62,9 +62,6 @@ local function lsp_keymaps(bufnr)
 	keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 	keymap(bufnr, "n", "gp", "<cmd>Lspsaga peek_definition<CR>", opts)
 	keymap(bufnr, "n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
-	-- keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-	-- keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-	-- keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 end
 
 M.on_attach = function(client, bufnr)
@@ -82,30 +79,35 @@ M.on_attach = function(client, bufnr)
 	if client.name == "solargraph" then
 		client.server_capabilities.documentFormattingProvider = false
 	end
-	if client.name == "sumneko_lua" then
-		client.server_capabilities.documentFormattingProvider = false
+
+	if client.name == "lua_ls" then
+		-- client.server_capabilities.documentFormattingProvider = false
 	end
 
 	lsp_keymaps(bufnr)
+
 	local status_ok, illuminate = pcall(require, "illuminate")
 	if not status_ok then
 		return
 	end
+
 	illuminate.on_attach(client)
 
 	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-	-- Autoformat
 	if client.supports_method("textDocument/formatting") then
 		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-		vim.api.nvim_create_autocmd("BufWritePost", {
+		vim.api.nvim_create_autocmd("BufWritePre", {
 			group = augroup,
 			buffer = bufnr,
 			callback = function()
-				vim.lsp.buf.formatting_sync()
+				vim.lsp.buf.format()
 			end,
 		})
 	end
+
+	-- Autoformat
+	-- vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ async = true})]])
 end
 
 return M

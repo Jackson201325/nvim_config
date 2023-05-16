@@ -62,3 +62,8 @@ if vim.fn.has("nvim-0.9.0") == 1 then
 	opt.splitkeep = "screen"
 	opt.shortmess:append({ C = true })
 end
+
+opt.winbar = "%=%m %f"
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.fen = true

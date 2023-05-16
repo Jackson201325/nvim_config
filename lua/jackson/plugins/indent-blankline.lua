@@ -6,4 +6,8 @@ end
 
 indent_blankline.setup({
 	show_end_of_line = true,
+	context_char = "│",
+	filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
+	show_trailing_blankline_indent = true,
+	show_current_context = false,
 })

@@ -15,9 +15,4 @@ copilot.setup({
 		end, 100)
 	end,
 	suggestion = { enabled = false },
-
-	-- opts = {
-	-- 	suggestion = { enabled = false },
-	-- 	panel = { enabled = false },
-	-- },
 })
