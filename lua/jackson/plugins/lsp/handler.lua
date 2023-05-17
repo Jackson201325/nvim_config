@@ -56,10 +56,11 @@ local function lsp_keymaps(bufnr)
 	local keymap = vim.api.nvim_buf_set_keymap
 	keymap(bufnr, "n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts)
 	keymap(bufnr, "n", "gdd", ":vsplit | Lspsaga goto_definition<CR>", opts)
-	keymap(bufnr, "n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)
+	keymap(bufnr, "n", "gd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", opts)
+	keymap(bufnr, "n", "gD", "<cmd>lua require('goto-preview').close_all_win()<CR>", opts)
 	keymap(bufnr, "n", "gh", "<cmd>Lspsaga code_action<CR>", opts)
 	keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
-	keymap("<cmd>Telescope lsp_references<CR>", "n", "gr", bufnr, { desc = "References" })
+	keymap(bufnr, "n", "gr", "<cmd>Telescope lsp_references<CR>", { desc = "References" })
 	keymap(bufnr, "n", "gp", "<cmd>Lspsaga peek_definition<CR>", opts)
 end
 
@@ -81,7 +82,6 @@ M.on_attach = function(client, bufnr)
 
 	lsp_keymaps(bufnr)
 
-
 	local status_ok, illuminate = pcall(require, "illuminate")
 	if not status_ok then
 		return
@@ -92,8 +92,6 @@ M.on_attach = function(client, bufnr)
 	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 	if client.supports_method("textDocument/formatting") then
-    print("hello this is client")
-    print(client)
 		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			group = augroup,

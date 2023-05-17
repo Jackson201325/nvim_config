@@ -67,3 +67,8 @@ opt.winbar = "%=%m %f"
 -- opt.foldmethod = "expr"
 -- opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- opt.fen = true
+--
+-- opt.foldcolumn = "1"
+-- opt.foldlevel = 99
+-- opt.foldlevelstart = -1
+-- opt.foldenable = true

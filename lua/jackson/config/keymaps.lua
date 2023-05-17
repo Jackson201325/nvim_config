@@ -56,7 +56,9 @@ keymap.set("n", "<C-q>", ":qa<cr>", { desc = "Quit all" })
 
 -- Faster esc
 keymap.set("t", "<esc><esc>", "<c-\\><c-n>", opts)
-keymap.set("i", "jk", "<ESC>", opts)
+keymap.set("i", "jj", "<ESC>", opts)
+keymap.set("i", "kk", "<ESC>", opts)
+keymap.set("i", "kj", "<ESC>", opts)
 keymap.set("n", "0", "^", opts)
 
 -- Move to window using the <ctrl> hjkl keys

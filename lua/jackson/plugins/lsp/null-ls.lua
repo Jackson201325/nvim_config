@@ -15,8 +15,12 @@ null_ls.setup({
 		formatting.prettier.with({ extra_args = {} }),
 		-- diagnostics.eslint,
 
+		-- TS
+		-- require("typescript.extensions.null_ls.code_actions"),
+
 		-- Ruby
 		formatting.rubocop,
+		-- formatting.rubyfmt,
 		diagnostics.rubocop,
 
 		-- Lua

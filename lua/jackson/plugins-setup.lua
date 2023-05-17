@@ -32,17 +32,11 @@ packer.startup(function(use)
 	use("nvim-lua/popup.nvim")
 
 	-- Color scheme
-	use("lunarvim/horizon.nvim")
-	use({ "rose-pine/neovim", as = "rose-pine" })
 	use("folke/tokyonight.nvim")
-	use("rebelot/kanagawa.nvim")
 	use("bluz71/vim-nightfly-colors")
 
 	-- Replacing surroundings
 	use("tpope/vim-surround")
-
-	-- Change directory to project root
-	use("airblade/vim-rooter")
 
 	-- CMP plugins
 	use("hrsh7th/nvim-cmp") -- Autocompletion plugin
@@ -68,7 +62,7 @@ packer.startup(function(use)
 
 	-- LSP support
 	use({ "glepnir/lspsaga.nvim", branch = "main" })
-	use("jose-elias-alvarez/typescript.nvim")
+	-- use("jose-elias-alvarez/typescript.nvim")
 	use("rust-lang/rust.vim")
 	use("simrat39/rust-tools.nvim")
 	use("mfussenegger/nvim-dap")
@@ -105,6 +99,7 @@ packer.startup(function(use)
 		end,
 	})
 	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
+	use("simrat39/symbols-outline.nvim")
 
 	-- UI
 	use("lewis6991/gitsigns.nvim")
@@ -113,10 +108,14 @@ packer.startup(function(use)
 	use("folke/which-key.nvim")
 	use("RRethy/vim-illuminate")
 	use("kevinhwang91/nvim-hlslens")
-  use("folke/trouble.nvim")
-
-	-- Outliner
-	use("simrat39/symbols-outline.nvim")
+	use("folke/trouble.nvim")
+	use({
+		"rmagatti/goto-preview",
+		config = function()
+			require("goto-preview").setup({})
+		end,
+	})
+	use("luukvbaal/statuscol.nvim")
 
 	-- Movement
 	use("mbbill/undotree")

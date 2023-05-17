@@ -6,10 +6,11 @@ local servers = {
 	"rust_analyzer",
 	"tailwindcss",
 	"sqlls",
+	-- "rubyfmt",
 	"tsserver",
 	"pyright",
 	"jsonls",
-	"stylua",
+	-- "stylua",
 }
 
 local settings = {

@@ -18,7 +18,7 @@ local actions = require("telescope.actions")
 telescope.setup({
 	defaults = {
 		sorting_strategy = "ascending",
-		initial_mode = "normal",
+		initial_mode = "insert",
 		layout_config = {
 			prompt_position = "top",
 		},
