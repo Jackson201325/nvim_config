@@ -88,9 +88,11 @@ local mappings = {
 	-- ["q"] = { "<cmd>wqa!<CR>", "Quit" },
 	["c"] = { "<cmd>lua require('mini.bufremove').delete(0, false)<CR>", "Close Buffer" },
 	["C"] = { "<cmd>lua require('mini.bufremove').delete(0, true)<CR>", "Force Close Buffer" },
+	["d"] = { '<cmd>%bdelete|edit #|normal `"<CR>', "Close Window" },
 	["x"] = { "<cmd>quit<CR>", "Close Window" },
 	["u"] = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
 	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+	["o"] = { "<cmd>Lspsaga outline<CR>", "Open" },
 	["<space>"] = {
 		"<cmd>lua require('telescope.builtin').oldfiles()<cr>",
 		"Find recent files",
@@ -98,27 +100,20 @@ local mappings = {
 	["/"] = { "<cmd>Telescope live_grep<CR>", "Grep" },
 	f = {
 		name = "Find",
+		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+		b = { "<cmd>Lspsaga show_buf_diagnostics<cr>", "Show buffer Diagnostics" },
+		d = {
+			"<cmd>Telescope diagnostics bufnr=0<cr>",
+			"Document Diagnostics",
+		},
 		f = {
 			"<cmd>lua require('telescope.builtin').find_files()<cr>",
 			"Files",
 		},
-		r = {
-			"<cmd>lua require('telescope.builtin').oldfiles()<cr>",
-			"Recent Files",
+		w = {
+			"<cmd>Telescope diagnostics<cr>",
+			"Workspace Diagnostics",
 		},
-		g = {
-			"<cmd>lua require('telescope.builtin').live_grep()<cr>",
-			"Grep",
-		},
-		a = { "<cmd>Telescope autocommands<cr>", "Auto Commands" },
-		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-		C = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-		c = { "<cmd>Telescope commands<cr>", "Commands" },
-		h = { "<cmd>Telescope highlights<cr>", "Search Highlight Groups" },
-		H = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-		M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-		R = { "<cmd>Telescope registers<cr>", "Registers" },
-		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 	},
 	p = {
 		name = "Packer",
@@ -127,6 +122,21 @@ local mappings = {
 		s = { "<cmd>PackerSync<cr>", "Sync" },
 		S = { "<cmd>PackerStatus<cr>", "Status" },
 		u = { "<cmd>PackerUpdate<cr>", "Update" },
+	},
+	s = {
+		name = "Search",
+		a = { "<cmd>Telescope autocommands<cr>", "Auto Commands" },
+		c = { "<cmd>Telescope commands<cr>", "Commands" },
+		p = { "<cmd>Telescope persisted<cr>", "Persisted" },
+		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
+		r = { "<cmd>Telescope registers<cr>", "Registers" },
+		m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
+		s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+		S = {
+			"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+			"Workspace Symbols",
+		},
+		h = { "<cmd>Telescope highlights<cr>", "Highlight Groups" },
 	},
 	g = {
 		name = "Git",
@@ -154,11 +164,6 @@ local mappings = {
 	l = {
 		name = "LSP",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-		b = { "<cmd>Lspsaga show_buf_diagnostics<cr>", "Show buffer Diagnostics" },
-		d = {
-			"<cmd>Telescope diagnostics bufnr=0<cr>",
-			"Document Diagnostics",
-		},
 		f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		n = { "<cmd>NullLsInfo<cr>", "Null LS Info" },
@@ -176,15 +181,6 @@ local mappings = {
 		u = { "<cmd>NullLsLog<CR>", "Null LS Log" },
 		q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-		s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-		S = {
-			"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-			"Workspace Symbols",
-		},
-		w = {
-			"<cmd>Telescope diagnostics<cr>",
-			"Workspace Diagnostics",
-		},
 	},
 	t = {
 		name = "Terminal",

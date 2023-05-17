@@ -89,7 +89,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-	pattern = { "*" },
-	command = "normal  zR",
-})
+-- vim.api.nvim_create_autocmd({ "BufEnter" }, {
+-- 	pattern = { "*" },
+-- 	command = "normal  zR",
+-- })

@@ -35,7 +35,7 @@ opt.clipboard = "unnamedplus"
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 3 -- Hide * markup for bold and italic
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
-opt.formatoptions = "jcroqlnt" -- tcqopt.grepformat = "%f:%l:%c:%m"
+opt.formatoptions = "jcoqlnt" -- tcqopt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 opt.scrolloff = 4 -- Lines of context
 opt.inccommand = "nosplit" -- preview incremental substitute
@@ -64,6 +64,6 @@ if vim.fn.has("nvim-0.9.0") == 1 then
 end
 
 opt.winbar = "%=%m %f"
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.fen = true
+-- opt.foldmethod = "expr"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- opt.fen = true

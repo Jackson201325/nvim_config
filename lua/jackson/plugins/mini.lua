@@ -1,6 +1,6 @@
 local status_ok, indent_scope = pcall(require, "mini.indentscope")
 if not status_ok then
-	print("Indent scopt not ok")
+	print("Indent scope not ok")
 	return
 end
 

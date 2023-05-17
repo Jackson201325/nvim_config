@@ -98,13 +98,20 @@ packer.startup(function(use)
 			require("project_nvim").setup({})
 		end,
 	})
-
+	use({
+		"cappyzawa/trim.nvim",
+		config = function()
+			require("trim").setup({})
+		end,
+	})
+	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
 	-- UI
 	use("lewis6991/gitsigns.nvim")
 	use("goolord/alpha-nvim")
 	use("NvChad/nvim-colorizer.lua")
 	use("folke/which-key.nvim")
 	use("RRethy/vim-illuminate")
+	use("kevinhwang91/nvim-hlslens")
 
 	-- Outliner
 	use("simrat39/symbols-outline.nvim")
