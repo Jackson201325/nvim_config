@@ -69,10 +69,10 @@ keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 keymap.set("v", ">", ">gv", opts)
 keymap.set("v", "<", "<gv", opts)
 
--- keymap.set("n", "<Tab>", ">>", opts)
--- keymap.set("n", "<S-Tab>", "<<", opts)
--- keymap.set("i", "<Tab>", "<C-t>", opts)
--- keymap.set("i", "<S-Tab>", "<C-d>", opts)
+keymap.set("n", "<Tab>", ">>", opts)
+keymap.set("n", "<S-Tab>", "<<", opts)
+keymap.set("i", "<Tab>", "<C-t>", opts)
+keymap.set("i", "<S-Tab>", "<C-d>", opts)
 
 -- Clear search with <esc>
 keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", opts)
@@ -83,7 +83,6 @@ if vim.fn.has("nvim-0.9.0") == 1 then
 end
 
 -- windows
-keymap.set("n", "<leader>x", ":close<CR>", { desc = "Close Split" })
 keymap.set("n", "<leader>=", "<C-w>=", { desc = "Split Equal" })
 keymap.set("n", "<leader>-", "<C-w>s", { desc = "Split window below" })
 keymap.set("n", "<leader>\\", "<C-w>v", { desc = "Split window right" })
@@ -94,18 +93,18 @@ keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
 keymap.set("n", "<S-h>", ":bprevious<cr>", { desc = "Prev buffer" })
 keymap.set("n", "<S-l>", ":bnext<cr>", { desc = "Next buffer" })
 
--- Telescope keymaps
-keymap.set("n", "<leader>/", "<cmd>Telescope live_grep<CR>", { desc = "Grep (root dir)" })
-
--- find
-keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find File" })
-keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Recent" })
-
--- search
-keymap.set("n", "<leader>sC", "<cmd>Telescope commands<cr>", { desc = "Commands" })
-keymap.set("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "Help Pages" })
-keymap.set("n", "<leader>sH", "<cmd>Telescope highlights<cr>", { desc = "Search Highlight Groups" })
-keymap.set("n", "<leader>sk", "<cmd>Telescope keymaps<cr>", { desc = "Key Maps" })
+-- -- Telescope keymaps
+-- keymap.set("n", "<leader>/", "<cmd>Telescope live_grep<CR>", { desc = "Grep (root dir)" })
+--
+-- -- find
+-- keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find File" })
+-- keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Recent" })
+--
+-- -- search
+-- keymap.set("n", "<leader>sC", "<cmd>Telescope commands<cr>", { desc = "Commands" })
+-- keymap.set("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "Help Pages" })
+-- keymap.set("n", "<leader>sH", "<cmd>Telescope highlights<cr>", { desc = "Search Highlight Groups" })
+-- keymap.set("n", "<leader>sk", "<cmd>Telescope keymaps<cr>", { desc = "Key Maps" })
 
 -- Useless keymaps
 

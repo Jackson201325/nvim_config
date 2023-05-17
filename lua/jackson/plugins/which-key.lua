@@ -79,29 +79,31 @@ local opts = {
 }
 
 local mappings = {
+	["a"] = { ":SymbolsOutline<CR>", "Open Symbols Outline" },
 	["b"] = {
 		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 		"Buffers",
 	},
+	["ca"] = { "<cmd>Lspsaga code_action<CR>", "Code Action" },
 	["e"] = { "<cmd>Neotree toggle<cr>", "Explorer" },
 	-- ["w"] = { "<cmd>w!<CR>", "Save" },
 	-- ["q"] = { "<cmd>wqa!<CR>", "Quit" },
-	["c"] = { "<cmd>lua require('mini.bufremove').delete(0, false)<CR>", "Close Buffer" },
-	["C"] = { "<cmd>lua require('mini.bufremove').delete(0, true)<CR>", "Force Close Buffer" },
-	["d"] = { '<cmd>%bdelete|edit #|normal `"<CR>', "Close Window" },
-	["x"] = { "<cmd>quit<CR>", "Close Window" },
-	["u"] = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
+	["o"] = { "<cmd>Lspsaga outline<CR>", "Open LSP outline" },
 	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-	["o"] = { "<cmd>Lspsaga outline<CR>", "Open" },
-	["<space>"] = {
-		"<cmd>lua require('telescope.builtin').oldfiles()<cr>",
-		"Find recent files",
-	},
+	["u"] = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
+	["Q"] = { '<cmd>%bdelete|edit #|normal `"<CR>', "Close All Window except this one" },
+	["q"] = { "<cmd>quit<CR>", "Close Split" },
+	["x"] = { "<cmd>lua require('mini.bufremove').delete(0, false)<CR>", "Close Buffer" },
+	["X"] = { "<cmd>lua require('mini.bufremove').delete(0, true)<CR>", "Force Close Buffer" },
+	["w"] = { "<cmd>lua vim.lsp.buf.format{async=true}<CR>", "Save" },
+	["<space>"] = { "<cmd>Telescope git_status<cr>", "Find Changed files" },
 	["/"] = { "<cmd>Telescope live_grep<CR>", "Grep" },
+	["="] = { "<C-w>=", "Split Equal" },
+	["-"] = { "<C-w>s", "Split window below" },
+	["\\"] = { "<C-w>v", "Split window right" },
 	f = {
 		name = "Find",
 		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-		b = { "<cmd>Lspsaga show_buf_diagnostics<cr>", "Show buffer Diagnostics" },
 		d = {
 			"<cmd>Telescope diagnostics bufnr=0<cr>",
 			"Document Diagnostics",
@@ -110,6 +112,8 @@ local mappings = {
 			"<cmd>lua require('telescope.builtin').find_files()<cr>",
 			"Files",
 		},
+		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
+
 		w = {
 			"<cmd>Telescope diagnostics<cr>",
 			"Workspace Diagnostics",
@@ -123,42 +127,22 @@ local mappings = {
 		S = { "<cmd>PackerStatus<cr>", "Status" },
 		u = { "<cmd>PackerUpdate<cr>", "Update" },
 	},
+
 	s = {
 		name = "Search",
 		a = { "<cmd>Telescope autocommands<cr>", "Auto Commands" },
+		b = { "<cmd>Lspsaga show_buf_diagnostics<cr>", "Buffer Diagnostics" },
 		c = { "<cmd>Telescope commands<cr>", "Commands" },
-		p = { "<cmd>Telescope persisted<cr>", "Persisted" },
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-		r = { "<cmd>Telescope registers<cr>", "Registers" },
 		m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
 		s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-		S = {
-			"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-			"Workspace Symbols",
-		},
-		h = { "<cmd>Telescope highlights<cr>", "Highlight Groups" },
 	},
+
 	g = {
 		name = "Git",
 		g = { "<cmd>lua LAZYGIT_TOGGLE()<CR>", "Lazygit" },
-		j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
-		k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-		l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
-		p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-		r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
-		R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-		s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-		u = {
-			"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-			"Undo Stage Hunk",
-		},
+		d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
 		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-		d = {
-			"<cmd>Gitsigns diffthis HEAD<cr>",
-			"Diff",
-		},
 	},
 
 	l = {
@@ -167,30 +151,32 @@ local mappings = {
 		f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		n = { "<cmd>NullLsInfo<cr>", "Null LS Info" },
-		I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-		j = {
-			"<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
-			"Next Diagnostic",
-		},
-		k = {
-			"<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
-			"Prev Diagnostic",
-		},
-		l = { "<cmd>LspLog<cr>", "Lsp Log" },
+		l = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
+		I = { "<cmd>LspLog<cr>", "Lsp Log" },
 		o = { "<cmd>Lspsaga lsp_finder<cr>", "LSP Finder" },
-		u = { "<cmd>NullLsLog<CR>", "Null LS Log" },
+		N = { "<cmd>NullLsLog<CR>", "Null LS Log" },
 		q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
 	},
+
 	t = {
 		name = "Terminal",
 		n = { "<cmd>lua NODE_TOGGLE()<cr>", "Node" },
 		u = { "<cmd>lua NCDU_TOGGLE()<cr>", "NCDU" },
 		t = { "<cmd>lua HTOP_TOGGLE()<cr>", "Htop" },
-		p = { "<cmd>lua PYTHON_TOGGLE()<cr>", "Python" },
 		f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
 		h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
 		v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+	},
+
+	d = {
+		name = "Diagnostics",
+		x = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
+		w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics" },
+		d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics" },
+		l = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
+		q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+		r = { "<cmd>TroubleToggle lsp_references<cr>", "LSP References" },
 	},
 }
 

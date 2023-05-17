@@ -23,7 +23,7 @@ M.setup = function()
 	end
 
 	local config = {
-		virtual_text = false, -- disable virtual text
+		virtual_text = true, -- disable virtual text
 		signs = {
 			active = signs, -- show signs
 		},
@@ -55,12 +55,12 @@ local function lsp_keymaps(bufnr)
 	local opts = { noremap = true, silent = true }
 	local keymap = vim.api.nvim_buf_set_keymap
 	keymap(bufnr, "n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts)
-	keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	keymap(bufnr, "n", "gd", "<cmd>Lspsaga goto_definition :vsplit<CR>", opts)
+	keymap(bufnr, "n", "gdd", ":vsplit | Lspsaga goto_definition<CR>", opts)
+	keymap(bufnr, "n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)
+	keymap(bufnr, "n", "gh", "<cmd>Lspsaga code_action<CR>", opts)
 	keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
-	keymap(bufnr, "n", "gr", "<cmd>Telescope lsp_references<CR>", { desc = "References" })
+	keymap("<cmd>Telescope lsp_references<CR>", "n", "gr", bufnr, { desc = "References" })
 	keymap(bufnr, "n", "gp", "<cmd>Lspsaga peek_definition<CR>", opts)
-	keymap(bufnr, "n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
 end
 
 M.on_attach = function(client, bufnr)
@@ -79,11 +79,8 @@ M.on_attach = function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
 	end
 
-	if client.name == "lua_ls" then
-		-- client.server_capabilities.documentFormattingProvider = false
-	end
-
 	lsp_keymaps(bufnr)
+
 
 	local status_ok, illuminate = pcall(require, "illuminate")
 	if not status_ok then
@@ -95,6 +92,8 @@ M.on_attach = function(client, bufnr)
 	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 	if client.supports_method("textDocument/formatting") then
+    print("hello this is client")
+    print(client)
 		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			group = augroup,

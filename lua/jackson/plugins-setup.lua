@@ -105,6 +105,7 @@ packer.startup(function(use)
 		end,
 	})
 	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
+
 	-- UI
 	use("lewis6991/gitsigns.nvim")
 	use("goolord/alpha-nvim")
@@ -112,6 +113,7 @@ packer.startup(function(use)
 	use("folke/which-key.nvim")
 	use("RRethy/vim-illuminate")
 	use("kevinhwang91/nvim-hlslens")
+  use("folke/trouble.nvim")
 
 	-- Outliner
 	use("simrat39/symbols-outline.nvim")
