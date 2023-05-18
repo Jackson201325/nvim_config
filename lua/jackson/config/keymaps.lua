@@ -12,6 +12,15 @@ local opts = { noremap = true, silent = true }
 -- keymap.set("n", "pw", "viw<C-p>", opts)
 -- keymap.set("n", "yw", "viwy", opts)
 
+-- Minus Plus
+keymap.set("n", "=", "<C-a>", opts)
+keymap.set("n", "-", "<C-x>", opts)
+
+-- Jump back
+keymap.set("n", "<C-o>", "<C-o>zz", opts)
+-- keymap.set("n", "<C-i>", "<Tab>zz", opts)
+
+
 -- Do not yank with x
 keymap.set("n", "x", '"_x', opts)
 
@@ -26,8 +35,6 @@ keymap.set("n", "<C-d>", "<C-d>zz", opts)
 keymap.set("n", "<C-u>", "<C-u>zz", opts)
 keymap.set("n", "(", "{zz", opts)
 keymap.set("n", ")", "}zz", opts)
--- keymap.set("n", "{", "{zz", opts)
--- keymap.set("n", "}", "}zz", opts)
 keymap.set("n", "n", "nzzzv", opts)
 keymap.set("n", "N", "Nzzzv", opts)
 
@@ -56,9 +63,9 @@ keymap.set("n", "<C-q>", ":qa<cr>", { desc = "Quit all" })
 
 -- Faster esc
 keymap.set("t", "<esc><esc>", "<c-\\><c-n>", opts)
-keymap.set("i", "jj", "<ESC>", opts)
-keymap.set("i", "kk", "<ESC>", opts)
-keymap.set("i", "kj", "<ESC>", opts)
+keymap.set("i", "jj", "<cmd>noh<cr><<ESC>", opts)
+keymap.set("i", "kk", "<cmd>noh<cr><<ESC>", opts)
+keymap.set("i", "kj", "<cmd>noh<cr><<ESC>", opts)
 keymap.set("n", "0", "^", opts)
 
 -- Move to window using the <ctrl> hjkl keys
@@ -71,8 +78,8 @@ keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 keymap.set("v", ">", ">gv", opts)
 keymap.set("v", "<", "<gv", opts)
 
-keymap.set("n", "<Tab>", ">>", opts)
-keymap.set("n", "<S-Tab>", "<<", opts)
+-- keymap.set("n", "<Tab>", ">>", opts)
+-- keymap.set("n", "<S-Tab>", "<<", opts)
 keymap.set("i", "<Tab>", "<C-t>", opts)
 keymap.set("i", "<S-Tab>", "<C-d>", opts)
 
@@ -80,10 +87,10 @@ keymap.set("i", "<S-Tab>", "<C-d>", opts)
 keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", opts)
 
 -- highlights under cursor
-if vim.fn.has("nvim-0.9.0") == 1 then
-	keymap.set("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
-end
-
+-- if vim.fn.has("nvim-0.9.0") == 1 then
+-- 	keymap.set("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
+-- end
+--
 -- windows
 keymap.set("n", "<leader>=", "<C-w>=", { desc = "Split Equal" })
 keymap.set("n", "<leader>-", "<C-w>s", { desc = "Split window below" })
@@ -92,6 +99,7 @@ keymap.set("n", "<leader>\\", "<C-w>v", { desc = "Split window right" })
 -- search word under cursor
 keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
 
+-- Move between buffers
 keymap.set("n", "<S-h>", ":bprevious<cr>", { desc = "Prev buffer" })
 keymap.set("n", "<S-l>", ":bnext<cr>", { desc = "Next buffer" })
 

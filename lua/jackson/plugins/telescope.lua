@@ -9,9 +9,17 @@ if not trouble_status then
 	return
 end
 
+vim.keymap.set(
+	"n",
+	"<C-b>",
+	"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+	{ noremap = true, silent = true }
+)
+
 telescope.load_extension("fzf")
 telescope.load_extension("media_files")
 telescope.load_extension("persisted")
+telescope.load_extension("live_grep_args")
 
 local actions = require("telescope.actions")
 
@@ -46,7 +54,6 @@ telescope.setup({
 				["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
 				["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
 				["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-				-- ["<C-l>"] = actions.complete_tag,
 				["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
 				["<C-t>"] = trouble.open_with_trouble,
 			},

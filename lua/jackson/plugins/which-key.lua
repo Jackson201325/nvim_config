@@ -80,17 +80,13 @@ local opts = {
 
 local mappings = {
 	["a"] = { ":SymbolsOutline<CR>", "Open Symbols Outline" },
-	["b"] = {
-		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-		"Buffers",
-	},
-	["e"] = { "<cmd>Neotree toggle<cr>", "Explorer" },
-	["o"] = { "<cmd>Lspsaga outline<CR>", "Open LSP outline" },
-	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-	["u"] = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
-	["c"] = { '<cmd>%bdelete|edit #|normal `"<CR>', "Close All Window except this one" },
-	["x"] = { "<cmd>quit<CR>", "Close Split" },
+	["C"] = { '<cmd>%bdelete|edit #|normal `"<CR>', "Close All Window except this one" },
 	["c"] = { "<cmd>lua require('mini.bufremove').delete(0, false)<CR>", "Close Buffer" },
+	["e"] = { "<cmd>Neotree toggle<cr>", "Explorer" },
+	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+	["o"] = { "<cmd>Lspsaga outline<CR>", "Open LSP outline" },
+	["u"] = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
+	["x"] = { "<cmd>quit<CR>", "Close Split" },
 	["X"] = { "<cmd>lua require('mini.bufremove').delete(0, true)<CR>", "Force Close Buffer" },
 	["w"] = { "<cmd>lua vim.lsp.buf.format{async=true}<CR>", "Save" },
 	["<space>"] = { "<cmd>Telescope git_status<cr>", "Find Changed files" },
@@ -105,12 +101,12 @@ local mappings = {
 			"<cmd>Telescope diagnostics bufnr=0<cr>",
 			"Document Diagnostics",
 		},
+		g = { "<cmd> lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", "Grep with Args" },
 		f = {
 			"<cmd>lua require('telescope.builtin').find_files()<cr>",
 			"Files",
 		},
 		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-
 		w = {
 			"<cmd>Telescope diagnostics<cr>",
 			"Workspace Diagnostics",

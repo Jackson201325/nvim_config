@@ -75,6 +75,7 @@ packer.startup(function(use)
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
+	use("nvim-telescope/telescope-live-grep-args.nvim")
 	use({
 		"nvim-telescope/telescope-fzf-native.nvim",
 		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
@@ -98,6 +99,7 @@ packer.startup(function(use)
 			require("trim").setup({})
 		end,
 	})
+	use("airblade/vim-rooter")
 	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
 	use("simrat39/symbols-outline.nvim")
 

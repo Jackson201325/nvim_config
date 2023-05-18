@@ -16,6 +16,12 @@ if not lsp_kind_status_ok then
 	return
 end
 
+local has_words_before = function()
+	unpack = unpack or table.unpack
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 require("luasnip/loaders/from_vscode").lazy_load()
 
 cmp.setup({
@@ -30,12 +36,10 @@ cmp.setup({
 		{ "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
 	},
 	mapping = {
-		-- ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping({
 			i = function(fallback)
 				if cmp.visible() and cmp.get_active_entry() then
 					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-					-- cmp.mapping.confirm({ select = true })
 				else
 					fallback()
 				end
@@ -45,14 +49,37 @@ cmp.setup({
 		}),
 		["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 		["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<Right>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			-- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+			-- they way you will only jump inside the snippet region
+			elseif luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			elseif has_words_before() then
+				cmp.complete()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+
+		["<Left>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 	},
 	sorting = {
 		priority_weight = 2,
 		comparators = {
-			-- require("copilot_cmp.comparators").prioritize,
+			require("copilot_cmp.comparators").prioritize,
 			-- Below is the default comparitor list and order for nvim-cmp
 			cmp.config.compare.offset,
-			-- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+			cmp.config.compare.scopes, --this is commented in nvim-cmp too
 			cmp.config.compare.exact,
 			cmp.config.compare.score,
 			cmp.config.compare.recently_used,
@@ -72,7 +99,7 @@ cmp.setup({
 				luasnip = "[LuaSnip]",
 				nvim_lsp = "[LSP]",
 				nvim_lua = "[LUA]",
-        crates = "[Crates]",
+				crates = "[Crates]",
 				buffer = "[Buffer]",
 				path = "[Path]",
 				cmdline = "[CmdLine]",
