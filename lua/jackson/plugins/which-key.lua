@@ -106,12 +106,14 @@ local mappings = {
 			"<cmd>lua require('telescope.builtin').find_files()<cr>",
 			"Files",
 		},
+		F = { "<cmd>Telescope find_files hidden=true<cr>", "Hidden" },
 		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
 		w = {
 			"<cmd>Telescope diagnostics<cr>",
 			"Workspace Diagnostics",
 		},
 	},
+
 	p = {
 		name = "Packer",
 		c = { "<cmd>PackerCompile<cr>", "Compile" },

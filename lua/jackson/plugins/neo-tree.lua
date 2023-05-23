@@ -15,9 +15,9 @@ neotree.setup({
 	-- You can also add an external source by adding it's name to this list.
 	-- The name used here must be the same name you would use in a require() call.
 	sources = {
+		"git_status",
 		"filesystem",
-		-- "buffers",
-		-- "git_status",
+		"buffers",
 		"document_symbols",
 	},
 	add_blank_line_at_top = false, -- Add a blank line at the top of the tree.
@@ -326,15 +326,16 @@ neotree.setup({
 	window = {
 		-- see https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup for
 		-- possible options. These can also be functions that return these options.
-		position = "left", -- left, right, top, bottom, float, current
+		position = "float", -- left, right, top, bottom, float, current
+		follow_current_file = true, -- This will find and focus the file in the active buffer every time
 		width = 40, -- applies to left and right positions
 		height = 15, -- applies to top and bottom positions
 		auto_expand_width = false, -- expand the window when file exceeds the window width. does not work with position = "float"
 		popup = {
 			-- settings that apply to float position only
 			size = {
-				height = "80%",
-				width = "50%",
+				height = "60%",
+				width = "40%",
 			},
 			position = "50%", -- 50% means center it
 			-- you can also specify border here, if you want a different setting from
@@ -407,8 +408,8 @@ neotree.setup({
 				["<C-x>"] = "clear_filter",
 				["<bs>"] = "navigate_up",
 				["."] = "set_root",
-				["[g"] = "prev_git_modified",
-				["]g"] = "next_git_modified",
+				["g"] = "prev_git_modified",
+				["G"] = "next_git_modified",
 			},
 			fuzzy_finder_mappings = {
 				-- define keymaps for filter popup window in fuzzy_finder_mode
@@ -522,6 +523,7 @@ neotree.setup({
 		},
 	},
 	git_status = {
+		follow_current_file = true, -- This will find and focus the file in the active buffer every time
 		window = {
 			mappings = {
 				["A"] = "git_add_all",

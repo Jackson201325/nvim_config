@@ -62,16 +62,12 @@ packer.startup(function(use)
 
 	-- LSP support
 	use({ "glepnir/lspsaga.nvim", branch = "main" })
-	-- use("jose-elias-alvarez/typescript.nvim")
+	use("jose-elias-alvarez/typescript.nvim")
 	use("rust-lang/rust.vim")
 	use("simrat39/rust-tools.nvim")
 	use("mfussenegger/nvim-dap")
 	use("saecki/crates.nvim")
 	use("roobert/tailwindcss-colorizer-cmp.nvim")
-
-	-- Treesitter
-	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
-	use("JoosepAlviste/nvim-ts-context-commentstring")
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
@@ -85,7 +81,11 @@ packer.startup(function(use)
 
 	-- Coding
 	use("windwp/nvim-ts-autotag")
+	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
+	use("nvim-treesitter/playground")
+	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("windwp/nvim-autopairs")
+	use("tpope/vim-endwise")
 	use("numToStr/Comment.nvim")
 	use({
 		"ahmedkhalf/project.nvim",
@@ -102,6 +102,13 @@ packer.startup(function(use)
 	use("airblade/vim-rooter")
 	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
 	use("simrat39/symbols-outline.nvim")
+	use({
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		after = "nvim-treesitter",
+		requires = "nvim-treesitter/nvim-treesitter",
+	})
+	use({ "mg979/vim-visual-multi", branch = "master" })
+	use("tpope/vim-repeat")
 
 	-- UI
 	use("lewis6991/gitsigns.nvim")

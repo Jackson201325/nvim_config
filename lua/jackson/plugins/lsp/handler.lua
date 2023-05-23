@@ -54,15 +54,15 @@ end
 local function lsp_keymaps(bufnr)
 	local opts = { noremap = true, silent = true }
 	local keymap = vim.api.nvim_buf_set_keymap
-	keymap(bufnr, "n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts)
-	keymap(bufnr, "n", "gdd", ":vsplit | Lspsaga goto_definition<CR>", opts)
-	keymap(bufnr, "n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)
+	keymap(bufnr, "n", "ga", "<cmd>Lspsaga code_action<CR>", opts)
+	keymap(bufnr, "n", "gd", "<cmd>Lspsaga goto_definition zz<CR>", opts)
+	keymap(bufnr, "n", "gD", ":vsplit | Lspsaga goto_definition<CR>", opts)
+	keymap(bufnr, "n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opts)
+	keymap(bufnr, "n", "gj", "<cmd>Lspsaga peek_definition<CR>", opts)
 	keymap(bufnr, "n", "gt", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", opts)
 	keymap(bufnr, "n", "gT", "<cmd>lua require('goto-preview').close_all_win()<CR>", opts)
-	keymap(bufnr, "n", "gh", "<cmd>Lspsaga code_action<CR>", opts)
 	keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
-	keymap(bufnr, "n", "gr", "<cmd>Telescope lsp_references<CR>", { desc = "References" })
-	keymap(bufnr, "n", "gp", "<cmd>Lspsaga peek_definition<CR>", opts)
+	-- keymap(bufnr, "n", "gf", "<cmd>Telescope lsp_references<CR>", { desc = "References" })
 end
 
 M.on_attach = function(client, bufnr)
@@ -70,11 +70,15 @@ M.on_attach = function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
 		vim.keymap.set(
 			"n",
-			"<leader>co",
-			"<cmd>TypescriptOrganizeImports<CR>",
-			{ buffer = bufnr, desc = "Organize Imports" }
+			"ta",
+			"<cmd>TypescriptAddMissingImports<CR>",
+			{ buffer = bufnr, desc = "Add missing imports" }
 		)
-		vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = bufnr })
+		vim.keymap.set("n", "tr", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = bufnr })
+		vim.keymap.set("n", "tf", "<cmd>TypescriptFixAll<CR>", { desc = "Fix File", buffer = bufnr })
+		vim.keymap.set("n", "td", "<cmd>TypescriptGoToSourceDefinition<CR>", { desc = "Go to Definition" })
+		vim.keymap.set("n", "to", "<cmd>TypescriptOrganizeImports<CR>", { desc = "Rename File", buffer = bufnr })
+		vim.keymap.set("n", "tu", "<cmd>TypescriptRemoveUnsed<CR>", { desc = "Rename File", buffer = bufnr })
 	end
 
 	if client.name == "solargraph" then

@@ -124,3 +124,21 @@ telescope.setup({
 		},
 	},
 })
+
+function Find_git_diff_files()
+	local output = vim.fn.systemlist("git diff --name-only master")
+	if vim.v.shell_error ~= 0 then
+		print("Error occurred while getting git diff files.")
+		return
+	end
+	if #output == 0 then
+		print("No files with changes from master branch.")
+		return
+	end
+	builtin.find_files({
+		cwd = vim.fn.getcwd(),
+		find_command = { "rg", "--files", "--no-ignore", "-g", "!" .. table.concat(output, " -g !") },
+	})
+end
+
+vim.api.nvim_set_keymap("n", "<leader>fj", [[<cmd>lua find_git_diff_files()<cr>]], { noremap = true })
