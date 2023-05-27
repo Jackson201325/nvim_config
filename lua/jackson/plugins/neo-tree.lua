@@ -41,7 +41,7 @@ neotree.setup({
 		max_lines = 10000, -- How many lines of git status results to process. Anything after this will be dropped.
 		-- Anything before this will be used. The last items to be processed are the untracked files.
 	},
-	hide_root_node = false, -- Hide the root node.
+	hide_root_node = false, -- Hide the root node.focus_preview
 	retain_hidden_root_indent = false, -- IF the root node is hidden, keep the indentation anyhow.
 	-- This is needed if you use expanders because they render in the indent.
 	log_level = "info", -- "trace", "debug", "info", "warn", "error", "fatal"

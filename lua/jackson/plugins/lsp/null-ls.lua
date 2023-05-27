@@ -19,10 +19,10 @@ null_ls.setup({
 		-- require("typescript.extensions.null_ls.code_actions"),
 
 		-- Ruby
-		-- formatting.rubocop,
+		formatting.rubocop,
 		-- diagnostics.reek,
 		diagnostics.rubocop,
-		formatting.rubyfmt,
+		-- formatting.rubyfmt,
 
 		-- Lua
 		formatting.stylua,

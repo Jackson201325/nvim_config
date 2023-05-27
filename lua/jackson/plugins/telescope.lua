@@ -2,6 +2,7 @@ local status_ok, telescope = pcall(require, "telescope")
 if not status_ok then
 	return
 end
+
 local trouble_status, trouble = pcall(require, "trouble.providers.telescope")
 
 if not trouble_status then
@@ -44,6 +45,7 @@ telescope.setup({
 				["<Up>"] = actions.move_selection_previous,
 
 				["<CR>"] = actions.select_default + actions.center,
+
 				["<C-x>"] = actions.select_horizontal,
 				["<C-v>"] = actions.select_vertical,
 
@@ -52,10 +54,10 @@ telescope.setup({
 
 				["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
 				["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-				["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-				["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+				-- ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+				["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 				["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
-				["<C-t>"] = trouble.open_with_trouble,
+				-- ["<C-t>"] = trouble.open_with_trouble,
 			},
 
 			n = {
@@ -63,7 +65,7 @@ telescope.setup({
 				["<CR>"] = actions.select_default,
 				["<C-x>"] = actions.select_horizontal,
 				["<C-v>"] = actions.select_vertical,
-				["<C-t>"] = trouble.open_with_trouble,
+				-- ["<C-t>"] = trouble.open_with_trouble,
 
 				["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
 				["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,

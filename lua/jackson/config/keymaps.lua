@@ -18,7 +18,7 @@ keymap.set("n", "-", "<C-x>", opts)
 
 -- Jump back
 keymap.set("n", "<C-o>", "<C-o>zz", opts)
--- keymap.set("n", "<C-i>", "<Tab>zz", opts)
+keymap.set("n", "<C-i>", "<C-i>zz", opts)
 
 -- Do not yank with x
 keymap.set("n", "x", '"_x', opts)
@@ -36,7 +36,6 @@ keymap.set("n", "(", "{zz", opts)
 keymap.set("n", ")", "}zz", opts)
 keymap.set("n", "n", "nzzzv", opts)
 keymap.set("n", "N", "Nzzzv", opts)
-
 -- Paste over
 keymap.set("x", "<C-p>", '"_dP', opts)
 

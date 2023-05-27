@@ -109,6 +109,7 @@ packer.startup(function(use)
 	})
 	use({ "mg979/vim-visual-multi", branch = "master" })
 	use("tpope/vim-repeat")
+	use("m-demare/hlargs.nvim")
 
 	-- UI
 	use("lewis6991/gitsigns.nvim")
