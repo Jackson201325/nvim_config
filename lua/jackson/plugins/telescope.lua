@@ -2,6 +2,7 @@ local status_ok, telescope = pcall(require, "telescope")
 if not status_ok then
 	return
 end
+local builtin = require("telescope.builtin")
 
 local trouble_status, trouble = pcall(require, "trouble.providers.telescope")
 
@@ -9,7 +10,7 @@ if not trouble_status then
 	print("Trouble_status not ok")
 	return
 end
-
+local action_state = require("telescope.actions.state")
 vim.keymap.set(
 	"n",
 	"<C-b>",
@@ -44,7 +45,18 @@ telescope.setup({
 				["<Down>"] = actions.move_selection_next,
 				["<Up>"] = actions.move_selection_previous,
 
-				["<CR>"] = actions.select_default + actions.center,
+				-- ["<CR>"] = actions.select_default + actions.center,
+				--
+				["<CR>"] = function(pb)
+					local picker = action_state.get_current_picker(pb)
+					local multi = picker:get_multi_selection()
+					actions.select_default(pb) -- the normal enter behaviour
+					for _, j in pairs(multi) do
+						if j.path ~= nil then -- is it a file -> open it as well:
+							vim.cmd(string.format("%s %s", "edit", j.path))
+						end
+					end
+				end,
 
 				["<C-x>"] = actions.select_horizontal,
 				["<C-v>"] = actions.select_vertical,
@@ -54,22 +66,33 @@ telescope.setup({
 
 				["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
 				["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-				-- ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-				["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+
+				-- ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+				["<C-q>"] = actions.send_selected_to_qflist + actions.open_loclist,
 				["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
-				-- ["<C-t>"] = trouble.open_with_trouble,
+				["<C-t>"] = trouble.open_selected_with_trouble,
 			},
 
 			n = {
+				["<CR>"] = function(pb)
+					local picker = action_state.get_current_picker(pb)
+					local multi = picker:get_multi_selection()
+					actions.select_default(pb) -- the normal enter behaviour
+					for _, j in pairs(multi) do
+						if j.path ~= nil then -- is it a file -> open it as well:
+							vim.cmd(string.format("%s %s", "edit", j.path))
+						end
+					end
+				end,
 				["<esc>"] = actions.close,
-				["<CR>"] = actions.select_default,
+				-- ["<CR>"] = actions.select_default,
 				["<C-x>"] = actions.select_horizontal,
 				["<C-v>"] = actions.select_vertical,
-				-- ["<C-t>"] = trouble.open_with_trouble,
+				["<C-t>"] = trouble.open_selected_with_trouble,
 
 				["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
 				["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-				["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+				["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 				["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 
 				["j"] = actions.move_selection_next,
@@ -128,19 +151,40 @@ telescope.setup({
 })
 
 function Find_git_diff_files()
-	local output = vim.fn.systemlist("git diff --name-only master")
-	if vim.v.shell_error ~= 0 then
-		print("Error occurred while getting git diff files.")
-		return
+	local branches = { "upstream/master", "origin/master" }
+	local output = {}
+
+	local project_root = vim.fn.getcwd()
+
+	for _, branch in ipairs(branches) do
+		local cmd = string.format("git diff --name-only --diff-filter=d %s", branch)
+		local branch_output = vim.fn.systemlist(cmd, project_root)
+
+		if vim.v.shell_error == 0 then
+			for _, file in ipairs(branch_output) do
+				local abs_path = project_root .. "/" .. file
+				if vim.fn.filereadable(abs_path) == 1 then
+					table.insert(output, abs_path)
+				end
+			end
+		end
 	end
+
 	if #output == 0 then
-		print("No files with changes from master branch.")
+		print("No Git-tracked files with changes from the specified branches.")
 		return
 	end
-	builtin.find_files({
-		cwd = vim.fn.getcwd(),
-		find_command = { "rg", "--files", "--no-ignore", "-g", "!" .. table.concat(output, " -g !") },
-	})
+
+	-- Use the list of files as input for a custom Telescope picker
+	require("telescope.pickers")
+		.new({}, {
+			prompt_title = "Git Diff Files",
+			finder = require("telescope.finders").new_table({
+				results = output,
+			}),
+			sorter = require("telescope.config").values.file_sorter({}),
+		})
+		:find()
 end
 
-vim.api.nvim_set_keymap("n", "<leader>fj", [[<cmd>lua find_git_diff_files()<cr>]], { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>fj", "<cmd>lua Find_git_diff_files()<cr>", { noremap = true })

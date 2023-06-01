@@ -88,7 +88,7 @@ local mappings = {
 	["u"] = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
 	["x"] = { "<cmd>quit<CR>", "Close Split" },
 	["X"] = { "<cmd>lua require('mini.bufremove').delete(0, true)<CR>", "Force Close Buffer" },
-	["w"] = { "<cmd>lua vim.lsp.buf.format{async=true}<CR>", "Save" },
+	["w"] = { "<cmd>lua vim.lsp.buf.format{async=true}<CR>", "Format" },
 	["<space>"] = { "<cmd>Telescope git_status<cr>", "Find Changed files" },
 	["/"] = { "<cmd>Telescope live_grep<CR>", "Grep" },
 	["="] = { "<C-w>=", "Split Equal" },

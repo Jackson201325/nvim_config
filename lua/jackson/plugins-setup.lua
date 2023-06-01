@@ -66,7 +66,14 @@ packer.startup(function(use)
 	use("rust-lang/rust.vim")
 	use("simrat39/rust-tools.nvim")
 	use("mfussenegger/nvim-dap")
-	use("saecki/crates.nvim")
+	use({
+		"saecki/crates.nvim",
+		tag = "v0.3.0",
+		requires = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("crates").setup()
+		end,
+	})
 	use("roobert/tailwindcss-colorizer-cmp.nvim")
 
 	-- Telescope
@@ -113,6 +120,7 @@ packer.startup(function(use)
 
 	-- UI
 	use("lewis6991/gitsigns.nvim")
+	use("xiyaowong/transparent.nvim")
 	use("goolord/alpha-nvim")
 	use("NvChad/nvim-colorizer.lua")
 	use("folke/which-key.nvim")

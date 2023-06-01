@@ -36,11 +36,12 @@ keymap.set("n", "(", "{zz", opts)
 keymap.set("n", ")", "}zz", opts)
 keymap.set("n", "n", "nzzzv", opts)
 keymap.set("n", "N", "Nzzzv", opts)
+
 -- Paste over
-keymap.set("x", "<C-p>", '"_dP', opts)
+keymap.set("x", "p", '"_dP', opts)
 
 -- Delete a word backwards
-keymap.set("n", "dw", 'vb"_d', opts)
+-- keymap.set("n", "dw", 'vb"_d', opts)
 
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G", opts)

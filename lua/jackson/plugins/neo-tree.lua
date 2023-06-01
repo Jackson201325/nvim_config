@@ -223,7 +223,7 @@ neotree.setup({
 		},
 		name = {
 			trailing_slash = false,
-			highlight_opened_files = false, -- Requires `enable_opened_markers = true`.
+			highlight_opened_files = true, -- Requires `enable_opened_markers = true`.
 			-- Take values in { false (no highlight), true (only loaded),
 			-- "all" (both loaded and unloaded)}. For more information,
 			-- see the `show_unloaded` config of the `buffers` source.
