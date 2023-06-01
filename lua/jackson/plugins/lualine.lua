@@ -94,15 +94,28 @@ local location = {
 	padding = 0,
 }
 
--- cool function for progress
-local progress = function()
-	-- local current_line = vim.fn.line(".")
-	-- local total_lines = vim.fn.line("$")
-	-- local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
-	-- local line_ratio = current_line / total_lines
-	-- local index = math.ceil(line_ratio * #chars)
-	-- return chars[index]
+local lsp = function()
+	local msg = "No Active Lsp"
+	local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+	local clients = vim.lsp.get_active_clients()
+	if next(clients) == nil then
+			return msg
+	end
+	local active_clients = {}
+	for _, client in ipairs(clients) do
+			local filetypes = client.config.filetypes
+			if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+					table.insert(active_clients, client.name)
+			end
+	end
+	if #active_clients == 0 then
+			return msg
+	else
+			return " LSP: " .. table.concat(active_clients, ", ")
+	end
 end
+
+
 
 local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
@@ -124,8 +137,8 @@ lualine.setup({
 		lualine_c = {},
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
 		lualine_x = { diff, spaces, "encoding", filetype },
-		lualine_y = { location },
-		lualine_z = { progress },
+		lualine_y = { lsp },
+		-- lualine_z = { location },
 	},
 	inactive_sections = {
 		lualine_a = {},

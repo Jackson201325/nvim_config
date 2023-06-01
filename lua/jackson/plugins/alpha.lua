@@ -21,7 +21,7 @@ dashboard.section.buttons.val = {
 	dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
 	dashboard.button("/", "  Find text", ":Telescope live_grep <CR>"),
 	dashboard.button("s", " " .. " Restore Session", ":SessionLoad<CR>"),
-	dashboard.button("t", " " .. " Session", ":Telescope persisted<CR>"),
+	dashboard.button("S", " " .. " Session", ":Telescope persisted<CR>"),
 	dashboard.button("c", "  Configuration", ":e $MYVIMRC <CR>"),
 	dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
 }
