@@ -56,7 +56,6 @@ packer.startup(function(use)
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
 	use("neovim/nvim-lspconfig")
-	use("jayp0521/mason-null-ls.nvim")
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("folke/neodev.nvim")
 
@@ -75,6 +74,13 @@ packer.startup(function(use)
 		end,
 	})
 	use("roobert/tailwindcss-colorizer-cmp.nvim")
+	use({
+		"kdheepak/lazygit.nvim",
+		-- optional for floating window border decoration
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
+	})
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
@@ -107,8 +113,6 @@ packer.startup(function(use)
 		end,
 	})
 	use("airblade/vim-rooter")
-	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
-	use("simrat39/symbols-outline.nvim")
 	use({
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		after = "nvim-treesitter",
@@ -126,19 +130,15 @@ packer.startup(function(use)
 	use("folke/which-key.nvim")
 	use("RRethy/vim-illuminate")
 	use("kevinhwang91/nvim-hlslens")
-	use("folke/trouble.nvim")
-	use({
-		"rmagatti/goto-preview",
-		config = function()
-			require("goto-preview").setup({})
-		end,
-	})
+	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
 	use("luukvbaal/statuscol.nvim")
 
 	-- Movement
 	use("mbbill/undotree")
 	use("ThePrimeagen/harpoon")
 	use("christoomey/vim-tmux-navigator") -- Navigate between vim and tmux panes seamlessly
+	use("ggandor/leap.nvim")
+	use("ggandor/flit.nvim")
 
 	-- Neo Tree
 	use({
@@ -156,9 +156,6 @@ packer.startup(function(use)
 
 	-- Status line
 	use("nvim-lualine/lualine.nvim")
-
-	--Terminal
-	use("akinsho/toggleterm.nvim")
 
 	-- Copilot
 	use("zbirenbaum/copilot.lua")
@@ -180,3 +177,17 @@ packer.startup(function(use)
 		require("packer").sync()
 	end
 end)
+
+-- Interesting plugins
+-- use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
+-- use("luukvbaal/statuscol.nvim")
+-- use("simrat39/symbols-outline.nvim")
+-- use("folke/trouble.nvim")
+-- use("akinsho/toggleterm.nvim")
+-- use("jayp0521/mason-null-ls.nvim")
+-- use({
+-- 	"rmagatti/goto-preview",
+-- 	config = function()
+-- 		require("goto-preview").setup({})
+-- 	end,
+-- })

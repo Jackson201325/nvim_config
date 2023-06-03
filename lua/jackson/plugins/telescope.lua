@@ -2,28 +2,16 @@ local status_ok, telescope = pcall(require, "telescope")
 if not status_ok then
 	return
 end
-local builtin = require("telescope.builtin")
 
-local trouble_status, trouble = pcall(require, "trouble.providers.telescope")
-
-if not trouble_status then
-	print("Trouble_status not ok")
-	return
-end
 local action_state = require("telescope.actions.state")
-vim.keymap.set(
-	"n",
-	"<C-b>",
-	"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-	{ noremap = true, silent = true }
-)
+
+local actions = require("telescope.actions")
+local lga_actions = require("telescope-live-grep-args.actions")
 
 telescope.load_extension("fzf")
 telescope.load_extension("media_files")
 telescope.load_extension("persisted")
 telescope.load_extension("live_grep_args")
-
-local actions = require("telescope.actions")
 
 telescope.setup({
 	defaults = {
@@ -31,6 +19,10 @@ telescope.setup({
 		initial_mode = "insert",
 		layout_config = {
 			prompt_position = "top",
+			-- width = 0.4,
+			horizontal = { width = 0.5, height = 0.7 },
+			-- vertical = { width = 0.5, height = 0.5 },
+			-- height = 0.6,
 		},
 		prompt_prefix = " ",
 		selection_caret = " ",
@@ -45,8 +37,6 @@ telescope.setup({
 				["<Down>"] = actions.move_selection_next,
 				["<Up>"] = actions.move_selection_previous,
 
-				-- ["<CR>"] = actions.select_default + actions.center,
-				--
 				["<CR>"] = function(pb)
 					local picker = action_state.get_current_picker(pb)
 					local multi = picker:get_multi_selection()
@@ -67,10 +57,8 @@ telescope.setup({
 				["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
 				["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
 
-				-- ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-				["<C-q>"] = actions.send_selected_to_qflist + actions.open_loclist,
+				["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 				["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
-				["<C-t>"] = trouble.open_selected_with_trouble,
 			},
 
 			n = {
@@ -85,10 +73,9 @@ telescope.setup({
 					end
 				end,
 				["<esc>"] = actions.close,
-				-- ["<CR>"] = actions.select_default,
+				["q"] = actions.close,
 				["<C-x>"] = actions.select_horizontal,
 				["<C-v>"] = actions.select_vertical,
-				["<C-t>"] = trouble.open_selected_with_trouble,
 
 				["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
 				["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
@@ -114,18 +101,18 @@ telescope.setup({
 				["?"] = actions.which_key,
 			},
 		},
-	},
-	pickers = {
-		-- Default configuration for builtin pickers goes here:
-		-- picker_name = {
-		--   picker_config_key = value,
-		--   ...
-		-- }
-		colorscheme = {
-			enable_preview = true,
+		pickers = {
+			-- Default configuration for builtin pickers goes here:
+			-- picker_name = {
+			--   picker_config_key = value,
+			--   ...
+			-- }
+			colorscheme = {
+				enable_preview = true,
+			},
+			-- Now the picker_config_key will be applied every time you call this
+			-- builtin picker
 		},
-		-- Now the picker_config_key will be applied every time you call this
-		-- builtin picker
 	},
 	extensions = {
 		-- Your extension configuration goes here:
@@ -140,6 +127,19 @@ telescope.setup({
 			case_mode = "smart_case", -- or "ignore_case" or "respect_case"
 			-- the default case_mode is "smart_case"
 		},
+    live_grep_args = {
+      auto_quoting = true, -- enable/disable auto-quoting
+      -- define mappings, e.g.
+      mappings = { -- extend mappings
+        i = {
+          ["<C-k>"] = lga_actions.quote_prompt({ postfix = " --iglob **/*/**" }),
+        },
+      },
+      -- ... also accepts theme settings, for example:
+      -- theme = "dropdown", -- use dropdown theme
+      -- theme = { }, -- use own theme spec
+      -- layout_config = { mirror=true }, -- mirror preview pane
+    },
 		persisted = {
 			layout_config = {
 				width = 0.5,
@@ -149,42 +149,3 @@ telescope.setup({
 		},
 	},
 })
-
-function Find_git_diff_files()
-	local branches = { "upstream/master", "origin/master" }
-	local output = {}
-
-	local project_root = vim.fn.getcwd()
-
-	for _, branch in ipairs(branches) do
-		local cmd = string.format("git diff --name-only --diff-filter=d %s", branch)
-		local branch_output = vim.fn.systemlist(cmd, project_root)
-
-		if vim.v.shell_error == 0 then
-			for _, file in ipairs(branch_output) do
-				local abs_path = project_root .. "/" .. file
-				if vim.fn.filereadable(abs_path) == 1 then
-					table.insert(output, abs_path)
-				end
-			end
-		end
-	end
-
-	if #output == 0 then
-		print("No Git-tracked files with changes from the specified branches.")
-		return
-	end
-
-	-- Use the list of files as input for a custom Telescope picker
-	require("telescope.pickers")
-		.new({}, {
-			prompt_title = "Git Diff Files",
-			finder = require("telescope.finders").new_table({
-				results = output,
-			}),
-			sorter = require("telescope.config").values.file_sorter({}),
-		})
-		:find()
-end
-
-vim.api.nvim_set_keymap("n", "<leader>fj", "<cmd>lua Find_git_diff_files()<cr>", { noremap = true })

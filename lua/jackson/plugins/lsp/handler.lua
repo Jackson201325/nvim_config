@@ -55,12 +55,11 @@ local function lsp_keymaps(bufnr)
 	local opts = { noremap = true, silent = true }
 	local keymap = vim.api.nvim_buf_set_keymap
 	keymap(bufnr, "n", "ga", "<cmd>Lspsaga code_action<CR>", opts)
+	keymap(bufnr, "n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
 	keymap(bufnr, "n", "gd", "<cmd>Lspsaga goto_definition zz<CR>", opts)
 	keymap(bufnr, "n", "gD", ":vsplit | Lspsaga goto_definition<CR>", opts)
 	keymap(bufnr, "n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opts)
-	keymap(bufnr, "n", "gj", "<cmd>Lspsaga peek_definition<CR>", opts)
-	keymap(bufnr, "n", "gt", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", opts)
-	keymap(bufnr, "n", "gT", "<cmd>lua require('goto-preview').close_all_win()<CR>", opts)
+	keymap(bufnr, "n", "gp", "<cmd>Lspsaga peek_definition<CR>", opts)
 	keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
 	-- keymap(bufnr, "n", "gf", "<cmd>Telescope lsp_references<CR>", { desc = "References" })
 end

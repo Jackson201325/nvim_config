@@ -3,6 +3,74 @@ if not status_ok then
 	return
 end
 
+local M = {}
+
+function M.get_root()
+	local path = vim.api.nvim_buf_get_name(0)
+	path = path ~= "" and vim.loop.fs_realpath(path) or nil
+	local roots = {}
+	if path then
+		for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+			local workspace = client.config.workspace_folders
+			local paths = workspace
+					and vim.tbl_map(function(ws)
+						return vim.uri_to_fname(ws.uri)
+					end, workspace)
+				or client.config.root_dir and { client.config.root_dir }
+				or {}
+			for _, p in ipairs(paths) do
+				local r = vim.loop.fs_realpath(p)
+				if path:find(r, 1, true) then
+					roots[#roots + 1] = r
+				end
+			end
+		end
+	end
+	table.sort(roots, function(a, b)
+		return #a > #b
+	end)
+	local root = roots[1]
+	if not root then
+		path = path and vim.fs.dirname(path) or vim.loop.cwd()
+		root = vim.fs.find(M.root_patterns, { path = path, upward = true })[1]
+		root = root and vim.fs.dirname(root) or vim.loop.cwd()
+	end
+	return root
+end
+
+function M.telescope(builtin, opts)
+	local params = { builtin = builtin, opts = opts }
+	return function()
+		builtin = params.builtin
+		opts = params.opts
+		opts = vim.tbl_deep_extend("force", { cwd = M.get_root() }, opts or {})
+		if builtin == "files" then
+			if vim.loop.fs_stat((opts.cwd or vim.loop.cwd()) .. "/.git") then
+				opts.show_untracked = true
+				builtin = "git_files"
+			else
+				builtin = "find_files"
+			end
+		end
+		if opts.cwd and opts.cwd ~= vim.loop.cwd() then
+			opts.attach_mappings = function(_, map)
+				map("i", "<a-c>", function()
+					local action_state = require("telescope.actions.state")
+					local line = action_state.get_current_line()
+					M.telescope(
+						params.builtin,
+						vim.tbl_deep_extend("force", {}, params.opts or {}, { cwd = false, default_text = line })
+					)()
+				end)
+				return true
+			end
+		end
+		require("telescope.builtin")[builtin](opts)
+	end
+end
+
+-- Rest of your configuration starts here...
+
 local setup = {
 	plugins = {
 		marks = true, -- shows a list of your marks on ' and `
@@ -79,34 +147,39 @@ local opts = {
 }
 
 local mappings = {
-	["a"] = { ":SymbolsOutline<CR>", "Open Symbols Outline" },
-	["C"] = { '<cmd>%bdelete|edit #|normal `"<CR>', "Close All Window except this one" },
+	["b"] = {
+		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
+		"Buffers",
+	},
 	["c"] = { "<cmd>lua require('mini.bufremove').delete(0, false)<CR>", "Close Buffer" },
+	["C"] = { '<cmd>%bdelete|edit #|normal `"<CR>', "Close All Window except this one" },
+	["d"] = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Buffer Diagnostics" },
 	["e"] = { "<cmd>Neotree toggle<cr>", "Explorer" },
-	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-	["o"] = { "<cmd>Lspsaga outline<CR>", "Open LSP outline" },
+	["o"] = {
+		"<cmd>lua require('telescope.builtin').lsp_document_symbols(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
+		"Open LSP outline",
+	},
 	["u"] = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
 	["x"] = { "<cmd>quit<CR>", "Close Split" },
 	["X"] = { "<cmd>lua require('mini.bufremove').delete(0, true)<CR>", "Force Close Buffer" },
 	["w"] = { "<cmd>lua vim.lsp.buf.format{async=true}<CR>", "Format" },
-	["<space>"] = { "<cmd>Telescope git_status<cr>", "Find Changed files" },
-	["/"] = { "<cmd>Telescope live_grep<CR>", "Grep" },
+	["<space>"] = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "Find files" },
+	["/"] = { "<cmd> lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", "Grep with Args" },
 	["="] = { "<C-w>=", "Split Equal" },
 	["-"] = { "<C-w>s", "Split window below" },
 	["\\"] = { "<C-w>v", "Split window right" },
 	f = {
 		name = "Find",
-		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
 		d = {
 			"<cmd>Telescope diagnostics bufnr=0<cr>",
 			"Document Diagnostics",
 		},
-		g = { "<cmd> lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", "Grep with Args" },
 		f = {
 			"<cmd>lua require('telescope.builtin').find_files()<cr>",
 			"Files",
 		},
 		F = { "<cmd>Telescope find_files hidden=true<cr>", "Hidden" },
+		r = { M.telescope("oldfiles", { cwd = vim.loop.cwd() }), "Recent Files" },
 		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
 		w = {
 			"<cmd>Telescope diagnostics<cr>",
@@ -127,15 +200,35 @@ local mappings = {
 		name = "Search",
 		a = { "<cmd>Telescope autocommands<cr>", "Auto Commands" },
 		b = { "<cmd>Lspsaga show_buf_diagnostics<cr>", "Buffer Diagnostics" },
+		C = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
 		c = { "<cmd>Telescope commands<cr>", "Commands" },
+		g = { "<cmd> lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", "Grep with Args" },
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-		m = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-		s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+		m = { "<cmd>Telescope marks<cr>", "Search Marks" },
+    M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
+		s = {
+			M.telescope("lsp_document_symbols", {
+				symbols = {
+					"Class",
+					"Function",
+					"Method",
+					"Constructor",
+					"Interface",
+					"Module",
+					"Struct",
+					"Trait",
+					"Field",
+					"Property",
+				},
+			}),
+			"Document Symbols",
+		},
+		w = { M.telescope("grep_string", { cwd = false }), "Word" },
 	},
 
 	g = {
 		name = "Git",
-		g = { "<cmd>lua LAZYGIT_TOGGLE()<CR>", "Lazygit" },
+		g = { "<cmd>LazyGit<CR>", "Lazygit" },
 		d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
 		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
 	},
@@ -151,26 +244,6 @@ local mappings = {
 		o = { "<cmd>Lspsaga lsp_finder<cr>", "LSP Finder" },
 		q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-	},
-
-	t = {
-		name = "Terminal",
-		n = { "<cmd>lua NODE_TOGGLE()<cr>", "Node" },
-		u = { "<cmd>lua NCDU_TOGGLE()<cr>", "NCDU" },
-		t = { "<cmd>lua HTOP_TOGGLE()<cr>", "Htop" },
-		f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-		h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-		v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
-	},
-
-	d = {
-		name = "Diagnostics",
-		x = { "<cmd>TroubleToggle<cr>", "TroubleToggle" },
-		w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics" },
-		d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics" },
-		l = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
-		q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
-		r = { "<cmd>TroubleToggle lsp_references<cr>", "LSP References" },
 	},
 }
 

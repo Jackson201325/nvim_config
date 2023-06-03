@@ -40,9 +40,6 @@ keymap.set("n", "N", "Nzzzv", opts)
 -- Paste over
 keymap.set("x", "p", '"_dP', opts)
 
--- Delete a word backwards
--- keymap.set("n", "dw", 'vb"_d', opts)
-
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G", opts)
 
@@ -61,42 +58,31 @@ keymap.set({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", opts)
 keymap.set("n", "<C-q>", ":qa<cr>", { desc = "Quit all" })
 
 -- Faster esc
--- keymap.set("t", "<esc><esc>", "<c-\\><c-n>", opts)
 keymap.set("i", "jj", "<cmd>noh<cr><ESC>", opts)
 keymap.set("i", "kk", "<cmd>noh<cr><ESC>", opts)
 keymap.set("i", "kj", "<cmd>noh<cr><ESC>", opts)
 keymap.set("n", "0", "^", opts)
 
 -- Move to window using the <ctrl> hjkl keys
-keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
-keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
-keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
-keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
+keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", noremap = true, silent = true })
+keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", noremap = true, silent = true })
+keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", noremap = true, silent = true })
+keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", noremap = true, silent = true })
 
 -- better indenting
 keymap.set("v", ">", ">gv", opts)
 keymap.set("v", "<", "<gv", opts)
 
--- keymap.set("n", "<Tab>", ">>", opts)
--- keymap.set("n", "<S-Tab>", "<<", opts)
--- keymap.set("i", "<Tab>", "<C-t>", opts)
--- keymap.set("i", "<S-Tab>", "<C-d>", opts)
-
 -- Clear search with <esc>
 keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", opts)
 
--- highlights under cursor
--- if vim.fn.has("nvim-0.9.0") == 1 then
--- 	keymap.set("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
--- end
---
-
 -- search word under cursor
-keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
+keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor", noremap = true, silent = true })
+keymap.set({ "n", "x" }, "gh", "%", { desc = "Go to next bracket", noremap = true, silent = true })
 
 -- Move between buffers
-keymap.set("n", "<S-h>", ":bprevious<cr>", { desc = "Prev buffer" })
-keymap.set("n", "<S-l>", ":bnext<cr>", { desc = "Next buffer" })
+keymap.set("n", "<S-h>", ":bprevious<cr>", { desc = "Prev buffer", noremap = true, silent = true })
+keymap.set("n", "<S-l>", ":bnext<cr>", { desc = "Next buffer", noremap = true, silent = true })
 
 -- Useless keymaps
 -- Normal mode
