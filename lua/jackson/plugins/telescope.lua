@@ -4,7 +4,6 @@ if not status_ok then
 end
 
 local action_state = require("telescope.actions.state")
-
 local actions = require("telescope.actions")
 local lga_actions = require("telescope-live-grep-args.actions")
 
@@ -19,10 +18,7 @@ telescope.setup({
 		initial_mode = "insert",
 		layout_config = {
 			prompt_position = "top",
-			-- width = 0.4,
 			horizontal = { width = 0.5, height = 0.7 },
-			-- vertical = { width = 0.5, height = 0.5 },
-			-- height = 0.6,
 		},
 		prompt_prefix = " ",
 		selection_caret = " ",
@@ -34,6 +30,7 @@ telescope.setup({
 
 				["<esc>"] = actions.close,
 
+				["<C-k>"] = lga_actions.quote_prompt({ postfix = " --iglob **/*/**" }),
 				["<Down>"] = actions.move_selection_next,
 				["<Up>"] = actions.move_selection_previous,
 
@@ -127,19 +124,6 @@ telescope.setup({
 			case_mode = "smart_case", -- or "ignore_case" or "respect_case"
 			-- the default case_mode is "smart_case"
 		},
-    live_grep_args = {
-      auto_quoting = true, -- enable/disable auto-quoting
-      -- define mappings, e.g.
-      mappings = { -- extend mappings
-        i = {
-          ["<C-k>"] = lga_actions.quote_prompt({ postfix = " --iglob **/*/**" }),
-        },
-      },
-      -- ... also accepts theme settings, for example:
-      -- theme = "dropdown", -- use dropdown theme
-      -- theme = { }, -- use own theme spec
-      -- layout_config = { mirror=true }, -- mirror preview pane
-    },
 		persisted = {
 			layout_config = {
 				width = 0.5,

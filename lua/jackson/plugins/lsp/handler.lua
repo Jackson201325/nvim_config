@@ -61,7 +61,7 @@ local function lsp_keymaps(bufnr)
 	keymap(bufnr, "n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opts)
 	keymap(bufnr, "n", "gp", "<cmd>Lspsaga peek_definition<CR>", opts)
 	keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
-	-- keymap(bufnr, "n", "gf", "<cmd>Telescope lsp_references<CR>", { desc = "References" })
+	keymap(bufnr, "n", "gR", "<cmd>Telescope lsp_references<CR>", { desc = "References" })
 end
 
 M.on_attach = function(client, bufnr)

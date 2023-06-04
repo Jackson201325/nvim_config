@@ -5,6 +5,7 @@ vim.g.loaded_netrwPlugin = 1
 
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
+local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
 
 -- keymap.set("n", "j", "j", opts)
 -- keymap.set("n", "dw", "viwdi", opts)
@@ -78,7 +79,12 @@ keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", opts)
 
 -- search word under cursor
 keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor", noremap = true, silent = true })
-keymap.set({ "n", "x" }, "gh", "%", { desc = "Go to next bracket", noremap = true, silent = true })
+keymap.set(
+	{ "n", "x" },
+	"sw",
+  live_grep_args_shortcuts.grep_word_under_cursor,
+	{ desc = "Search Word in project under cursor", noremap = true, silent = true }
+)
 
 -- Move between buffers
 keymap.set("n", "<S-h>", ":bprevious<cr>", { desc = "Prev buffer", noremap = true, silent = true })

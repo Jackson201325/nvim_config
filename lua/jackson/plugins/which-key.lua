@@ -147,6 +147,7 @@ local opts = {
 }
 
 local mappings = {
+	["a"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
 	["b"] = {
 		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
 		"Buffers",
@@ -170,6 +171,7 @@ local mappings = {
 	["\\"] = { "<C-w>v", "Split window right" },
 	f = {
 		name = "Find",
+		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
 		d = {
 			"<cmd>Telescope diagnostics bufnr=0<cr>",
 			"Document Diagnostics",
@@ -200,12 +202,11 @@ local mappings = {
 		name = "Search",
 		a = { "<cmd>Telescope autocommands<cr>", "Auto Commands" },
 		b = { "<cmd>Lspsaga show_buf_diagnostics<cr>", "Buffer Diagnostics" },
-		C = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
 		c = { "<cmd>Telescope commands<cr>", "Commands" },
 		g = { "<cmd> lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", "Grep with Args" },
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 		m = { "<cmd>Telescope marks<cr>", "Search Marks" },
-    M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
+		M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
 		s = {
 			M.telescope("lsp_document_symbols", {
 				symbols = {
@@ -237,8 +238,8 @@ local mappings = {
 		name = "LSP",
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
 		f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
-		i = { "<cmd>LspInfo<cr>", "Info" },
-		I = { "<cmd>LspLog<cr>", "Lsp Log" },
+		l = { "<cmd>LspInfo<cr>", "Info" },
+		L = { "<cmd>LspLog<cr>", "Lsp Log" },
 		n = { "<cmd>NullLsInfo<cr>", "Null LS Info" },
 		N = { "<cmd>NullLsLog<CR>", "Null LS Log" },
 		o = { "<cmd>Lspsaga lsp_finder<cr>", "LSP Finder" },

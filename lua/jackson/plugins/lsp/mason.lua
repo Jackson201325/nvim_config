@@ -3,14 +3,13 @@ local servers = {
 	"cssls",
 	"html",
 	"solargraph",
+	-- "ruby_ls",
 	"rust_analyzer",
 	"tailwindcss",
 	"sqlls",
-	-- "rubyfmt",
 	"tsserver",
 	"pyright",
 	"jsonls",
-	-- "stylua",
 }
 
 -- IMPORTANT: make sure to setup neodev BEFORE lspconfig

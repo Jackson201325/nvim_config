@@ -328,7 +328,7 @@ neotree.setup({
 		-- possible options. These can also be functions that return these options.
 		position = "float", -- left, right, top, bottom, float, current
 		follow_current_file = true, -- This will find and focus the file in the active buffer every time
-		width = 40, -- applies to left and right positions
+		width = 25, -- applies to left and right positions
 		height = 15, -- applies to top and bottom positions
 		auto_expand_width = false, -- expand the window when file exceeds the window width. does not work with position = "float"
 		popup = {
