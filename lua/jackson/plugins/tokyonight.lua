@@ -8,7 +8,7 @@ tk.setup({
 	-- your configuration comes here
 	-- or leave it empty to use the default settings
 	style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-	-- light_style = "night", -- The theme is used when the background is set to light
+	light_style = "night", -- The theme is used when the background is set to light
 	transparent = true, -- Enable this to disable setting the background color
 	-- tokyonight_dark_float = false,
 	terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
@@ -40,14 +40,3 @@ tk.setup({
 	-- ---@param colors ColorScheme
 	-- on_highlights = function(highlights, colors) end,
 })
-
-local colorscheme = "tokyonight-night"
-
-local status_ok, _ = pcall(function()
-	vim.cmd("colorscheme " .. colorscheme)
-end)
-
-if not status_ok then
-	vim.notify("colorscheme: " .. colorscheme .. " not found!")
-	return
-end

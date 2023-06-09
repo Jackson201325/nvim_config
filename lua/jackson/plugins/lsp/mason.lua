@@ -5,6 +5,7 @@ local servers = {
 	"solargraph",
 	-- "ruby_ls",
 	"rust_analyzer",
+	"gopls",
 	"tailwindcss",
 	"sqlls",
 	"tsserver",

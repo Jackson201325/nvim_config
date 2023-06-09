@@ -30,7 +30,6 @@ opt.background = "dark"
 opt.backspace = "indent,eol,start"
 
 opt.autowrite = true
-opt.winbar = "%=%m %f"
 opt.clipboard = "unnamedplus"
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 3 -- Hide * markup for bold and italic
@@ -63,7 +62,7 @@ if vim.fn.has("nvim-0.9.0") == 1 then
 	opt.shortmess:append({ C = true })
 end
 
-opt.winbar = "%=%m %f"
+-- opt.winbar = "%=%m %f"
 -- opt.foldmethod = "expr"
 -- opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- opt.fen = true

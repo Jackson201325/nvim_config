@@ -33,7 +33,6 @@ packer.startup(function(use)
 
 	-- Color scheme
 	use("folke/tokyonight.nvim")
-	use("bluz71/vim-nightfly-colors")
 
 	-- Replacing surroundings
 	use("tpope/vim-surround")
@@ -65,6 +64,7 @@ packer.startup(function(use)
 	use("rust-lang/rust.vim")
 	use("simrat39/rust-tools.nvim")
 	use("mfussenegger/nvim-dap")
+	use("leoluz/nvim-dap-go")
 	use({
 		"saecki/crates.nvim",
 		tag = "v0.3.0",
@@ -74,6 +74,13 @@ packer.startup(function(use)
 		end,
 	})
 	use("roobert/tailwindcss-colorizer-cmp.nvim")
+	use({
+		"olexsmir/gopher.nvim",
+		requires = { -- dependencies
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+	})
 	use({
 		"kdheepak/lazygit.nvim",
 		-- optional for floating window border decoration
@@ -131,6 +138,13 @@ packer.startup(function(use)
 	use("RRethy/vim-illuminate")
 	use("kevinhwang91/nvim-hlslens")
 	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
+	use({ "kevinhwang91/nvim-bqf", ft = "qf" })
+	use({
+		"junegunn/fzf",
+		run = function()
+			vim.fn["fzf#install"]()
+		end,
+	})
 	use("luukvbaal/statuscol.nvim")
 
 	-- Movement

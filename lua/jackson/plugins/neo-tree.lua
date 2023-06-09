@@ -58,8 +58,8 @@ neotree.setup({
 	use_default_mappings = true,
 	-- source_selector provides clickable tabs to switch between sources.
 	source_selector = {
-		winbar = true, -- toggle to show selector on winbar
-		statusline = true, -- toggle to show selector on statusline
+		-- winbar = true, -- toggle to show selector on winbar
+		-- statusline = true, -- toggle to show selector on statusline
 		show_scrolled_off_parent_node = false, -- this will replace the tabs with the parent path
 		-- of the top visible node when scrolled down.
 		sources = {
@@ -81,7 +81,7 @@ neotree.setup({
 		truncation_character = "…", -- character to use when truncating the tab label
 		tabs_min_width = nil, -- nil | int: if int padding is added based on `content_layout`
 		tabs_max_width = nil, -- this will truncate text even if `text_trunc_to_fit = false`
-		padding = 0, -- can be int or table
+		padding = 2, -- can be int or table
 		-- padding = { left = 2, right = 0 },
 		-- separator = "▕", -- can be string or table, see below
 		separator = { left = "▏", right = "▕" },
@@ -328,7 +328,7 @@ neotree.setup({
 		-- possible options. These can also be functions that return these options.
 		position = "float", -- left, right, top, bottom, float, current
 		follow_current_file = true, -- This will find and focus the file in the active buffer every time
-		width = 25, -- applies to left and right positions
+		width = 45, -- applies to left and right positions
 		height = 15, -- applies to top and bottom positions
 		auto_expand_width = false, -- expand the window when file exceeds the window width. does not work with position = "float"
 		popup = {

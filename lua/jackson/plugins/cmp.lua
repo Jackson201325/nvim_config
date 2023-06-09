@@ -36,16 +36,9 @@ cmp.setup({
 		{ "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
 	},
 	mapping = {
-		["<CR>"] = cmp.mapping({
-			i = function(fallback)
-				if cmp.visible() and cmp.get_active_entry() then
-					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-				else
-					fallback()
-				end
-			end,
-			s = cmp.mapping.confirm({ select = true }),
-			c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+		["<CR>"] = cmp.mapping.confirm({
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = true,
 		}),
 		["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 		["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),

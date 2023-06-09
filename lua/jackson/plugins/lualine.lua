@@ -4,49 +4,49 @@ if not status_ok then
 end
 
 local theme = function()
-		local colors = {
-				darkgray = "#16161d",
-				gray = "#727169",
-				innerbg = nil,
-				outerbg = "#16161D",
-				normal = "#7e9cd8",
-				insert = "#98bb6c",
-				visual = "#ffa066",
-				replace = "#e46876",
-				command = "#e6c384",
-		}
-		return {
-				inactive = {
-						a = { fg = colors.gray, bg = colors.outerbg, gui = "bold" },
-						b = { fg = colors.gray, bg = colors.outerbg },
-						c = { fg = colors.gray, bg = colors.innerbg },
-				},
-				visual = {
-						a = { fg = colors.darkgray, bg = colors.visual, gui = "bold" },
-						b = { fg = colors.gray, bg = colors.outerbg },
-						c = { fg = colors.gray, bg = colors.innerbg },
-				},
-				replace = {
-						a = { fg = colors.darkgray, bg = colors.replace, gui = "bold" },
-						b = { fg = colors.gray, bg = colors.outerbg },
-						c = { fg = colors.gray, bg = colors.innerbg },
-				},
-				normal = {
-						a = { fg = colors.darkgray, bg = colors.normal, gui = "bold" },
-						b = { fg = colors.gray, bg = colors.outerbg },
-						c = { fg = colors.gray, bg = colors.innerbg },
-				},
-				insert = {
-						a = { fg = colors.darkgray, bg = colors.insert, gui = "bold" },
-						b = { fg = colors.gray, bg = colors.outerbg },
-						c = { fg = colors.gray, bg = colors.innerbg },
-				},
-				command = {
-						a = { fg = colors.darkgray, bg = colors.command, gui = "bold" },
-						b = { fg = colors.gray, bg = colors.outerbg },
-						c = { fg = colors.gray, bg = colors.innerbg },
-				},
-		}
+	local colors = {
+		darkgray = "#16161d",
+		gray = "#727169",
+		innerbg = nil,
+		outerbg = "#16161D",
+		normal = "#7e9cd8",
+		insert = "#98bb6c",
+		visual = "#ffa066",
+		replace = "#e46876",
+		command = "#e6c384",
+	}
+	return {
+		inactive = {
+			a = { fg = colors.gray, bg = colors.outerbg, gui = "bold" },
+			b = { fg = colors.gray, bg = colors.outerbg },
+			c = { fg = colors.gray, bg = colors.innerbg },
+		},
+		visual = {
+			a = { fg = colors.darkgray, bg = colors.visual, gui = "bold" },
+			b = { fg = colors.gray, bg = colors.outerbg },
+			c = { fg = colors.gray, bg = colors.innerbg },
+		},
+		replace = {
+			a = { fg = colors.darkgray, bg = colors.replace, gui = "bold" },
+			b = { fg = colors.gray, bg = colors.outerbg },
+			c = { fg = colors.gray, bg = colors.innerbg },
+		},
+		normal = {
+			a = { fg = colors.darkgray, bg = colors.normal, gui = "bold" },
+			b = { fg = colors.gray, bg = colors.outerbg },
+			c = { fg = colors.gray, bg = colors.innerbg },
+		},
+		insert = {
+			a = { fg = colors.darkgray, bg = colors.insert, gui = "bold" },
+			b = { fg = colors.gray, bg = colors.outerbg },
+			c = { fg = colors.gray, bg = colors.innerbg },
+		},
+		command = {
+			a = { fg = colors.darkgray, bg = colors.command, gui = "bold" },
+			b = { fg = colors.gray, bg = colors.outerbg },
+			c = { fg = colors.gray, bg = colors.innerbg },
+		},
+	}
 end
 
 local hide_in_width = function()
@@ -99,23 +99,21 @@ local lsp = function()
 	local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
 	local clients = vim.lsp.get_active_clients()
 	if next(clients) == nil then
-			return msg
+		return msg
 	end
 	local active_clients = {}
 	for _, client in ipairs(clients) do
-			local filetypes = client.config.filetypes
-			if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-					table.insert(active_clients, client.name)
-			end
+		local filetypes = client.config.filetypes
+		if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+			table.insert(active_clients, client.name)
+		end
 	end
 	if #active_clients == 0 then
-			return msg
+		return msg
 	else
-			return " LSP: " .. table.concat(active_clients, ", ")
+		return " LSP: " .. table.concat(active_clients, ", ")
 	end
 end
-
-
 
 local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
@@ -125,6 +123,7 @@ lualine.setup({
 	options = {
 		icons_enabled = true,
 		globalstatus = true,
+		-- theme = "tokyonight",
 		theme = theme(),
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },

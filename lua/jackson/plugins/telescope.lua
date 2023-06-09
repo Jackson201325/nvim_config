@@ -14,11 +14,21 @@ telescope.load_extension("live_grep_args")
 
 telescope.setup({
 	defaults = {
+		vimgrep_arguments = {
+			"rg",
+			-- '--color=never',
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+			-- '--hidden',
+		},
 		sorting_strategy = "ascending",
 		initial_mode = "insert",
 		layout_config = {
 			prompt_position = "top",
-			horizontal = { width = 0.5, height = 0.7 },
+			horizontal = { width = 0.5, height = 0.6 },
 		},
 		prompt_prefix = " ",
 		selection_caret = " ",
