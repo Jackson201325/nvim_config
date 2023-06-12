@@ -1,4 +1,3 @@
-local fn = vim.fn
 local status_ok, bfq = pcall(require, "bqf")
 
 if not status_ok then

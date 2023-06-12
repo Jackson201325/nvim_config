@@ -30,6 +30,11 @@ keymap.set({ "n", "v" }, "c", '"_c', opts)
 --Do not yank with dd
 -- keymap.set("n", "dd", '"_dd', opts)
 
+-- keymap.set({ "i" }, "dw", "<Esc>viwdi")
+keymap.set({ "n" }, "dw", "viwd")
+keymap.set({ "n" }, "yw", "viwy")
+keymap.set({ "n" }, "cw", "viwc")
+
 --To set in the cursor in the middle when jumping
 keymap.set("n", "<C-d>", "<C-d>zz", opts)
 keymap.set("n", "<C-u>", "<C-u>zz", opts)
@@ -82,7 +87,7 @@ keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor", norema
 keymap.set(
 	{ "n", "x" },
 	"sw",
-  live_grep_args_shortcuts.grep_word_under_cursor,
+	live_grep_args_shortcuts.grep_word_under_cursor,
 	{ desc = "Search Word in project under cursor", noremap = true, silent = true }
 )
 

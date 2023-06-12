@@ -34,7 +34,8 @@ opt.clipboard = "unnamedplus"
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 3 -- Hide * markup for bold and italic
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
-opt.formatoptions = "jcoqlnt" -- tcqopt.grepformat = "%f:%l:%c:%m"
+opt.formatoptions = "jcoqlnt" -- tcq
+opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 opt.scrolloff = 4 -- Lines of context
 opt.inccommand = "nosplit" -- preview incremental substitute
@@ -56,13 +57,16 @@ opt.undolevels = 10000
 opt.updatetime = 200 -- Save swap file and trigger CursorHold
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
---
+opt.winbar = "%=%m %f"
+
 if vim.fn.has("nvim-0.9.0") == 1 then
 	opt.splitkeep = "screen"
-	opt.shortmess:append({ C = true })
+	opt.shortmess:append({ W = true, I = true, c = true })
 end
 
--- opt.winbar = "%=%m %f"
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
+
 -- opt.foldmethod = "expr"
 -- opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- opt.fen = true

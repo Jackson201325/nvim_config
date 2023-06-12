@@ -65,6 +65,7 @@ telescope.setup({
 				["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
 
 				["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+				["<C-l>"] = actions.send_selected_to_loclist + actions.open_loclist,
 				["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
 			},
 

@@ -5,9 +5,19 @@ if not status_ok then
 end
 
 indent_blankline.setup({
-	show_end_of_line = true,
 	context_char = "│",
-	filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
-	show_trailing_blankline_indent = true,
+	filetype_exclude = {
+		"help",
+		"alpha",
+		"dashboard",
+		"neo-tree",
+		"Trouble",
+		"lazy",
+		"mason",
+		"notify",
+		"toggleterm",
+		"lazyterm",
+	},
+	show_trailing_blankline_indent = false,
 	show_current_context = false,
 })
