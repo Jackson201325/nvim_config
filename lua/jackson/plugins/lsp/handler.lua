@@ -56,6 +56,7 @@ local function lsp_keymaps(bufnr)
 	local keymap = vim.api.nvim_buf_set_keymap
 	keymap(bufnr, "n", "ga", "<cmd>Lspsaga code_action<CR>", opts)
 	keymap(bufnr, "n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
+	keymap(bufnr, "n", "gc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
 	keymap(bufnr, "n", "gd", "<cmd>Lspsaga goto_definition zz<CR>", opts)
 	keymap(bufnr, "n", "gD", ":vsplit | Lspsaga goto_definition<CR>", opts)
 	keymap(bufnr, "n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opts)

@@ -18,7 +18,7 @@ lspsaga.setup({
 		scroll_down = "<C-n>",
 		scroll_up = "<C-p>",
 	},
-	request_timeout = 2000,
+	request_timeout = 5000,
 
 	-- See Customizing Lspsaga's Appearance
 	ui = {
@@ -56,7 +56,7 @@ lspsaga.setup({
 	-- For default options for each command, see below
 	finder = {
 		max_height = 0.5,
-		min_width = 30,
+		min_width = 10,
 		force_max_height = false,
 		keys = {
 			jump_to = "p",

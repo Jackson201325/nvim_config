@@ -40,8 +40,8 @@ keymap.set("n", "<C-d>", "<C-d>zz", opts)
 keymap.set("n", "<C-u>", "<C-u>zz", opts)
 keymap.set("n", "(", "{zz", opts)
 keymap.set("n", ")", "}zz", opts)
-keymap.set("n", "n", "nzzzv", opts)
-keymap.set("n", "N", "Nzzzv", opts)
+keymap.set("n", "n", "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>zz", opts)
+keymap.set("n", "N", "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>zz", opts)
 
 -- Paste over
 keymap.set("x", "p", '"_dP', opts)
@@ -83,7 +83,12 @@ keymap.set("v", "<", "<gv", opts)
 keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", opts)
 
 -- search word under cursor
-keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor", noremap = true, silent = true })
+keymap.set(
+	{ "n", "x" },
+	"gw",
+	"*N<Cmd>lua require('hlslens').start()<CR>",
+	{ desc = "Search word under cursor", noremap = true, silent = true }
+)
 keymap.set(
 	{ "n", "x" },
 	"sw",
@@ -94,6 +99,9 @@ keymap.set(
 -- Move between buffers
 keymap.set("n", "<S-h>", ":bprevious<cr>", { desc = "Prev buffer", noremap = true, silent = true })
 keymap.set("n", "<S-l>", ":bnext<cr>", { desc = "Next buffer", noremap = true, silent = true })
+
+-- Floating Terminal
+keymap.set("n", "<C-t>", "<cmd>Lspsaga term_toggle<CR> ", { desc = "Terminal toggle", noremap = true, silent = true })
 
 -- Useless keymaps
 -- Normal mode

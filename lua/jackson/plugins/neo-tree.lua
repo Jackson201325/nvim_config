@@ -18,7 +18,7 @@ neotree.setup({
 		"git_status",
 		"filesystem",
 		"buffers",
-		"document_symbols",
+		-- "document_symbols",
 	},
 	add_blank_line_at_top = false, -- Add a blank line at the top of the tree.
 	auto_clean_after_session_restore = false, -- Automatically clean up broken neo-tree buffers saved in sessions
@@ -48,14 +48,15 @@ neotree.setup({
 	log_to_file = false, -- true, false, "/path/to/file.log", use :NeoTreeLogs to show the file
 	open_files_in_last_window = true, -- false = open files in top left window
 	open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
-	popup_border_style = "NC", -- "double", "none", "rounded", "shadow", "single" or "solid"
-	resize_timer_interval = 500, -- in ms, needed for containers to redraw right aligned and faded content
+	popup_border_style = "double", -- "double", "none", "rounded", "shadow", "single" or "solid"
+	resize_timer_interval = 1000, -- in ms, needed for containers to redraw right aligned and faded content
 	-- set to -1 to disable the resize timer entirely
 	--                           -- NOTE: this will speed up to 50 ms for 1 second following a resize
 	sort_case_insensitive = false, -- used when sorting files and directories in the tree
 	sort_function = nil, -- uses a custom function for sorting files and directories in the tree
 	use_popups_for_input = true, -- If false, inputs will use vim.ui.input() instead of custom floats.
 	use_default_mappings = true,
+	winbar = false,
 	-- source_selector provides clickable tabs to switch between sources.
 	source_selector = {
 		winbar = true, -- toggle to show selector on winbar
@@ -64,7 +65,7 @@ neotree.setup({
 		-- of the top visible node when scrolled down.
 		sources = {
 			{ source = "filesystem" },
-			{ source = "document_symbols" },
+			-- { source = "document_symbols" },
 			{ source = "buffers" },
 			{ source = "git_status" },
 		},
@@ -256,11 +257,11 @@ neotree.setup({
 				"container",
 				content = {
 					{ "name", zindex = 10 },
-					-- {
-					--   "symlink_target",
-					--   zindex = 10,
-					--   highlight = "NeoTreeSymbolicLinkTarget",
-					-- },
+					{
+						"symlink_target",
+						zindex = 10,
+						highlight = "NeoTreeSymbolicLinkTarget",
+					},
 					{ "clipboard", zindex = 10 },
 					{
 						"diagnostics",
@@ -283,11 +284,11 @@ neotree.setup({
 						"name",
 						zindex = 10,
 					},
-					-- {
-					--   "symlink_target",
-					--   zindex = 10,
-					--   highlight = "NeoTreeSymbolicLinkTarget",
-					-- },
+					{
+						"symlink_target",
+						zindex = 10,
+						highlight = "NeoTreeSymbolicLinkTarget",
+					},
 					{ "clipboard", zindex = 10 },
 					{ "bufnr", zindex = 10 },
 					{ "modified", zindex = 20, align = "right" },
@@ -326,7 +327,7 @@ neotree.setup({
 	window = {
 		-- see https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup for
 		-- possible options. These can also be functions that return these options.
-		position = "float", -- left, right, top, bottom, float, current
+		position = "left", -- left, right, top, bottom, float, current
 		follow_current_file = true, -- This will find and focus the file in the active buffer every time
 		width = 40, -- applies to left and right positions
 		height = 15, -- applies to top and bottom positions
@@ -408,8 +409,8 @@ neotree.setup({
 				["<C-x>"] = "clear_filter",
 				["<bs>"] = "navigate_up",
 				["."] = "set_root",
-				["g"] = "prev_git_modified",
-				["G"] = "next_git_modified",
+				["G"] = "prev_git_modified",
+				["g"] = "next_git_modified",
 			},
 			fuzzy_finder_mappings = {
 				-- define keymaps for filter popup window in fuzzy_finder_mode

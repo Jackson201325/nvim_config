@@ -61,8 +61,8 @@ packer.startup(function(use)
 	-- LSP support
 	use({ "glepnir/lspsaga.nvim", branch = "main" })
 	use("jose-elias-alvarez/typescript.nvim")
-	use("rust-lang/rust.vim")
-	use("simrat39/rust-tools.nvim")
+	-- use("rust-lang/rust.vim")
+	-- use("simrat39/rust-tools.nvim")
 	use("mfussenegger/nvim-dap")
 	use("leoluz/nvim-dap-go")
 	use({
@@ -151,8 +151,6 @@ packer.startup(function(use)
 	use("mbbill/undotree")
 	use("ThePrimeagen/harpoon")
 	use("christoomey/vim-tmux-navigator") -- Navigate between vim and tmux panes seamlessly
-	-- use("ggandor/leap.nvim")
-	-- use("ggandor/flit.nvim")
 
 	-- Neo Tree
 	use({

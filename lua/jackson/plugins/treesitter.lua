@@ -17,7 +17,7 @@ configs.setup({
 		"python",
 		"typescript",
 		"ruby",
-		"rust",
+		"go",
 		"tsx",
 		"css",
 		"rust",
