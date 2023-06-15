@@ -56,7 +56,7 @@ opt.undofile = true
 opt.undolevels = 10000
 opt.updatetime = 200 -- Save swap file and trigger CursorHold
 opt.wildmode = "longest:full,full" -- Command-line completion mode
-opt.winminwidth = 5 -- Minimum window width
+opt.winminwidth = 10 -- Minimum window width
 opt.winbar = "%=%m %f"
 
 if vim.fn.has("nvim-0.9.0") == 1 then

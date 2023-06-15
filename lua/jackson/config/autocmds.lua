@@ -182,5 +182,5 @@ autocmd TermEnter term://*toggleterm#*
       \ tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
 ]])
 
-vim.api.nvim_set_keymap('n', '<silent><c-t>', '<Cmd>exe v:count1 . "ToggleTerm"<CR>', { silent = true })
-vim.api.nvim_set_keymap('i', '<silent><c-t>', '<Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>', { silent = true })
+vim.api.nvim_set_keymap("n", "<silent><c-t>", '<Cmd>exe v:count1 . "ToggleTerm"<CR>', { silent = true })
+vim.api.nvim_set_keymap("i", "<silent><c-t>", '<Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>', { silent = true })

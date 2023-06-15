@@ -6,10 +6,6 @@ end
 lspsaga.setup({
 	"glepnir/lspsaga.nvim",
 	event = "LspAttach",
-	config = function()
-		require("lspsaga").setup({})
-	end,
-	dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	preview = {
 		lines_above = 0,
 		lines_below = 10,
@@ -56,8 +52,8 @@ lspsaga.setup({
 	-- For default options for each command, see below
 	finder = {
 		max_height = 0.5,
-		min_width = 10,
-		max_width = 10,
+		min_width = 5,
+		max_width = 5,
 		force_max_height = false,
 		keys = {
 			jump_to = "p",
@@ -73,7 +69,7 @@ lspsaga.setup({
 
 	code_action = {
 		num_shortcut = true,
-		show_server_name = false,
+		show_server_name = true,
 		extend_gitsigns = true,
 		keys = {
 			-- string | table type

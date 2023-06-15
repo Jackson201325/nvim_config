@@ -83,7 +83,7 @@ M.on_attach = function(client, bufnr)
 
 	if client.name == "solargraph" then
 		client.server_capabilities.documentFormattingProvider = false
-		client.server_capabilities.documentDiagnositcProvider = false
+		-- client.server_capabilities.documentDiagnositcProvider = false
 	end
 
 	lsp_keymaps(bufnr)

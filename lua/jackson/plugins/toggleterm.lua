@@ -27,10 +27,10 @@ function LAZYGIT_TOGGLE()
 	lazygit:toggle()
 end
 
-local rails_server = terminal:new({ cmd = "bundle exec rails s", hidden = true })
+local rails_console = terminal:new({ cmd = "bundle exec rails c", hidden = true })
 
 function RAILS_TOGGLE()
-	rails_server:toggle()
+	rails_console:toggle()
 end
 
 local ncdu = terminal:new({ cmd = "ncdu", hidden = true })

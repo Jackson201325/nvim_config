@@ -65,27 +65,20 @@ packer.startup(function(use)
 	-- use("simrat39/rust-tools.nvim")
 	use("mfussenegger/nvim-dap")
 	use("leoluz/nvim-dap-go")
-	use({
-		"saecki/crates.nvim",
-		tag = "v0.3.0",
-		requires = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("crates").setup()
-		end,
-	})
+	-- use({
+	-- 	"saecki/crates.nvim",
+	-- 	tag = "v0.3.0",
+	-- 	requires = { "nvim-lua/plenary.nvim" },
+	-- 	config = function()
+	-- 		require("crates").setup()
+	-- 	end,
+	-- })
 	use("roobert/tailwindcss-colorizer-cmp.nvim")
 	use({
 		"olexsmir/gopher.nvim",
 		requires = { -- dependencies
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
-		},
-	})
-	use({
-		"kdheepak/lazygit.nvim",
-		-- optional for floating window border decoration
-		requires = {
-			"nvim-lua/plenary.nvim",
 		},
 	})
 
