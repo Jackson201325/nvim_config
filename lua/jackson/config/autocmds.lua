@@ -149,3 +149,38 @@ vim.o.qftf = "{info -> v:lua._G.bqftf(info)}"
 --     hi BqfPreviewThumb guibg=#3e8e2d ctermbg=71
 --     hi link BqfPreviewRange Search
 -- ]])
+
+-- Set cursorline on VimEnter, BufWinEnter, WinEnter
+-- vim.api.nvim_create_autocmd({ "VimEnter", "BufWinEnter", "WinEnter" }, {
+-- 	group = augroup("cursor_line"),
+-- 	callback = function()
+-- 		vim.cmd("setlocal cursorline")
+-- 	end,
+-- })
+--
+-- -- Unset cursorline on WinLeave
+-- vim.api.nvim_create_autocmd("WinLeave", {
+-- 	group = augroup("cursor_line"),
+-- 	callback = function()
+-- 		vim.cmd("setlocal nocursorline")
+-- 	end,
+-- })
+
+function _G.set_terminal_keymaps()
+	local opts = { noremap = true }
+	vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<c-\><c-n>]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<c-h>", [[<c-\><c-n><c-w>h]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<c-j>", [[<c-\><c-n><c-w>j]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<c-k>", [[<c-\><c-n><c-w>k]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<c-l>", [[<c-\><c-n><c-w>l]], opts)
+end
+
+vim.cmd("autocmd! termopen term://* lua set_terminal_keymaps()")
+
+vim.cmd([[
+autocmd TermEnter term://*toggleterm#*
+      \ tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
+]])
+
+vim.api.nvim_set_keymap('n', '<silent><c-t>', '<Cmd>exe v:count1 . "ToggleTerm"<CR>', { silent = true })
+vim.api.nvim_set_keymap('i', '<silent><c-t>', '<Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>', { silent = true })

@@ -8,7 +8,7 @@ local actions = require("telescope.actions")
 local lga_actions = require("telescope-live-grep-args.actions")
 
 telescope.load_extension("fzf")
-telescope.load_extension("media_files")
+-- telescope.load_extension("media_files")
 telescope.load_extension("persisted")
 telescope.load_extension("live_grep_args")
 
@@ -40,7 +40,7 @@ telescope.setup({
 
 				["<esc>"] = actions.close,
 
-				["<C-k>"] = lga_actions.quote_prompt({ postfix = " --iglob **/*/**" }),
+				["<C-k>"] = lga_actions.quote_prompt({ postfix = " --iglob !**/*_spec.rb -t ruby" }),
 				["<Down>"] = actions.move_selection_next,
 				["<Up>"] = actions.move_selection_previous,
 

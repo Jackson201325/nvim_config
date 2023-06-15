@@ -25,7 +25,7 @@ lspsaga.setup({
 		-- This option only works in Neovim 0.9
 		title = true,
 		-- Border type can be single, double, rounded, solid, shadow.
-		border = "single",
+		border = "rounded",
 		winblend = 0,
 		expand = "",
 		collapse = "",
@@ -57,6 +57,7 @@ lspsaga.setup({
 	finder = {
 		max_height = 0.5,
 		min_width = 10,
+		max_width = 10,
 		force_max_height = false,
 		keys = {
 			jump_to = "p",
@@ -69,6 +70,7 @@ lspsaga.setup({
 			close_in_preview = "<ESC>",
 		},
 	},
+
 	code_action = {
 		num_shortcut = true,
 		show_server_name = false,
@@ -79,6 +81,7 @@ lspsaga.setup({
 			exec = "<CR>",
 		},
 	},
+
 	lightbulb = {
 		enable = true,
 		enable_in_insert = true,

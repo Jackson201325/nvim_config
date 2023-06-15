@@ -163,6 +163,12 @@ packer.startup(function(use)
 		},
 	})
 
+	-- Toggle terminal
+	use({
+		"akinsho/toggleterm.nvim",
+		tag = "*",
+	})
+
 	-- Bufferline
 	use("akinsho/bufferline.nvim")
 

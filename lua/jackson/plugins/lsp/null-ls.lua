@@ -23,12 +23,11 @@ null_ls.setup({
 		formatting.rubocop,
 		diagnostics.rubocop,
 
-		-- diagnostics.reek,
-		-- formatting.rubyfmt,
-
 		-- Eruby
 		formatting.erb_lint,
 		diagnostics.erb_lint,
+		-- diagnostics.reek,
+		-- formatting.rubyfmt,
 
 		-- Lua
 		formatting.stylua,

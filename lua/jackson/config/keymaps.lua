@@ -76,7 +76,9 @@ keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", noremap = true
 keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", noremap = true, silent = true })
 
 -- better indenting
-keymap.set("v", ">", ">gv", opts)
+keymap.set("n", ">", ">gv", opts)
+keymap.set("v", "<", "<gv", opts)
+keymap.set("n", ">", ">gv", opts)
 keymap.set("v", "<", "<gv", opts)
 
 -- Clear search with <esc>
@@ -100,8 +102,11 @@ keymap.set(
 keymap.set("n", "<S-h>", ":bprevious<cr>", { desc = "Prev buffer", noremap = true, silent = true })
 keymap.set("n", "<S-l>", ":bnext<cr>", { desc = "Next buffer", noremap = true, silent = true })
 
+vim.api.nvim_set_keymap("n", "<silent><c-t>", '<Cmd>exe v:count1 . "ToggleTerm"<CR>', { silent = true })
+vim.api.nvim_set_keymap("i", "<silent><c-t>", '<Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>', { silent = true })
+
 -- Floating Terminal
-keymap.set("n", "<C-t>", "<cmd>Lspsaga term_toggle<CR> ", { desc = "Terminal toggle", noremap = true, silent = true })
+-- keymap.set("n", "<C-t>", "<cmd>Lspsaga term_toggle<CR> ", { desc = "Terminal toggle", noremap = true, silent = true })
 
 -- Useless keymaps
 -- Normal mode

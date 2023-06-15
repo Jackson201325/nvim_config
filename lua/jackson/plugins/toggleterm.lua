@@ -4,6 +4,7 @@ if not status_ok then
 end
 
 local terminal = require("toggleterm.terminal").Terminal
+
 local lazygit = terminal:new({
 	cmd = "lazygit",
 	dir = "git_dir",
@@ -26,10 +27,10 @@ function LAZYGIT_TOGGLE()
 	lazygit:toggle()
 end
 
-local node = terminal:new({ cmd = "node", hidden = true })
+local rails_server = terminal:new({ cmd = "bundle exec rails s", hidden = true })
 
-function NODE_TOGGLE()
-	node:toggle()
+function RAILS_TOGGLE()
+	rails_server:toggle()
 end
 
 local ncdu = terminal:new({ cmd = "ncdu", hidden = true })
@@ -49,9 +50,10 @@ local python = terminal:new({ cmd = "python", hidden = true })
 function PYTHON_TOGGLE()
 	python:toggle()
 end
+
 toggleterm.setup({
 	size = 20,
-	open_mapping = [[<C-t>]],
+	open_mapping = [[<c-t>]],
 	hide_numbers = true,
 	shade_filetypes = {},
 	shade_terminals = true,
@@ -59,7 +61,7 @@ toggleterm.setup({
 	start_in_insert = true,
 	insert_mappings = true,
 	persist_size = true,
-	direction = "float",
+	direction = "horizontal",
 	close_on_exit = true,
 	shell = vim.o.shell,
 	float_opts = {
@@ -71,45 +73,3 @@ toggleterm.setup({
 		},
 	},
 })
---
--- function _g.set_terminal_keymaps()
--- 	local opts = { noremap = true }
--- 	vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<c-\><c-n>]], opts)
--- 	vim.api.nvim_buf_set_keymap(0, "t", "<c-h>", [[<c-\><c-n><c-w>h]], opts)
--- 	vim.api.nvim_buf_set_keymap(0, "t", "<c-j>", [[<c-\><c-n><c-w>j]], opts)
--- 	vim.api.nvim_buf_set_keymap(0, "t", "<c-k>", [[<c-\><c-n><c-w>k]], opts)
--- 	vim.api.nvim_buf_set_keymap(0, "t", "<c-l>", [[<c-\><c-n><c-w>l]], opts)
--- end
---
--- vim.cmd("autocmd! termopen term://* lua set_terminal_keymaps()")
---
--- local terminal = toggleterm.terminal
--- local lazygit = terminal:new({ cmd = "lazygit", hidden = true })
-
--- function LAZYGIT_TOGGLE()
--- 	lazygit:toggle()
--- end
-
--- local node = terminal:new({ cmd = "node", hidden = true })
---
--- function _node_toggle()
--- 	node:toggle()
--- end
---
--- local ncdu = terminal:new({ cmd = "ncdu", hidden = true })
---
--- function _ncdu_toggle()
--- 	ncdu:toggle()
--- end
---
--- local htop = terminal:new({ cmd = "htop", hidden = true })
---
--- function _htop_toggle()
--- 	htop:toggle()
--- end
---
--- local python = terminal:new({ cmd = "python", hidden = true })
---
--- function _python_toggle()
--- 	python:toggle()
--- end
