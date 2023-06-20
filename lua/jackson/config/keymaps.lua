@@ -25,10 +25,17 @@ keymap.set({ "n", "v" }, "c", '"_c', opts)
 -- keymap.set("n", "dd", '"_dd', opts)
 
 keymap.set({ "n" }, "vw", "viw")
-keymap.set({ "n" }, "pw", 'viw"_dP')
+keymap.set({ "n" }, "vp", 'viw"_dP')
+keymap.set({ "n" }, "vP", 'viW"_dP')
+
 keymap.set({ "n" }, "dw", "viwd")
+keymap.set({ "n" }, "dW", "viWd")
+
 keymap.set({ "n" }, "yw", "viwy")
+keymap.set({ "n" }, "yW", "viWy")
+
 keymap.set({ "n" }, "cw", "viwc")
+keymap.set({ "n" }, "cW", "viWc")
 
 --To set in the cursor in the middle when jumping
 keymap.set("n", "(", "{zz", opts)
