@@ -8,7 +8,6 @@ local actions = require("telescope.actions")
 local lga_actions = require("telescope-live-grep-args.actions")
 
 telescope.load_extension("fzf")
--- telescope.load_extension("media_files")
 telescope.load_extension("persisted")
 telescope.load_extension("live_grep_args")
 
