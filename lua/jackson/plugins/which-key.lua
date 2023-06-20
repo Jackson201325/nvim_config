@@ -185,6 +185,7 @@ local mappings = {
 			"<cmd>Telescope diagnostics bufnr=0<cr>",
 			"Document Diagnostics",
 		},
+		g = { "<cmd>EasyPick changed_files<cr>", "Changed Files" },
 		f = {
 			"<cmd>lua require('telescope.builtin').find_files()<cr>",
 			"Files",
@@ -241,6 +242,7 @@ local mappings = {
 		g = { "<cmd>lua LAZYGIT_TOGGLE()<CR>", "Lazygit" },
 		d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
 		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
+		c = { "<cmd>EasyPick changed_files<cr>", "Changed Files" },
 	},
 
 	l = {
