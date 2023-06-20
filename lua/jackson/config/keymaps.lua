@@ -7,12 +7,6 @@ local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
 
--- keymap.set("n", "j", "j", opts)
--- keymap.set("n", "dw", "viwdi", opts)
--- keymap.set("n", "cw", "ciw", opts)
--- keymap.set("n", "pw", "viw<C-p>", opts)
--- keymap.set("n", "yw", "viwy", opts)
-
 -- Minus Plus
 keymap.set("n", "=", "<C-a>", opts)
 keymap.set("n", "-", "<C-x>", opts)
@@ -30,14 +24,13 @@ keymap.set({ "n", "v" }, "c", '"_c', opts)
 --Do not yank with dd
 -- keymap.set("n", "dd", '"_dd', opts)
 
--- keymap.set({ "i" }, "dw", "<Esc>viwdi")
+keymap.set({ "n" }, "vw", "viw")
+keymap.set({ "n" }, "pw", 'viw"_dP')
 keymap.set({ "n" }, "dw", "viwd")
 keymap.set({ "n" }, "yw", "viwy")
 keymap.set({ "n" }, "cw", "viwc")
 
 --To set in the cursor in the middle when jumping
-keymap.set("n", "<C-d>", "<C-d>zz", opts)
-keymap.set("n", "<C-u>", "<C-u>zz", opts)
 keymap.set("n", "(", "{zz", opts)
 keymap.set("n", ")", "}zz", opts)
 keymap.set("n", "n", "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>zz", opts)
@@ -76,9 +69,7 @@ keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", noremap = true
 keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", noremap = true, silent = true })
 
 -- better indenting
-keymap.set("n", ">", ">gv", opts)
-keymap.set("v", "<", "<gv", opts)
-keymap.set("n", ">", ">gv", opts)
+keymap.set("v", ">", ">gv", opts)
 keymap.set("v", "<", "<gv", opts)
 
 -- Clear search with <esc>
@@ -91,11 +82,12 @@ keymap.set(
 	"*N<Cmd>lua require('hlslens').start()<CR>",
 	{ desc = "Search word under cursor", noremap = true, silent = true }
 )
+
 keymap.set(
 	{ "n", "x" },
-	"sw",
+	"fw",
 	live_grep_args_shortcuts.grep_word_under_cursor,
-	{ desc = "Search Word in project under cursor", noremap = true, silent = true }
+	{ desc = "Find Word in project under cursor", noremap = true, silent = true }
 )
 
 -- Move between buffers
