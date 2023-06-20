@@ -112,7 +112,6 @@ packer.startup(function(use)
 			require("trim").setup({})
 		end,
 	})
-	use("airblade/vim-rooter")
 	use({
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		after = "nvim-treesitter",
@@ -144,6 +143,8 @@ packer.startup(function(use)
 	use("mbbill/undotree")
 	use("ThePrimeagen/harpoon")
 	use("christoomey/vim-tmux-navigator") -- Navigate between vim and tmux panes seamlessly
+	use("ggandor/flit.nvim")
+	use("ggandor/leap.nvim")
 
 	-- Neo Tree
 	use({
