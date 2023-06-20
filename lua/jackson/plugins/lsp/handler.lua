@@ -83,8 +83,10 @@ end
 
 local mappings = {
 	g = {
-		name = "LspSage Actions",
+		name = "Actions",
 		a = { "<cmd>Lspsaga code_action<CR>", "Code Action" },
+		H = { "<cmd>Gitsigns prev_hunk<CR>", "Go to previous hunk" },
+		h = { "<cmd>Gitsigns next_hunk<CR>", "Go to next hunk" },
 		l = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show Line Diagnostics" },
 		c = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show Cursor Diagnostics" },
 		d = { "<cmd>Lspsaga goto_definition zz<CR>", "Goto Definition" },
