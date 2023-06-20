@@ -11,6 +11,7 @@ indent_blankline.setup({
 		"alpha",
 		"dashboard",
 		"neo-tree",
+		"lspsaga",
 		"Trouble",
 		"lazy",
 		"mason",
