@@ -168,7 +168,8 @@ vim.o.qftf = "{info -> v:lua._G.bqftf(info)}"
 
 function _G.set_terminal_keymaps()
 	local opts = { noremap = true }
-	vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<c-\><c-n>]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<esc><esc>", [[<c-\><c-n>]], opts)
+	-- vim.api.nvim_buf_set_keymap(0, "t", "kj", [[<c-\><c-n>]], opts)
 	vim.api.nvim_buf_set_keymap(0, "t", "<c-h>", [[<c-\><c-n><c-w>h]], opts)
 	vim.api.nvim_buf_set_keymap(0, "t", "<c-j>", [[<c-\><c-n><c-w>j]], opts)
 	vim.api.nvim_buf_set_keymap(0, "t", "<c-k>", [[<c-\><c-n><c-w>k]], opts)
