@@ -5,13 +5,17 @@ if not status_cmp_ok then
 	return
 end
 
+local status_ok, which_key = pcall(require, "which-key")
+if not status_ok then
+	return
+end
+
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
 M.setup = function()
 	local signs = {
-
 		{ name = "DiagnosticSignError", text = "" },
 		{ name = "DiagnosticSignWarn", text = "" },
 		{ name = "DiagnosticSignHint", text = "" },
@@ -51,46 +55,14 @@ M.setup = function()
 	})
 end
 
-local function lsp_keymaps(bufnr)
-	local opts = { noremap = true, silent = true }
-	local keymap = vim.api.nvim_buf_set_keymap
-	keymap(bufnr, "n", "ga", "<cmd>Lspsaga code_action<CR>", opts)
-	keymap(bufnr, "n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
-	keymap(bufnr, "n", "gc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
-	keymap(bufnr, "n", "gd", "<cmd>Lspsaga goto_definition zz<CR>", opts)
-	keymap(bufnr, "n", "gD", ":vsplit | Lspsaga goto_definition<CR>", opts)
-	keymap(bufnr, "n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opts)
-	keymap(bufnr, "n", "gp", "<cmd>Lspsaga peek_definition<CR>", opts)
-	keymap(bufnr, "n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
-	keymap(bufnr, "n", "gR", "<cmd>Telescope lsp_references<CR>", { desc = "References" })
-end
-
 M.on_attach = function(client, bufnr)
-	if client.name == "tsserver" then
-		client.server_capabilities.documentFormattingProvider = false
-		vim.keymap.set(
-			"n",
-			"ta",
-			"<cmd>TypescriptAddMissingImports<CR>",
-			{ buffer = bufnr, desc = "Add missing imports" }
-		)
-		vim.keymap.set("n", "tr", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = bufnr })
-		vim.keymap.set("n", "tf", "<cmd>TypescriptFixAll<CR>", { desc = "Fix File", buffer = bufnr })
-		vim.keymap.set("n", "td", "<cmd>TypescriptGoToSourceDefinition<CR>", { desc = "Go to Definition" })
-		vim.keymap.set("n", "to", "<cmd>TypescriptOrganizeImports<CR>", { desc = "Rename File", buffer = bufnr })
-		vim.keymap.set("n", "tu", "<cmd>TypescriptRemoveUnsed<CR>", { desc = "Rename File", buffer = bufnr })
+	local istatus_ok, illuminate = pcall(require, "illuminate")
+	if not istatus_ok then
+		return
 	end
 
 	if client.name == "solargraph" then
 		client.server_capabilities.documentFormattingProvider = false
-		-- client.server_capabilities.documentDiagnositcProvider = false
-	end
-
-	lsp_keymaps(bufnr)
-
-	local status_ok, illuminate = pcall(require, "illuminate")
-	if not status_ok then
-		return
 	end
 
 	illuminate.on_attach(client)
@@ -107,9 +79,54 @@ M.on_attach = function(client, bufnr)
 			end,
 		})
 	end
-
-	-- Autoformat
-	-- vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ async = true})]])
 end
 
+local mappings = {
+	g = {
+		name = "LspSage Actions",
+		a = { "<cmd>Lspsaga code_action<CR>", "Code Action" },
+		l = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show Line Diagnostics" },
+		c = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show Cursor Diagnostics" },
+		d = { "<cmd>Lspsaga goto_definition zz<CR>", "Goto Definition" },
+		D = { ":vsplit | Lspsaga goto_definition<CR>", "Goto Definition in Split" },
+		r = { "<cmd>Lspsaga lsp_finder<CR>", "LSP Finder" },
+		p = { "<cmd>Lspsaga peek_definition<CR>", "Peek Definition" },
+		R = { "<cmd>Telescope lsp_references<CR>", "References" },
+	},
+	t = {
+		name = "TypeScript Actions",
+		a = { "<cmd>TypescriptAddMissingImports<CR>", "Add Missing Imports" },
+		r = { "<cmd>TypescriptRenameFile<CR>", "Rename File" },
+		f = { "<cmd>TypescriptFixAll<CR>", "Fix All" },
+		d = { "<cmd>TypescriptGoToSourceDefinition<CR>", "Go to Definition" },
+		o = { "<cmd>TypescriptOrganizeImports<CR>", "Organize Imports" },
+		u = { "<cmd>TypescriptRemoveUnsed<CR>", "Remove Unused" },
+	},
+	K = { "<cmd>Lspsaga hover_doc<CR>", "Hover Doc" },
+}
+
+local opts = {
+	mode = "n", -- NORMAL mode
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+}
+
+which_key.register(mappings, opts)
+
 return M
+
+-- if client.name == "tsserver" then
+-- 	vim.keymap.set(
+-- 		"n",
+-- 		"ta",
+-- 		"<cmd>TypescriptAddMissingImports<CR>",
+-- 		{ buffer = bufnr, desc = "Add missing imports" }
+-- 	)
+-- 	vim.keymap.set("n", "tr", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = bufnr })
+-- 	vim.keymap.set("n", "tf", "<cmd>TypescriptFixAll<CR>", { desc = "Fix File", buffer = bufnr })
+-- 	vim.keymap.set("n", "td", "<cmd>TypescriptGoToSourceDefinition<CR>", { desc = "Go to Definition" })
+-- 	vim.keymap.set("n", "to", "<cmd>TypescriptOrganizeImports<CR>", { desc = "Rename File", buffer = bufnr })
+-- 	vim.keymap.set("n", "tu", "<cmd>TypescriptRemoveUnsed<CR>", { desc = "Rename File", buffer = bufnr })
+-- end
