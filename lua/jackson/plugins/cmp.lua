@@ -24,7 +24,24 @@ end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
+-- toggle cmp completion
+vim.g.cmp_toggle_flag = false -- initialize
+
+local normal_buftype = function()
+	return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+end
+
+local next_cmp_toggle_flag = not vim.g.cmp_toggle_flag
+
 cmp.setup({
+	-- enabled = function()
+	-- 	vim.g.cmp_toggle_flag = next_cmp_toggle_flag
+	-- 	if next_cmp_toggle_flag then
+	-- 		return normal_buftype
+	-- 	else
+	-- 		return next_cmp_toggle_flag
+	-- 	end
+	-- end,
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
@@ -36,6 +53,15 @@ cmp.setup({
 		{ "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
 	},
 	mapping = {
+		["<C-k>"] = cmp.mapping({
+			i = function()
+				if cmp.visible() then
+					cmp.abort()
+				else
+					cmp.complete()
+				end
+			end,
+		}),
 		["<CR>"] = cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
@@ -105,11 +131,12 @@ cmp.setup({
 	sources = {
 		{ name = "copilot", keyword_length = 1 },
 		{ name = "nvim_lsp", keyword_length = 1 },
-		-- { name = "crates", keyword_length = 1 },
+		{ name = "treesitter", keyword_length = 1 },
 		{ name = "luasnip", keyword_length = 1 },
 		{ name = "nvim_lua", keyword_length = 2 },
 		{ name = "path", keyword_length = 2 },
 		{ name = "buffer", keyword_length = 2 },
+		-- { name = "crates", keyword_length = 1 },
 		-- { name = "cmdline" },
 		-- { name = "vsnip" },
 		-- { name = "ultisnips" },
