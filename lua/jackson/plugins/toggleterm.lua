@@ -27,39 +27,10 @@ function LAZYGIT_TOGGLE()
 	lazygit:toggle()
 end
 
-
-local rails_routes = terminal:new({
-	cmd = "bundle exec rails routes",
-  hidden = true,
-	direction = "float",
-	float_opts = {
-		border = "curved",
-	},
-	-- -- function to run on opening the terminal
-	-- on_open = function(term)
-	-- 	vim.cmd("startinsert!")
-	-- 	vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
-	-- end,
-	-- -- function to run on closing the terminal
-	-- on_close = function()
-	-- 	vim.cmd("startinsert!")
-	-- end,
-})
-
-function RAILS_ROUTES_TOGGLE()
-	rails_routes:toggle()
-end
-
 local rails_console = terminal:new({ cmd = "bundle exec rails c", hidden = true })
 
-function RAILS_CONSOLE_TOGGLE()
+function RAILS_TOGGLE()
 	rails_console:toggle()
-end
-
-local rails_server = terminal:new({ cmd = "bundle exec rails s", hidden = true })
-
-function RAILS_SERVER_TOGGLE()
-	rails_server:toggle()
 end
 
 local ncdu = terminal:new({ cmd = "ncdu", hidden = true })
