@@ -1,13 +1,15 @@
 return {
+	filetypes = { "ruby" },
 	settings = {
 		solargraph = {
-			completion = true,
-			codeAction = true,
+			-- completion = true,
+			-- codeAction = true,
 			definition = true,
 			hover = true,
 			symbols = true,
 			references = true,
-			rename = true,
+			formatting = false,
+			-- rename = true,
 		},
 	},
 }
