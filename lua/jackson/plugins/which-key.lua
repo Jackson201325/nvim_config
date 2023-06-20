@@ -70,7 +70,6 @@ function M.telescope(builtin, opts)
 end
 
 -- Rest of your configuration starts here...
-
 local setup = {
 	plugins = {
 		marks = true, -- shows a list of your marks on ' and `
@@ -82,7 +81,7 @@ local setup = {
 		-- the presets plugin, adds help for a bunch of default keybindings in Neovim
 		-- No actual key bindings are created
 		presets = {
-			operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
+			operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
 			motions = true, -- adds help for motions
 			text_objects = true, -- help for text objects triggered after entering an operator
 			windows = true, -- default bindings on <c-w>
@@ -102,10 +101,11 @@ local setup = {
 		-- ["<tab>"] = "TAB",
 	},
 	icons = {
-		breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-		separator = "➜", -- symbol used between a key and it's label
-		group = "+", -- symbol prepended to a group
+		breadcrumb = "» ", -- symbol used in the command line area that shows your active key combo
+		separator = "➜ ", -- symbol used between a key and it's label
+		group = "+ ", -- symbol prepended to a group
 	},
+
 	popup_mappings = {
 		scroll_down = "<c-d>", -- binding to scroll down inside the popup
 		scroll_up = "<c-u>", -- binding to scroll up inside the popup
@@ -160,13 +160,17 @@ local mappings = {
 		"<cmd>lua require('telescope.builtin').lsp_document_symbols({ symbol_width = 60, previewer = false, initial_mode = normal, layout_config = { width = 0.2, height = 0.2 } })<CR>",
 		"Open LSP outline",
 	},
+	["O"] = {
+		"<cmd>lua require('telescope.builtin').treesitter({ query = 'function', symbol_width = 60, previewer = false, initial_mode = normal, layout_config = { width = 0.2, height = 0.2 } })<CR>",
+		"Open Symbols outline",
+	},
+
 	["j"] = { "<cmd>lua vim.api.nvim_win_set_height(0, vim.api.nvim_win_get_height(0) - 15)<CR>", "Decrease Height" },
 	["k"] = { "<cmd>lua vim.api.nvim_win_set_height(0, vim.api.nvim_win_get_height(0) + 15)<CR>", "Increase Height" },
 	["<"] = { "<cmd>lua vim.api.nvim_win_set_width(0, vim.api.nvim_win_get_width(0) - 15)<CR>", "Decrease Width" },
 	[">"] = { "<cmd>lua vim.api.nvim_win_set_width(0, vim.api.nvim_win_get_width(0) + 15)<CR>", "Increase Width" },
 	["u"] = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
 	["x"] = { "<cmd>quit<CR>", "Close Split" },
-	["X"] = { "<cmd>lua require('mini.bufremove').delete(0, true)<CR>", "Force Close Buffer" },
 	["w"] = { "<cmd>lua vim.lsp.buf.format{async=true}<CR>", "Format" },
 	["<space>"] = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "Find files" },
 	["/"] = { "<cmd> lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", "Grep with Args" },
@@ -174,6 +178,7 @@ local mappings = {
 	["-"] = { "<C-w>s", "Split window below" },
 	["\\"] = { "<C-w>v", "Split window right" },
 	["q"] = { "<cmd>copen<cr>", "Open Quickfix" },
+
 	f = {
 		name = "Find",
 		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
@@ -252,9 +257,15 @@ local mappings = {
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
 	},
 
+	r = {
+		name = "Rails commands helper",
+		c = { "<cmd>lua RAILS_CONSOLE_TOGGLE()<cr>", "Rails Console" },
+		s = { "<cmd>lua RAILS_SERVER_TOGGLE()<cr>", "Rails Server" },
+		r = { "<cmd>lua RAILS_ROUTES_TOGGLE()<cr>", "Rails Routes" },
+	},
+
 	t = {
 		name = "Terminal",
-		n = { "<cmd>lua RAILS_TOGGLE()<cr>", "Rails Console" },
 		u = { "<cmd>lua NCDU_TOGGLE()<cr>", "NCDU" },
 		t = { "<cmd>lua HTOP_TOGGLE()<cr>", "Htop" },
 		f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
