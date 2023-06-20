@@ -53,7 +53,6 @@ lspsaga.setup({
 	finder = {
 		max_height = 0.5,
 		min_width = 5,
-		max_width = 5,
 		force_max_height = false,
 		keys = {
 			jump_to = "p",
