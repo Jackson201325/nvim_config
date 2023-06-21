@@ -185,7 +185,7 @@ local mappings = {
 			"<cmd>Telescope diagnostics bufnr=0<cr>",
 			"Document Diagnostics",
 		},
-		g = { "<cmd>EasyPick changed_files<cr>", "Changed Files" },
+		g = { "<cmd>Easypick Changed Files<cr>", "Changed Files" },
 		f = {
 			"<cmd>lua require('telescope.builtin').find_files()<cr>",
 			"Files",
@@ -242,7 +242,7 @@ local mappings = {
 		g = { "<cmd>lua LAZYGIT_TOGGLE()<CR>", "Lazygit" },
 		d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
 		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-		c = { "<cmd>EasyPick changed_files<cr>", "Changed Files" },
+		c = { "<cmd>Easypick Changed Files<cr>", "Changed Files" },
 	},
 
 	l = {
@@ -259,7 +259,9 @@ local mappings = {
 	},
 
 	r = {
-		name = "Rails commands helper",
+		name = "Run",
+		d = { "<cmd>lua DOCKER_UP_TOGGLE()<cr>", "Docker up" },
+		f = { "<cmd>lua RAILS_FOREMAN_TOGGLE()<cr>", "Foreman" },
 		c = { "<cmd>lua RAILS_CONSOLE_TOGGLE()<cr>", "Rails Console" },
 		s = { "<cmd>lua RAILS_SERVER_TOGGLE()<cr>", "Rails Server" },
 		r = { "<cmd>lua RAILS_ROUTES_TOGGLE()<cr>", "Rails Routes" },
@@ -267,7 +269,6 @@ local mappings = {
 
 	t = {
 		name = "Terminal",
-		u = { "<cmd>lua NCDU_TOGGLE()<cr>", "NCDU" },
 		t = { "<cmd>lua HTOP_TOGGLE()<cr>", "Htop" },
 		f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
 		h = { "<cmd>ToggleTerm size=15 direction=horizontal<cr>", "Horizontal" },

@@ -27,9 +27,19 @@ function LAZYGIT_TOGGLE()
 	lazygit:toggle()
 end
 
+local foreman = terminal:new({
+	cmd = "bundle exec bin/dev",
+	hidden = false,
+})
+
+function RAILS_FOREMAN_TOGGLE()
+	foreman:toggle()
+end
+
 local rails_routes = terminal:new({
 	cmd = "bundle exec rails routes",
 	hidden = true,
+	close_on_exit = false,
 	direction = "float",
 	float_opts = {
 		border = "curved",
@@ -52,22 +62,16 @@ function RAILS_SERVER_TOGGLE()
 	rails_server:toggle()
 end
 
-local ncdu = terminal:new({ cmd = "ncdu", hidden = true })
+local docker_up = terminal:new({ cmd = "up", hidden = true })
 
-function NCDU_TOGGLE()
-	ncdu:toggle()
+function DOCKER_UP_TOGGLE()
+	 docker_up:toggle()
 end
 
-local htop = terminal:new({ cmd = "htop", hidden = true })
+local htop = terminal:new({ direction = "float", cmd = "htop", hidden = true })
 
 function HTOP_TOGGLE()
 	htop:toggle()
-end
-
-local python = terminal:new({ cmd = "python", hidden = true })
-
-function PYTHON_TOGGLE()
-	python:toggle()
 end
 
 toggleterm.setup({
@@ -75,6 +79,7 @@ toggleterm.setup({
 	open_mapping = [[<c-t>]],
 	hide_numbers = true,
 	shade_filetypes = {},
+	auto_scroll = true, -- automatically scroll to the bottom on terminal output
 	shade_terminals = true,
 	shading_factor = 2,
 	start_in_insert = true,
