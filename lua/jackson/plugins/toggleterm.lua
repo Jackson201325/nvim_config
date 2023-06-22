@@ -62,10 +62,14 @@ function RAILS_SERVER_TOGGLE()
 	rails_server:toggle()
 end
 
-local docker_up = terminal:new({ cmd = "up", hidden = true })
+local docker_up = terminal:new({
+	cmd = "docker-compose up",
+	hidden = true,
+	auto_scroll = false,
+})
 
 function DOCKER_UP_TOGGLE()
-	 docker_up:toggle()
+	docker_up:toggle()
 end
 
 local htop = terminal:new({ direction = "float", cmd = "htop", hidden = true })

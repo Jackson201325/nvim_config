@@ -5,7 +5,6 @@ if not null_ls_status_ok then
 end
 
 local formatting = null_ls.builtins.formatting
--- local code_actions = null_ls.builtins.code_actions
 local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
@@ -20,14 +19,16 @@ null_ls.setup({
 		-- require("typescript.extensions.null_ls.code_actions"),
 
 		-- Ruby
-		formatting.rubocop,
-		diagnostics.rubocop,
+		formatting.rubocop.with({ timeout = 10000 }),
+		diagnostics.rubocop.with({
+			method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+		}),
+		-- diagnostics.reek,
+		-- formatting.rubyfmt,
 
 		-- Eruby
 		formatting.erb_lint,
 		diagnostics.erb_lint,
-		-- diagnostics.reek,
-		-- formatting.rubyfmt,
 
 		-- Lua
 		formatting.stylua,
