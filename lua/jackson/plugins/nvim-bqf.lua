@@ -1,7 +1,6 @@
 local status_ok, bfq = pcall(require, "bqf")
 
 if not status_ok then
-	print("BFQ scope not ok")
 	return
 end
 

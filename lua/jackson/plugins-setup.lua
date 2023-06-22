@@ -33,6 +33,7 @@ packer.startup(function(use)
 
 	-- Color scheme
 	use("folke/tokyonight.nvim")
+	use({ "catppuccin/nvim", as = "catppuccin" })
 
 	-- Replacing surroundings
 	use("tpope/vim-surround")
@@ -61,18 +62,9 @@ packer.startup(function(use)
 	-- LSP support
 	use({ "glepnir/lspsaga.nvim", branch = "main" })
 	use("jose-elias-alvarez/typescript.nvim")
-	-- use("rust-lang/rust.vim")
-	-- use("simrat39/rust-tools.nvim")
 	use("mfussenegger/nvim-dap")
 	use("leoluz/nvim-dap-go")
-	-- use({
-	-- 	"saecki/crates.nvim",
-	-- 	tag = "v0.3.0",
-	-- 	requires = { "nvim-lua/plenary.nvim" },
-	-- 	config = function()
-	-- 		require("crates").setup()
-	-- 	end,
-	-- })
+
 	use("roobert/tailwindcss-colorizer-cmp.nvim")
 	use({
 		"olexsmir/gopher.nvim",
@@ -118,7 +110,6 @@ packer.startup(function(use)
 		requires = "nvim-treesitter/nvim-treesitter",
 	})
 	use({ "mg979/vim-visual-multi", branch = "master" })
-	use("tpope/vim-repeat")
 	use("m-demare/hlargs.nvim")
 
 	-- UI
@@ -128,8 +119,7 @@ packer.startup(function(use)
 	use("NvChad/nvim-colorizer.lua")
 	use("folke/which-key.nvim")
 	use("RRethy/vim-illuminate")
-	use("kevinhwang91/nvim-hlslens")
-	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
+	-- use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
 	use({ "kevinhwang91/nvim-bqf", ft = "qf" })
 	use({
 		"junegunn/fzf",
@@ -137,7 +127,11 @@ packer.startup(function(use)
 			vim.fn["fzf#install"]()
 		end,
 	})
-	use("luukvbaal/statuscol.nvim")
+	-- use("luukvbaal/statuscol.nvim")
+	use({
+		"folke/noice.nvim",
+		requires = { "MunifTanjim/nui.nvim" },
+	})
 
 	-- Movement
 	use("mbbill/undotree")
@@ -203,3 +197,13 @@ end)
 -- 		require("goto-preview").setup({})
 -- 	end,
 -- })
+-- use({
+-- 	"saecki/crates.nvim",
+-- 	tag = "v0.3.0",
+-- 	requires = { "nvim-lua/plenary.nvim" },
+-- 	config = function()
+-- 		require("crates").setup()
+-- 	end,
+-- })
+-- use("rust-lang/rust.vim")
+-- use("simrat39/rust-tools.nvim")

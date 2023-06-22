@@ -40,8 +40,11 @@ keymap.set({ "n" }, "cW", "viWc")
 --To set in the cursor in the middle when jumping
 keymap.set("n", "(", "{zz", opts)
 keymap.set("n", ")", "}zz", opts)
-keymap.set("n", "n", "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>zz", opts)
-keymap.set("n", "N", "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>zz", opts)
+
+-- keymap.set("n", "n", "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>zz", opts)
+-- keymap.set("n", "N", "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>zz", opts)
+keymap.set("n", "N", "Nzz", opts)
+keymap.set("n", "n", "nzz", opts)
 
 -- Paste over
 keymap.set("x", "p", '"_dP', opts)
@@ -83,12 +86,7 @@ keymap.set("v", "<", "<gv", opts)
 keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", opts)
 
 -- search word under cursor
-keymap.set(
-	{ "n", "x" },
-	"gw",
-	"*N<Cmd>lua require('hlslens').start()<CR>",
-	{ desc = "Search word under cursor", noremap = true, silent = true }
-)
+keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor", noremap = true, silent = true })
 
 keymap.set(
 	{ "n", "x" },
