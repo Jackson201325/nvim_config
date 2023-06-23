@@ -66,22 +66,13 @@ if vim.fn.has("nvim-0.9.0") == 1 then
 end
 
 -- Fix markdown indentation settings
-vim.g.markdown_recommended_style = 0
+-- vim.g.markdown_recommended_style = 0
 
 -- vim.o.foldcolumn = "1" -- '0' is not bad
--- vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+-- vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
 -- vim.o.foldlevelstart = 99
 -- vim.o.foldenable = true
 
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.fen = false
-
--- opt.foldmethod = "expr"
--- opt.foldexpr = "nvim_treesitter#foldexpr()"
--- opt.fen = true
---
--- opt.foldcolumn = "1"
--- opt.foldlevel = 99
--- opt.foldlevelstart = -1
--- opt.foldenable = true

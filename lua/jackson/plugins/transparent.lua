@@ -53,7 +53,7 @@ transparent.setup({
 		"BufferLineBackground",
 		"BufferLineSeparator",
 		"BufferLineIndicatorSelected",
-		"CursorLine",
+		-- "CursorLine",
 		"CursorColumn",
 		"FloatBorder",
 		"FloatBorderNC",

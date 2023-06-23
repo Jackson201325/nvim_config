@@ -28,8 +28,8 @@ function LAZYGIT_TOGGLE()
 end
 
 local foreman = terminal:new({
-	cmd = "bundle exec bin/dev",
-	hidden = false,
+	cmd = "bundle exec ./bin/dev",
+	hidden = true,
 })
 
 function RAILS_FOREMAN_TOGGLE()
@@ -83,7 +83,7 @@ toggleterm.setup({
 	open_mapping = [[<c-t>]],
 	hide_numbers = true,
 	shade_filetypes = {},
-	auto_scroll = true, -- automatically scroll to the bottom on terminal output
+	auto_scroll = false, -- automatically scroll to the bottom on terminal output
 	shade_terminals = true,
 	shading_factor = 2,
 	start_in_insert = true,
