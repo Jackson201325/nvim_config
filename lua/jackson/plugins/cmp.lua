@@ -24,24 +24,7 @@ end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
--- toggle cmp completion
-vim.g.cmp_toggle_flag = false -- initialize
-
-local normal_buftype = function()
-	return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
-end
-
-local next_cmp_toggle_flag = not vim.g.cmp_toggle_flag
-
 cmp.setup({
-	-- enabled = function()
-	-- 	vim.g.cmp_toggle_flag = next_cmp_toggle_flag
-	-- 	if next_cmp_toggle_flag then
-	-- 		return normal_buftype
-	-- 	else
-	-- 		return next_cmp_toggle_flag
-	-- 	end
-	-- end,
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)

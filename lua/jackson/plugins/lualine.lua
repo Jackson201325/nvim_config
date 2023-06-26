@@ -115,11 +115,6 @@ local branch = {
 	icon = "",
 }
 
-local location = {
-	"location",
-	padding = 0,
-}
-
 local lsp = function()
 	local msg = "No Active Lsp"
 	local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
@@ -171,6 +166,14 @@ lualine.setup({
 		lualine_b = {},
 		lualine_c = { "filename" },
 		lualine_x = { "location" },
+		lualine_y = {},
+		lualine_z = {},
+	},
+	winbar = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = { filename },
+		lualine_x = {},
 		lualine_y = {},
 		lualine_z = {},
 	},

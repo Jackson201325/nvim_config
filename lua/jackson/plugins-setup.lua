@@ -62,9 +62,6 @@ packer.startup(function(use)
 	-- LSP support
 	use({ "glepnir/lspsaga.nvim", branch = "main" })
 	use("jose-elias-alvarez/typescript.nvim")
-	use("mfussenegger/nvim-dap")
-	use("leoluz/nvim-dap-go")
-
 	use("roobert/tailwindcss-colorizer-cmp.nvim")
 	use({
 		"olexsmir/gopher.nvim",
@@ -119,7 +116,7 @@ packer.startup(function(use)
 	use("NvChad/nvim-colorizer.lua")
 	use("folke/which-key.nvim")
 	use("RRethy/vim-illuminate")
-	-- use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
+	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
 	use({ "kevinhwang91/nvim-bqf", ft = "qf" })
 	use({
 		"junegunn/fzf",
@@ -127,7 +124,7 @@ packer.startup(function(use)
 			vim.fn["fzf#install"]()
 		end,
 	})
-	-- use("luukvbaal/statuscol.nvim")
+	use("luukvbaal/statuscol.nvim")
 	use({
 		"folke/noice.nvim",
 		requires = { "MunifTanjim/nui.nvim" },
@@ -139,6 +136,7 @@ packer.startup(function(use)
 	use("christoomey/vim-tmux-navigator") -- Navigate between vim and tmux panes seamlessly
 	use("ggandor/flit.nvim")
 	use("ggandor/leap.nvim")
+	use("tpope/vim-repeat")
 
 	-- Neo Tree
 	use({
@@ -188,9 +186,6 @@ end)
 -- use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
 -- use("luukvbaal/statuscol.nvim")
 -- use("simrat39/symbols-outline.nvim")
--- use("folke/trouble.nvim")
--- use("akinsho/toggleterm.nvim")
--- use("jayp0521/mason-null-ls.nvim")
 -- use({
 -- 	"rmagatti/goto-preview",
 -- 	config = function()
@@ -207,3 +202,5 @@ end)
 -- })
 -- use("rust-lang/rust.vim")
 -- use("simrat39/rust-tools.nvim")
+-- use("mfussenegger/nvim-dap")
+-- use("leoluz/nvim-dap-go")
