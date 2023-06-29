@@ -29,6 +29,11 @@ end
 
 local foreman = terminal:new({
 	cmd = "bundle exec ./bin/dev",
+	close_on_exit = true,
+	direction = "float",
+	float_opts = {
+		border = "curved",
+	},
 	hidden = true,
 })
 
@@ -56,7 +61,28 @@ function RAILS_CONSOLE_TOGGLE()
 	rails_console:toggle()
 end
 
-local rails_server = terminal:new({ cmd = "bundle exec rails s", hidden = true })
+local byebug_server = terminal:new({
+	cmd = "byebug -R localhost:8989",
+	close_on_exit = true,
+	float_opts = {
+		border = "curved",
+	},
+	hidden = true,
+})
+
+function BYEBUG_SERVER_TOGGLE()
+	byebug_server:toggle()
+end
+
+local rails_server = terminal:new({
+	cmd = "bundle exec rails s",
+	close_on_exit = false,
+	direction = "float",
+	float_opts = {
+		border = "curved",
+	},
+	hidden = true,
+})
 
 function RAILS_SERVER_TOGGLE()
 	rails_server:toggle()
@@ -64,8 +90,12 @@ end
 
 local docker_up = terminal:new({
 	cmd = "docker-compose up",
+	close_on_exit = false,
+	direction = "float",
+	float_opts = {
+		border = "curved",
+	},
 	hidden = true,
-	auto_scroll = false,
 })
 
 function DOCKER_UP_TOGGLE()
