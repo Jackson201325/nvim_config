@@ -27,6 +27,20 @@ function LAZYGIT_TOGGLE()
 	lazygit:toggle()
 end
 
+local npm_server = terminal:new({
+	cmd = "npm run dev",
+	close_on_exit = true,
+	direction = "float",
+	float_opts = {
+		border = "curved",
+	},
+	hidden = true,
+})
+
+function NPM_SERVER_TOGGLE()
+	npm_server:toggle()
+end
+
 local foreman = terminal:new({
 	cmd = "bundle exec ./bin/dev",
 	close_on_exit = true,

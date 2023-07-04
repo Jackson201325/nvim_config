@@ -11,9 +11,9 @@ null_ls.setup({
 	debug = false,
 	sources = {
 		-- Js
-		-- formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
-		formatting.prettier.with({ extra_args = {} }),
-		-- diagnostics.eslint,
+		formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote" } }),
+		-- formatting.prettier.with({ extra_args = { "--single-quote" } }),
+		diagnostics.eslint,
 
 		-- TS
 		-- require("typescript.extensions.null_ls.code_actions"),

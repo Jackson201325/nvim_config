@@ -102,7 +102,7 @@ local mappings = {
 		f = { "<cmd>TypescriptFixAll<CR>", "Fix All" },
 		d = { "<cmd>TypescriptGoToSourceDefinition<CR>", "Go to Definition" },
 		o = { "<cmd>TypescriptOrganizeImports<CR>", "Organize Imports" },
-		u = { "<cmd>TypescriptRemoveUnsed<CR>", "Remove Unused" },
+		u = { "<cmd>TypescriptRemoveUnused<CR>", "Remove Unused" },
 	},
 	K = { "<cmd>Lspsaga hover_doc<CR>", "Hover Doc" },
 }

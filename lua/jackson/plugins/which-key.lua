@@ -265,6 +265,7 @@ local mappings = {
 		s = { "<cmd>lua RAILS_SERVER_TOGGLE()<cr>", "Rails Server" },
 		r = { "<cmd>lua RAILS_ROUTES_TOGGLE()<cr>", "Rails Routes" },
 		b = { "<cmd>lua BYEBUG_SERVER_TOGGLE()<cr>", "Byebug server" },
+		n = { "<cmd>lua NPM_SERVER_TOGGLE()<cr>", "NPM server" },
 	},
 
 	t = {
