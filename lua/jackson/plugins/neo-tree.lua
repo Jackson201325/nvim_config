@@ -327,7 +327,7 @@ neotree.setup({
 	window = {
 		-- see https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup for
 		-- possible options. These can also be functions that return these options.
-		position = "left", -- left, right, top, bottom, float, current
+		position = "float", -- left, right, top, bottom, float, current
 		follow_current_file = true, -- This will find and focus the file in the active buffer every time
 		width = 40, -- applies to left and right positions
 		height = 15, -- applies to top and bottom positions

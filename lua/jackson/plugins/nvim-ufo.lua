@@ -48,7 +48,8 @@ vim.keymap.set("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == clo
 
 nvim_ufo.setup({
 	open_fold_hl_timeout = 150,
-	close_fold_kinds = { "imports", "comment" },
+	-- close_fold_kinds = { "imports", "comment" },
+	-- close_fold_kinds = { "imports" },
 	preview = {
 		win_config = {
 			border = { "", "─", "", "", "", "─", "", "" },
