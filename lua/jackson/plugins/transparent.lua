@@ -9,6 +9,7 @@ transparent.setup({
 		"NormalNC",
 		"Comment",
 		"Constant",
+		"UfoPreviewThumb",
 		-- "CursorLine",
 		"CursorLineNR",
 		"NormalFloat",

@@ -44,7 +44,17 @@ vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
+vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds)
 vim.keymap.set("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
+vim.keymap.set("n", "K", function()
+	local winid = require("ufo").peekFoldedLinesUnderCursor()
+	if not winid then
+		-- choose one of coc.nvim and nvim lsp
+		vim.lsp.buf.hover()
+	end
+end)
 
 nvim_ufo.setup({
 	open_fold_hl_timeout = 150,
@@ -67,7 +77,7 @@ nvim_ufo.setup({
 	provider_selector = function(bufnr, filetype, buftype)
 		-- if you prefer treesitter provider rather than lsp,
 		-- return ftMap[filetype] or {'treesitter', 'indent'}
-		return ftMap[filetype]
-		-- return { "treesitter", "indent" }
+		-- return ftMap[filetype]
+		return { "lsp", "indent" }
 	end,
 })

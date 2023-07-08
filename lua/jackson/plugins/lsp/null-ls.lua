@@ -19,12 +19,15 @@ null_ls.setup({
 		-- require("typescript.extensions.null_ls.code_actions"),
 
 		-- Ruby
-		formatting.rubocop.with({ timeout = 10000 }),
+		-- formatting.rubocop.with({ timeout = 10000 }),
 		diagnostics.rubocop.with({
 			method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
 		}),
 		-- diagnostics.reek,
-		-- formatting.rubyfmt,
+		formatting.rubyfmt,
+
+		-- Prisma
+		-- null_ls.builtins.formatting.prismaFmt,
 
 		-- Eruby
 		formatting.erb_lint,
