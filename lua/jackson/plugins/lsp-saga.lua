@@ -6,6 +6,7 @@ end
 lspsaga.setup({
 	"glepnir/lspsaga.nvim",
 	event = "LspAttach",
+  symbols_in_winbar = true,
 	preview = {
 		lines_above = 0,
 		lines_below = 10,
@@ -34,19 +35,20 @@ lspsaga.setup({
 
 	outline = {
 		win_position = "right",
-		win_with = "",
-		win_width = 30,
-		preview_width = 0.4,
-		show_detail = true,
-		auto_preview = true,
-		auto_refresh = true,
-		auto_close = true,
-		auto_resize = false,
-		custom_sort = nil,
-		keys = {
-			expand_or_jump = "o",
-			quit = "q",
-		},
+		-- win_width = 30,
+		preview_width = 1.2,
+		-- detail = true,
+		-- close_after_jump = true,
+		-- auto_preview = true,
+		-- show_detail = true,
+		-- auto_refresh = true,
+		-- auto_close = true,
+		-- auto_resize = true,
+		-- custom_sort = nil,
+		-- keys = {
+		-- 	toggle_or_jump = "o",
+		-- 	quit = "q",
+		-- },
 	},
 
 	-- For default options for each command, see below

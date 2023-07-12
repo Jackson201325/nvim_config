@@ -11,20 +11,21 @@ null_ls.setup({
 	debug = false,
 	sources = {
 		-- Js
-		formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote" } }),
+		-- formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote" } }),
 		-- formatting.prettier.with({ extra_args = { "--single-quote" } }),
 		diagnostics.eslint,
+		formatting.eslint,
 
 		-- TS
 		-- require("typescript.extensions.null_ls.code_actions"),
 
 		-- Ruby
-		-- formatting.rubocop.with({ timeout = 10000 }),
+		formatting.rubocop.with({ timeout = 10000 }),
 		diagnostics.rubocop.with({
 			method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
 		}),
 		-- diagnostics.reek,
-		formatting.rubyfmt,
+		-- formatting.rubyfmt,
 
 		-- Prisma
 		-- null_ls.builtins.formatting.prismaFmt,

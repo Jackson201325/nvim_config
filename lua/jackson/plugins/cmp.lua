@@ -45,17 +45,18 @@ cmp.setup({
 				end
 			end,
 		}),
-		["<CR>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
-		}),
+		-- ["<CR>"] = cmp.mapping.confirm({
+		-- 	select = true,
+		-- }),
 		["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
 		["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
-				cmp.select_next_item()
-			-- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-			-- they way you will only jump inside the snippet region
+				cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+				-- cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+				-- cmp.select_next_item()
+				-- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+				-- they way you will only jump inside the snippet region
 			elseif luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
 			elseif has_words_before() then
@@ -84,12 +85,12 @@ cmp.setup({
 			cmp.config.compare.scopes, --this is commented in nvim-cmp too
 			cmp.config.compare.exact,
 			cmp.config.compare.score,
-			cmp.config.compare.recently_used,
-			cmp.config.compare.locality,
 			cmp.config.compare.kind,
 			cmp.config.compare.sort_text,
 			cmp.config.compare.length,
 			cmp.config.compare.order,
+			-- cmp.config.compare.recently_used,
+			-- cmp.config.compare.locality,
 		},
 	},
 	formatting = {
@@ -98,13 +99,13 @@ cmp.setup({
 			vim_item.kind = lspkind.presets.default[vim_item.kind]
 			vim_item.menu = ({
 				copilot = "[Copilot]",
-				luasnip = "[LuaSnip]",
 				nvim_lsp = "[LSP]",
+				luasnip = "[LuaSnip]",
 				nvim_lua = "[LUA]",
-				-- crates = "[Crates]",
 				buffer = "[Buffer]",
 				path = "[Path]",
 				cmdline = "[CmdLine]",
+				-- crates = "[Crates]",
 				-- ultisnips = "[UltiSnips]",
 				-- vsnip = "[VSnip]",
 			})[entry.source.name]
@@ -112,11 +113,11 @@ cmp.setup({
 		end,
 	},
 	sources = {
-		{ name = "copilot", keyword_length = 1 },
-		{ name = "nvim_lsp", keyword_length = 1 },
-		{ name = "treesitter", keyword_length = 1 },
 		{ name = "luasnip", keyword_length = 1 },
-		{ name = "nvim_lua", keyword_length = 2 },
+		{ name = "nvim_lsp", keyword_length = 1 },
+		{ name = "copilot", keyword_length = 1 },
+		{ name = "emmet_ls", keyword_length = 1 },
+		{ name = "nvim_lua", keyword_length = 1 },
 		{ name = "path", keyword_length = 2 },
 		{ name = "buffer", keyword_length = 2 },
 		-- { name = "crates", keyword_length = 1 },

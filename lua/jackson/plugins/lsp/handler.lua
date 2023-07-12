@@ -67,10 +67,9 @@ M.on_attach = function(client, bufnr)
 
 	illuminate.on_attach(client)
 
-	local lsp_formatting = function(bufnr)
+	local lsp_formatting = function()
 		vim.lsp.buf.format({
-			filter = function(client)
-				-- apply whatever logic you want (in this example, we'll only use null-ls)
+			filter = function()
 				return client.name == "null-ls"
 			end,
 			bufnr = bufnr,
@@ -78,7 +77,7 @@ M.on_attach = function(client, bufnr)
 	end
 
 	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-	--
+
 	-- if client.supports_method("textDocument/formatting") then
 	-- 	vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 	-- 	vim.api.nvim_create_autocmd("BufWritePre", {
@@ -96,7 +95,7 @@ M.on_attach = function(client, bufnr)
 			group = augroup,
 			buffer = bufnr,
 			callback = function()
-				lsp_formatting(bufnr)
+				lsp_formatting()
 			end,
 		})
 	end
@@ -119,14 +118,14 @@ local mappings = {
 	g = {
 		name = "Actions",
 		a = { "<cmd>Lspsaga code_action<CR>", "Code Action" },
-		H = { "<cmd>Gitsigns prev_hunk<CR>", "Go to previous hunk" },
-		h = { "<cmd>Gitsigns next_hunk<CR>", "Go to next hunk" },
-		l = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show Line Diagnostics" },
 		c = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show Cursor Diagnostics" },
 		d = { "<cmd>Lspsaga goto_definition zz<CR>", "Goto Definition" },
 		D = { ":vsplit | Lspsaga goto_definition<CR>", "Goto Definition in Split" },
-		r = { "<cmd>Lspsaga lsp_finder<CR>", "LSP Finder" },
+		h = { "<cmd>Gitsigns next_hunk<CR>", "Go to next hunk" },
+		H = { "<cmd>Gitsigns prev_hunk<CR>", "Go to previous hunk" },
+		l = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show Line Diagnostics" },
 		p = { "<cmd>Lspsaga peek_definition<CR>", "Peek Definition" },
+		r = { "<cmd>Lspsaga finder<CR>", "LSP Finder" },
 		R = { "<cmd>Telescope lsp_references<CR>", "References" },
 	},
 	t = {
