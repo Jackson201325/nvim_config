@@ -65,7 +65,6 @@ transparent.setup({
 		"UfoFoldedBg",
 		"UfoFoldedFg",
 		"UfoPreviewSbar",
-		"UfoPreviewWinbar",
 		"LspSagaBorderTitle",
 		"LspSagaFinderSelection",
 		"LspSagaCodeActionBorder",

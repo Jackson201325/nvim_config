@@ -252,7 +252,7 @@ local mappings = {
 		L = { "<cmd>LspLog<cr>", "Lsp Log" },
 		n = { "<cmd>NullLsInfo<cr>", "Null LS Info" },
 		N = { "<cmd>NullLsLog<CR>", "Null LS Log" },
-		o = { "<cmd>Lspsaga lsp_finder<cr>", "LSP Finder" },
+		o = { "<cmd>Lspsaga outline<cr>", "LSP outline" },
 		q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
 	},

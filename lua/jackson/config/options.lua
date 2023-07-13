@@ -35,7 +35,7 @@ opt.clipboard = "unnamedplus"
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 3 -- Hide * markup for bold and italic
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
-opt.formatoptions = "jcoqlnt" -- tcq
+opt.formatoptions = "joqlnt" -- tcq
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 opt.scrolloff = 8 -- Lines of context
@@ -60,10 +60,10 @@ opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 10 -- Minimum window width
 opt.winbar = "%=%m %f"
 
-if vim.fn.has("nvim-0.9.0") == 1 then
-	opt.splitkeep = "screen"
-	opt.shortmess:append({ W = true, I = true, c = true })
-end
+-- if vim.fn.has("nvim-0.9.0") == 1 then
+-- 	opt.splitkeep = "screen"
+-- 	opt.shortmess:append({ W = true, I = true, c = true })
+-- end
 
 -- Fix markdown indentation settings
 -- vim.g.markdown_recommended_style = 0

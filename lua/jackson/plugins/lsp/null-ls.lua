@@ -13,8 +13,9 @@ null_ls.setup({
 		-- Js
 		-- formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote" } }),
 		-- formatting.prettier.with({ extra_args = { "--single-quote" } }),
-		diagnostics.eslint,
-		formatting.eslint,
+		-- diagnostics.eslint,
+		diagnostics.prettier_eslint,
+		formatting.prettier_eslint,
 
 		-- TS
 		-- require("typescript.extensions.null_ls.code_actions"),
@@ -28,7 +29,7 @@ null_ls.setup({
 		-- formatting.rubyfmt,
 
 		-- Prisma
-		-- null_ls.builtins.formatting.prismaFmt,
+		null_ls.builtins.formatting.prismaFmt,
 
 		-- Eruby
 		formatting.erb_lint,

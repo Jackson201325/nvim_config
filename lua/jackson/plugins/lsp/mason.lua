@@ -6,17 +6,17 @@ local servers = {
 	"html",
 	"jsonls",
 	"lua_ls",
-	-- "prismals",
+	"prismals",
 	"pyright",
 	"rust_analyzer",
 	"solargraph",
 	"sqlls",
 	"tailwindcss",
-	"tsserver",
+	-- "tsserver",
 	"docker_compose_language_service",
 	"dockerls",
 	"emmet_ls",
-	"eslint",
+	-- "eslint",
 }
 
 -- IMPORTANT: make sure to setup neodev BEFORE lspconfig

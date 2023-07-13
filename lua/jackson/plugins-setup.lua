@@ -60,7 +60,14 @@ packer.startup(function(use)
 	use("folke/neodev.nvim")
 
 	-- LSP support
-	use({ "glepnir/lspsaga.nvim", branch = "main" })
+	use({
+		"nvimdev/lspsaga.nvim",
+		after = "nvim-lspconfig",
+		config = function()
+			require("lspsaga").setup({})
+		end,
+	})
+
 	use("jose-elias-alvarez/typescript.nvim")
 	use("roobert/tailwindcss-colorizer-cmp.nvim")
 	use({

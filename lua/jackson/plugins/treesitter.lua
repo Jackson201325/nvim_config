@@ -26,6 +26,7 @@ configs.setup({
 		"tsx",
 		"typescript",
 		"vim",
+    "graphql",
 		"yaml",
 		"astro",
 		"prisma",
