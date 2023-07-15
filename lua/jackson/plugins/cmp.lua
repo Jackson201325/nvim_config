@@ -45,9 +45,6 @@ cmp.setup({
         end
       end,
     }),
-    -- ["<CR>"] = cmp.mapping.confirm({
-    -- 	select = true,
-    -- }),
     ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
     ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
     ["<Tab>"] = cmp.mapping(function(fallback)
@@ -96,19 +93,20 @@ cmp.setup({
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
+      vim_item.menu = vim_item.kind
       vim_item.kind = lspkind.presets.default[vim_item.kind]
-      vim_item.menu = ({
-        copilot = "[Copilot]",
-        nvim_lsp = "[LSP]",
-        luasnip = "[LuaSnip]",
-        nvim_lua = "[LUA]",
-        buffer = "[Buffer]",
-        path = "[Path]",
-        cmdline = "[CmdLine]",
-        -- crates = "[Crates]",
-        -- ultisnips = "[UltiSnips]",
-        -- vsnip = "[VSnip]",
-      })[entry.source.name]
+      -- vim_item.menu = ({
+      --   copilot = "[Copilot]",
+      --   nvim_lsp = "[LSP]",
+      --   luasnip = "[LuaSnip]",
+      --   nvim_lua = "[LUA]",
+      --   buffer = "[Buffer]",
+      --   path = "[Path]",
+      --   cmdline = "[CmdLine]",
+      --   -- crates = "[Crates]",
+      --   -- ultisnips = "[UltiSnips]",
+      --   -- vsnip = "[VSnip]",
+      -- })[entry.source.name]
       return vim_item
     end,
   },
