@@ -13,8 +13,7 @@ null_ls.setup({
 		-- Js
 		-- formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote" } }),
 		-- formatting.prettier.with({ extra_args = { "--single-quote" } }),
-		-- diagnostics.eslint,
-		diagnostics.prettier_eslint,
+		diagnostics.eslint,
 		formatting.prettier_eslint,
 
 		-- TS

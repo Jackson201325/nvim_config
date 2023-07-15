@@ -94,9 +94,9 @@ configs.setup({
 				["ac"] = "@class.outer",
 				["ab"] = "@block.outer",
 				["ib"] = "@block.inner",
+        ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
 				-- You can optionally set descriptions to the mappings (used in the desc parameter of
 				-- nvim_buf_set_keymap) which plugins like which-key display
-				["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
 				-- You can also use captures from other query groups like `locals.scm`
 				["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
 			},
@@ -136,7 +136,7 @@ configs.setup({
 			enable = true,
 			set_jumps = true, -- whether to set jumps in the jumplist
 			goto_next_start = {
-				["]m"] = "@function.outer",
+				["m"] = "@function.outer",
 				["]]"] = { query = "@class.outer", desc = "Next class start" },
 				--
 				-- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
@@ -154,7 +154,7 @@ configs.setup({
 				["]["] = "@class.outer",
 			},
 			goto_previous_start = {
-				["[m"] = "@function.outer",
+        ["M"] = "@function.outer",
 				["[["] = "@class.outer",
 				["[b"] = { query = "@block.outer", desc = "Next block" },
 			},

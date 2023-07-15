@@ -39,7 +39,7 @@ lspsaga.setup({
 	outline = {
 		win_position = "float",
 		-- win_width = 30,
-		preview_width = 0.99,
+		preview_width = 0.9,
 		detail = true,
 		close_after_jump = true,
 		auto_preview = true,

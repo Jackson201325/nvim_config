@@ -13,7 +13,7 @@ local solargraph_cmd = function()
 end
 
 return {
-	cmd = solargraph_cmd(),
+	-- cmd = solargraph_cmd(),
 	filetypes = { "ruby" },
 	settings = {
 		solargraph = {
