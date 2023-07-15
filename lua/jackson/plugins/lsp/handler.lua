@@ -60,13 +60,13 @@ M.on_attach = function(client, bufnr)
   if not istatus_ok then
     return
   end
+  illuminate.on_attach(client)
 
   if client.name == "solargraph" then
     client.server_capabilities.documentFormattingProvider = false
   end
 
-  illuminate.on_attach(client)
-
+  print(client.name)
   require("lsp-format").on_attach(client)
 end
 
