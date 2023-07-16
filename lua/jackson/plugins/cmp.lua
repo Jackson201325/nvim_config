@@ -45,11 +45,12 @@ cmp.setup({
         end
       end,
     }),
+
     ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
     ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
+        cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
         -- cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert })
         -- cmp.select_next_item()
         -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
@@ -76,9 +77,9 @@ cmp.setup({
   sorting = {
     priority_weight = 2,
     comparators = {
-      require("copilot_cmp.comparators").prioritize,
       -- Below is the default comparitor list and order for nvim-cmp
       cmp.config.compare.offset,
+      require("copilot_cmp.comparators").prioritize,
       cmp.config.compare.scopes, --this is commented in nvim-cmp too
       cmp.config.compare.exact,
       cmp.config.compare.score,
@@ -91,10 +92,11 @@ cmp.setup({
     },
   },
   formatting = {
-    fields = { "kind", "abbr", "menu" },
+    fields = { "abbr", "kind", "menu" },
     format = function(entry, vim_item)
-      vim_item.menu = vim_item.kind
-      vim_item.kind = lspkind.presets.default[vim_item.kind]
+      vim_item.kind = vim_item.kind
+      -- vim_item.menu = vim_item.kind
+      vim_item.menu = lspkind.presets.default[vim_item.kind]
       -- vim_item.menu = ({
       --   copilot = "[Copilot]",
       --   nvim_lsp = "[LSP]",
@@ -123,7 +125,7 @@ cmp.setup({
     -- { name = "ultisnips" },
   },
   confirm_opts = {
-    behavior = cmp.ConfirmBehavior.Replace,
+    behavior = cmp.ConfirmBehavior.Insert,
     select = false,
   },
   window = {

@@ -66,7 +66,6 @@ M.on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
   end
 
-  print(client.name)
   require("lsp-format").on_attach(client)
 end
 
