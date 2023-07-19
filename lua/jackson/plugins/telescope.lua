@@ -25,7 +25,9 @@ telescope.setup({
     initial_mode = "insert",
     layout_config = {
       prompt_position = "top",
-      horizontal = { width = 0.5, height = 0.6 },
+      horizontal = { width = 0.7, height = 0.8 },
+      -- height = 0.9,
+      -- width = 0.5,
     },
     prompt_prefix = " ",
     selection_caret = " ",
@@ -47,7 +49,7 @@ telescope.setup({
           local multi = picker:get_multi_selection()
           actions.select_default(pb) -- the normal enter behaviour
           for _, j in pairs(multi) do
-            if j.path ~= nil then -- is it a file -> open it as well:
+            if j.path ~= nil then    -- is it a file -> open it as well:
               vim.cmd(string.format("%s %s", "edit", j.path))
             end
           end
@@ -73,7 +75,7 @@ telescope.setup({
           local multi = picker:get_multi_selection()
           actions.select_default(pb) -- the normal enter behaviour
           for _, j in pairs(multi) do
-            if j.path ~= nil then -- is it a file -> open it as well:
+            if j.path ~= nil then    -- is it a file -> open it as well:
               vim.cmd(string.format("%s %s", "edit", j.path))
             end
           end
@@ -127,15 +129,15 @@ telescope.setup({
     -- }
     -- please take a look at the readme of the extension you want to configure
     fzf = {
-      fuzzy = true,                -- false will only do exact matching
+      fuzzy = true,                   -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true, -- override the file sorter
-      case_mode = "smart_case",    -- or "ignore_case" or "respect_case"
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
     },
     persisted = {
       layout_config = {
-        width = 0.5,
+        width = 0.8,
         height = 0.5,
         prompt_position = "top",
       },

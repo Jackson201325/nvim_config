@@ -16,7 +16,7 @@ lspsaga.setup({
 
   symbol_in_winbar = {
     enable = true,
-    folder_level = 6
+    folder_level = 4
   },
 
   -- See Customizing Lspsaga's Appearance

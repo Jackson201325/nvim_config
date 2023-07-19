@@ -57,7 +57,6 @@ end
 
 local rails_routes = terminal:new({
   cmd = "bundle exec rails routes",
-  hidden = true,
   close_on_exit = false,
   direction = "float",
   float_opts = {
@@ -76,7 +75,7 @@ function RAILS_CONSOLE_TOGGLE()
 end
 
 local byebug_server = terminal:new({
-  cmd = "byebug -R localhost:8989",
+  cmd = "bundle exec byebug -R localhost:8989",
   close_on_exit = true,
   float_opts = {
     border = "curved",
@@ -89,7 +88,7 @@ function BYEBUG_SERVER_TOGGLE()
 end
 
 local rails_server = terminal:new({
-  cmd = "bundle exec rails s",
+  cmd = "bundle exec rails s -p 3001",
   close_on_exit = false,
   direction = "float",
   float_opts = {
