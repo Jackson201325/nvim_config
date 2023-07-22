@@ -115,6 +115,14 @@ local branch = {
   icon = "",
 }
 
+local fg = function(name)
+  ---@type {foreground?:number}?
+  local hl = vim.api.nvim_get_hl and vim.api.nvim_get_hl(0, { name = name })
+      or vim.api.nvim_get_hl_by_name(name, true)
+  local fg = hl and hl.fg or hl.foreground
+  return fg and { fg = string.format("#%06x", fg) }
+end
+
 local lsp = function()
   local msg = "No Active Lsp"
   local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
@@ -144,22 +152,39 @@ lualine.setup({
   options = {
     icons_enabled = true,
     globalstatus = true,
-    -- theme = "tokyonight",
     theme = theme(),
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
-    -- disabled_filetypes = { statusline = { "dashboard", "alpha" } },
     always_divide_middle = true,
   },
   sections = {
-    lualine_a = { branch, diagnostics },
-    lualine_b = { mode },
-    lualine_c = { filename, filesize },
-    -- lualine_x = { "encoding", "fileformat", "filetype" },
-    lualine_x = { diff, spaces, "encoding", filetype },
+    lualine_a = { mode },
+    lualine_b = { branch, diagnostics },
+    lualine_c = {
+      filesize,
+      spaces,
+      "enconding",
+    },
+    lualine_x = {
+      {
+        function()
+          return require("noice").api.status.command.get()
+        end,
+        cond = function()
+          return package.loaded["noice"] and require("noice").api.status.command.has()
+        end,
+        color = fg("Statement"),
+      },
+      filetype,
+      diff,
+    },
     lualine_y = { lsp },
-    -- lualine_z = { location },
+    -- lualine_z = {
+    --   function()
+    --     return " " .. os.date("%R")
+    --   end,
+    -- },
   },
   inactive_sections = {
     lualine_a = {},
@@ -169,14 +194,14 @@ lualine.setup({
     lualine_y = {},
     lualine_z = {},
   },
-  -- winbar = {
-  --   lualine_a = {},
-  --   lualine_b = {},
-  --   lualine_c = {},
-  --   lualine_x = {},
-  --   lualine_y = {},
-  --   lualine_z = {},
-  -- },
+  winbar = {
+    -- lualine_a = {},
+    -- lualine_b = {},
+    lualine_c = { filename },
+    -- lualine_x = {},
+    -- lualine_y = {},
+    -- lualine_z = {},
+  },
   tabline = {},
   extensions = {},
 })

@@ -4,10 +4,10 @@ if not setup then
 end
 
 lspsaga.setup({
-  preview = {
-    lines_above = 0,
-    lines_below = 10,
-  },
+  -- preview = {
+  --   lines_above = 0,
+  --   lines_below = 10,
+  -- },
 
   scroll_preview = {
     scroll_down = "<C-n>",
@@ -15,8 +15,7 @@ lspsaga.setup({
   },
 
   symbol_in_winbar = {
-    enable = true,
-    folder_level = 4
+    enable = false,
   },
 
   -- See Customizing Lspsaga's Appearance
@@ -36,16 +35,17 @@ lspsaga.setup({
   },
 
   outline = {
-    win_position = "left",
-    win_width = 30,
-    preview_width = 1.9,
-    detail = true,
-    close_after_jump = true,
-    auto_preview = true,
-    show_detail = true,
-    auto_refresh = true,
-    auto_close = true,
-    auto_resize = true,
+    -- enable = false,
+    -- win_position = "left",
+    -- win_width = 30,
+    -- preview_width = 1.9,
+    -- detail = true,
+    -- close_after_jump = true,
+    -- auto_preview = true,
+    -- show_detail = true,
+    -- auto_refresh = true,
+    -- auto_close = true,
+    -- auto_resize = true,
     -- custom_sort = nil,
     keys = {
       toggle_or_jump = "o",
