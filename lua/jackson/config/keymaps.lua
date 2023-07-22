@@ -44,6 +44,9 @@ keymap.set("n", ")", "}zz", opts)
 keymap.set("n", "N", "Nzz", opts)
 keymap.set("n", "n", "nzz", opts)
 
+-- Fold all expect cursor
+keymap.set("n", "zj", "zmzvzO", opts)
+
 -- Paste over
 keymap.set("x", "p", '"_dP', opts)
 
@@ -87,10 +90,10 @@ keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", opts)
 keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor", noremap = true, silent = true })
 
 keymap.set(
-	{ "n", "x" },
-	"fw",
-	live_grep_args_shortcuts.grep_word_under_cursor,
-	{ desc = "Find Word in project under cursor", noremap = true, silent = true }
+  { "n", "x" },
+  "fw",
+  live_grep_args_shortcuts.grep_word_under_cursor,
+  { desc = "Find Word in project under cursor", noremap = true, silent = true }
 )
 
 -- Move between buffers
