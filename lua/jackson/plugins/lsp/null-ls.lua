@@ -26,7 +26,8 @@ null_ls.setup({
     -- Js
     -- formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote" } }),
     -- formatting.prettier_eslint.with({ extra_args = { "--single-quote" } }),
-    diagnostics.eslint,
+    -- diagnostics.eslint,
+    diagnostics.tsc,
     formatting.prettier.with({ extra_args = { "--no-semi", "--double-quote" } }),
 
     -- TS
@@ -34,9 +35,9 @@ null_ls.setup({
 
     -- Ruby
     formatting.rubocop.with({ timeout = 10000 }),
-    diagnostics.rubocop.with({
-      method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-    }),
+    -- diagnostics.rubocop.with({
+    --   method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+    -- }),
     -- diagnostics.reek,
     -- formatting.rubyfmt,
 
@@ -51,7 +52,7 @@ null_ls.setup({
     formatting.stylua,
 
     -- Rust
-    formatting.rustfmt,
+    -- formatting.rustfmt,
 
     -- GO
     formatting.gofumpt,
