@@ -61,22 +61,15 @@ packer.startup(function(use)
 
   -- LSP support
   use({
-    "nvimdev/lspsaga.nvim",
-    after = "nvim-lspconfig",
+    'nvimdev/lspsaga.nvim',
+    after = 'nvim-lspconfig',
     config = function()
-      require("lspsaga").setup({})
+      require('lspsaga').setup({})
     end,
   })
 
   use("jose-elias-alvarez/typescript.nvim")
   use("roobert/tailwindcss-colorizer-cmp.nvim")
-  use({
-    "olexsmir/gopher.nvim",
-    requires = { -- dependencies
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-  }) -- init.lua
   use("lukas-reineke/lsp-format.nvim")
 
   -- Telescope
@@ -142,7 +135,7 @@ packer.startup(function(use)
   -- Movement
   use("mbbill/undotree")
   use("ThePrimeagen/harpoon")
-  use("christoomey/vim-tmux-navigator") -- Navigate between vim and tmux panes seamlessly
+  use("christoomey/vim-tmux-navigator")
   use("tpope/vim-repeat")
   use("folke/flash.nvim")
 
