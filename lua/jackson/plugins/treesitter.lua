@@ -11,6 +11,7 @@ configs.setup({
     "html",
     "css",
     "dockerfile",
+    "glimmer",
     "gitignore",
     "go",
     "java",

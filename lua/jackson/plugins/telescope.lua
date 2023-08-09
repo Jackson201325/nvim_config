@@ -19,7 +19,6 @@ telescope.setup({
       "--with-filename",
       "--line-number",
       "--column",
-      "--smart-case",
     },
     sorting_strategy = "ascending",
     initial_mode = "insert",
@@ -88,7 +87,7 @@ telescope.setup({
         ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
         ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
         ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-        ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+        ["<C-l>"] = actions.send_selected_to_loclist + actions.open_loclist,
 
         ["j"] = actions.move_selection_next,
         ["k"] = actions.move_selection_previous,
@@ -103,8 +102,8 @@ telescope.setup({
         ["<C-u>"] = actions.preview_scrolling_up,
         ["<C-d>"] = actions.preview_scrolling_down,
 
-        ["<PageUp>"] = actions.results_scrolling_up,
-        ["<PageDown>"] = actions.results_scrolling_down,
+        ["<C-p>"] = actions.results_scrolling_up,
+        ["<C-n>"] = actions.results_scrolling_down,
 
         ["?"] = actions.which_key,
       },
