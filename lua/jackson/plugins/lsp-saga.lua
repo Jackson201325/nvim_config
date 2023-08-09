@@ -35,7 +35,7 @@ lspsaga.setup({
   },
 
   outline = {
-    -- enable = false,
+    enable = false,
     -- win_position = "left",
     -- win_width = 30,
     -- preview_width = 1.9,

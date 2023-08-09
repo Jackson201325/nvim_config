@@ -79,7 +79,7 @@ cmp.setup({
     comparators = {
       -- Below is the default comparitor list and order for nvim-cmp
       cmp.config.compare.offset,
-      require("copilot_cmp.comparators").prioritize,
+      -- require("copilot_cmp.comparators").prioritize,
       cmp.config.compare.scopes, --this is commented in nvim-cmp too
       cmp.config.compare.exact,
       cmp.config.compare.score,
@@ -90,6 +90,9 @@ cmp.setup({
       -- cmp.config.compare.recently_used,
       -- cmp.config.compare.locality,
     },
+  },
+  matching = {
+    -- disallow_fullfuzzy_matching = true
   },
   formatting = {
     fields = { "abbr", "kind", "menu" },
@@ -113,10 +116,11 @@ cmp.setup({
     end,
   },
   sources = {
-    { name = "nvim_lua", keyword_length = 1 },
-    { name = "nvim_lsp", keyword_length = 1 },
-    { name = "luasnip",  keyword_length = 1 },
-    { name = "copilot",  keyword_length = 1 },
+    { name = "nvim_lua", keyword_length = 1, priority = 1 },
+    { name = "nvim_lsp", keyword_length = 1, priority = 1 },
+    { name = "luasnip",  keyword_length = 1, priority = 2 },
+    { name = "emmet_ls", keyword_length = 1, priority = 3 },
+    { name = "copilot",  keyword_length = 1, priority = 4 },
     { name = "path",     keyword_length = 2 },
     { name = "buffer",   keyword_length = 2 },
     -- { name = "crates", keyword_length = 1 },

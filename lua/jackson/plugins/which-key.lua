@@ -234,6 +234,7 @@ local mappings = {
       }),
       "Document Symbols",
     },
+    S = { M.telescope("lsp_workspace_symbols"), "Workspace Symbols", },
     w = { M.telescope("grep_string", { cwd = false }), "Word" },
   },
 
@@ -271,7 +272,7 @@ local mappings = {
 
   t = {
     name = "Terminal",
-    t = { "<cmd>lua HTOP_TOGGLE()<cr>", "Htop" },
+    t = { ":vsplit term://zsh<CR>", "Htop" },
     f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
     h = { "<cmd>ToggleTerm size=18 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=220 direction=vertical<cr>", "Vertical" },

@@ -37,16 +37,23 @@ keymap.set({ "n" }, "yW", "viWy")
 keymap.set({ "n" }, "cw", "viwc")
 keymap.set({ "n" }, "cW", "viWc")
 
+-- --To set in the cursor in the middle when jumping
+-- keymap.set("n", "(", "{zz", opts)
+-- keymap.set("n", ")", "}zz", opts)
+
 --To set in the cursor in the middle when jumping
-keymap.set("n", "(", "{zz", opts)
-keymap.set("n", ")", "}zz", opts)
+keymap.set({ "n", "v" }, ")", "{", opts)
+keymap.set({ "n", "v" }, "(", "}", opts)
+
+--To set in the cursor in the middle when jumping
+keymap.set({ "n", "v" }, "}", "{", opts)
+keymap.set({ "n", "v" }, "{", "}", opts)
 
 keymap.set("n", "N", "Nzz", opts)
 keymap.set("n", "n", "nzz", opts)
 
--- Fold all expect cursor
-keymap.set("n", "zj", "zmzvzO", opts)
-
+keymap.set("n", "<C-u>", "<C-u>zz", opts)
+keymap.set("n", "<C-d>", "<C-d>zz", opts)
 -- Paste over
 keymap.set("x", "p", '"_dP', opts)
 
