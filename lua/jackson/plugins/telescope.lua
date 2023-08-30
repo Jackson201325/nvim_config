@@ -39,7 +39,7 @@ telescope.setup({
 
         ["<esc>"] = actions.close,
 
-        ["<C-k>"] = lga_actions.quote_prompt({ postfix = " --iglob !**/*_spec.rb -t ruby" }),
+        ["<C-k>"] = lga_actions.quote_prompt({ postfix = " --iglob !**/*_spec.rb -t ruby --no-ignore" }),
         ["<Down>"] = actions.move_selection_next,
         ["<Up>"] = actions.move_selection_previous,
 

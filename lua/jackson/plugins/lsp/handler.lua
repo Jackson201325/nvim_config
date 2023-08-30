@@ -17,9 +17,9 @@ M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 M.setup = function()
   local signs = {
     { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn",  text = "" },
-    { name = "DiagnosticSignHint",  text = "" },
-    { name = "DiagnosticSignInfo",  text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignInfo", text = "" },
   }
 
   for _, sign in ipairs(signs) do
@@ -74,8 +74,8 @@ local mappings = {
     name = "Actions",
     a = { "<cmd>Lspsaga code_action<CR>", "Code Action" },
     c = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show Cursor Diagnostics" },
-    d = { "<cmd>Lspsaga goto_definition zz<CR>", "Goto Definition" },
-    D = { ":vsplit | Lspsaga goto_definition zz<CR>", "Goto Definition in Split" },
+    d = { "<cmd>Lspsaga goto_definition<CR>", "Goto Definition" },
+    D = { ":vsplit | Lspsaga goto_definition<CR>", "Goto Definition in Split" },
     h = { "<cmd>Gitsigns next_hunk<CR>", "Go to next hunk" },
     H = { "<cmd>Gitsigns prev_hunk<CR>", "Go to previous hunk" },
     l = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show Line Diagnostics" },

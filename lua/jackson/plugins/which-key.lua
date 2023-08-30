@@ -103,7 +103,7 @@ local setup = {
   icons = {
     breadcrumb = "» ", -- symbol used in the command line area that shows your active key combo
     separator = "➜ ", -- symbol used between a key and it's label
-    group = "+ ",      -- symbol prepended to a group
+    group = "+ ", -- symbol prepended to a group
   },
 
   popup_mappings = {
@@ -172,7 +172,7 @@ local mappings = {
   ["x"] = { "<cmd>quit<CR>", "Close Split" },
   ["w"] = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format" },
   ["<space>"] = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "Find files" },
-  ["/"] = { "<cmd> lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", "Grep with Args" },
+  ["/"] = { "<cmd> lua require('telescope').extensions.live_grep_args.live_grep_args({})<CR>", "Grep with Args" },
   ["="] = { "<C-w>=", "Split Equal" },
   ["-"] = { "<C-w>s", "Split window below" },
   ["\\"] = { "<C-w>v", "Split window right" },

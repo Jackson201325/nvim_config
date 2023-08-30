@@ -95,6 +95,7 @@ cmp.setup({
     -- disallow_fullfuzzy_matching = true
   },
   formatting = {
+    expandable_indicator = true,
     fields = { "abbr", "kind", "menu" },
     format = function(entry, vim_item)
       vim_item.kind = vim_item.kind

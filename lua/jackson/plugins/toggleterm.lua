@@ -104,6 +104,7 @@ end
 local docker_up = terminal:new({
   cmd = "docker-compose up",
   close_on_exit = false,
+  auto_scroll = false,
   direction = "float",
   float_opts = {
     border = "curved",
