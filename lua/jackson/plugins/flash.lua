@@ -23,7 +23,7 @@ flash.setup({
     --   mode = function(str)
     --     return "\\<" .. str
     --   end,
-    mode = "exact",
+    mode = "fuzzy",
     -- behave like `incsearch`
     incremental = false,
     -- Excluded filetypes and custom window filters

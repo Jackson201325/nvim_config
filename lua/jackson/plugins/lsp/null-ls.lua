@@ -1,12 +1,11 @@
 local null_ls_status_ok, null_ls = pcall(require, "null-ls")
 if not null_ls_status_ok then
-  print("null_ls_status_ok not ok")
   return
 end
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+-- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 null_ls.setup({
   debug = false,
@@ -27,8 +26,8 @@ null_ls.setup({
     -- formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote" } }),
     -- formatting.prettier_eslint.with({ extra_args = { "--single-quote" } }),
     -- formatting.prettier.with({ extra_args = { "--no-semi", "--double-quote" } }),
-    -- diagnostics.eslint,
-    -- diagnostics.tsc,
+    diagnostics.eslint,
+    diagnostics.tsc,
     formatting.prettier,
 
     -- Ruby
@@ -40,11 +39,11 @@ null_ls.setup({
     -- formatting.rubyfmt,
 
     -- Prisma
-    null_ls.builtins.formatting.prismaFmt,
+    formatting.prismaFmt,
 
     -- Eruby
-    formatting.erb_lint,
-    diagnostics.erb_lint,
+    -- formatting.erb_lint,
+    -- diagnostics.erb_lint,
 
     -- Lua
     formatting.stylua,
@@ -53,8 +52,8 @@ null_ls.setup({
     -- formatting.rustfmt,
 
     -- GO
-    formatting.gofumpt,
-    formatting.goimports_reviser,
-    formatting.golines,
+    -- formatting.gofumpt,
+    -- formatting.goimports_reviser,
+    -- formatting.golines,
   },
 })

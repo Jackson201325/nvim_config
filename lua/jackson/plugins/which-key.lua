@@ -170,7 +170,7 @@ local mappings = {
   [">"] = { "<cmd>lua vim.api.nvim_win_set_width(0, vim.api.nvim_win_get_width(0) + 15)<CR>", "Increase Width" },
   ["u"] = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
   ["x"] = { "<cmd>quit<CR>", "Close Split" },
-  ["w"] = { "<cmd>lua vim.lsp.buf.format()<CR>", "Format" },
+  ["w"] = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
   ["<space>"] = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "Find files" },
   ["/"] = { "<cmd> lua require('telescope').extensions.live_grep_args.live_grep_args({})<CR>", "Grep with Args" },
   ["="] = { "<C-w>=", "Split Equal" },

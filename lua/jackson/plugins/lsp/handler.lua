@@ -56,17 +56,29 @@ M.setup = function()
 end
 
 M.on_attach = function(client, bufnr)
-  local istatus_ok, illuminate = pcall(require, "illuminate")
-  if not istatus_ok then
-    return
-  end
-  illuminate.on_attach(client)
-
   if client.name == "solargraph" then
     client.server_capabilities.documentFormattingProvider = false
   end
 
-  require("lsp-format").on_attach(client)
+  local istatus_ok, illuminate = pcall(require, "illuminate")
+  if istatus_ok then
+    illuminate.on_attach(client)
+  end
+
+  if not istatus_ok then
+    print("Failed to load illuminate")
+  end
+
+  local lsp_status_ok, lsp_status = pcall(require, "lsp-status")
+  if not lsp_status_ok then
+    print("Failed to load lsp-format")
+  end
+
+  if lsp_status_ok then
+    lsp_status.on_attach(client)
+  end
+
+
 end
 
 local mappings = {
@@ -74,14 +86,15 @@ local mappings = {
     name = "Actions",
     a = { "<cmd>Lspsaga code_action<CR>", "Code Action" },
     c = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show Cursor Diagnostics" },
-    d = { "<cmd>Lspsaga goto_definition<CR>", "Goto Definition" },
-    D = { ":vsplit | Lspsaga goto_definition<CR>", "Goto Definition in Split" },
+    d = { "<cmd>Lspsaga goto_definition<CR> zz", "Go to Definition" },
+    D = { ":vsplit | Lspsaga goto_definition zz<CR>", "Go to Definition in Split" },
     h = { "<cmd>Gitsigns next_hunk<CR>", "Go to next hunk" },
     H = { "<cmd>Gitsigns prev_hunk<CR>", "Go to previous hunk" },
     l = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show Line Diagnostics" },
     p = { "<cmd>Lspsaga peek_definition<CR>", "Peek Definition" },
     r = { "<cmd>Lspsaga finder<CR>", "LSP Finder" },
     R = { "<cmd>Telescope lsp_references<CR>", "References" },
+    t = { "<cmd>Lspsaga goto_type_definition zz<CR>", "Go to Type definition" },
   },
   t = {
     name = "TypeScript Actions",

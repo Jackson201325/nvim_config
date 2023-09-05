@@ -21,7 +21,7 @@ keymap.set("n", "x", '"_x', opts)
 -- Do not yank with c
 keymap.set({ "n", "v" }, "c", '"_c', opts)
 
---Do not yank with dd
+-- Do not yank with dd
 -- keymap.set("n", "dd", '"_dd', opts)
 
 keymap.set({ "n" }, "vw", "viw")

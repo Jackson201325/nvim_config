@@ -61,10 +61,10 @@ packer.startup(function(use)
 
   -- LSP support
   use({
-    'nvimdev/lspsaga.nvim',
-    after = 'nvim-lspconfig',
+    "nvimdev/lspsaga.nvim",
+    after = "nvim-lspconfig",
     config = function()
-      require('lspsaga').setup({})
+      require("lspsaga").setup({})
     end,
   })
 
