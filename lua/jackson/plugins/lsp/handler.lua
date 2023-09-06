@@ -74,11 +74,7 @@ M.on_attach = function(client, bufnr)
     print("Failed to load lsp-format")
   end
 
-  if lsp_status_ok then
-    lsp_status.on_attach(client)
-  end
-
-
+  lsp_status.on_attach(client)
 end
 
 local mappings = {
