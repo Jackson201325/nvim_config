@@ -498,7 +498,9 @@ neotree.setup({
     --end,
     group_empty_dirs = false,             -- when true, empty folders will be grouped together
     search_limit = 50,                    -- max number of search results when using filters
-    follow_current_file = true,           -- This will find and focus the file in the active buffer every time
+    follow_current_file = {
+      enabled = true
+    },         -- This will find and focus the file in the active buffer every time
     -- the current file is changed while the tree is open.
     hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
     -- in whatever position is specified in window.position
@@ -510,7 +512,9 @@ neotree.setup({
   },
   buffers = {
     bind_to_cwd = true,
-    follow_current_file = true, -- This will find and focus the file in the active buffer every time
+    follow_current_file = {
+      enabled = true
+    }, -- This will find and focus the file in the active buffer every time
     -- the current file is changed while the tree is open.
     group_empty_dirs = true,  -- when true, empty directories will be grouped together
     show_unloaded = false,    -- When working with sessions, for example, restored but unfocused buffers

@@ -68,13 +68,6 @@ M.on_attach = function(client, bufnr)
   if not istatus_ok then
     print("Failed to load illuminate")
   end
-
-  local lsp_status_ok, lsp_status = pcall(require, "lsp-status")
-  if not lsp_status_ok then
-    print("Failed to load lsp-format")
-  end
-
-  lsp_status.on_attach(client)
 end
 
 local mappings = {
@@ -83,7 +76,7 @@ local mappings = {
     a = { "<cmd>Lspsaga code_action<CR>", "Code Action" },
     c = { "<cmd>Lspsaga show_cursor_diagnostics<CR>", "Show Cursor Diagnostics" },
     d = { "<cmd>Lspsaga goto_definition<CR> zz", "Go to Definition" },
-    D = { ":vsplit | Lspsaga goto_definition zz<CR>", "Go to Definition in Split" },
+    D = { ":vsplit | Lspsaga goto_definition<CR>", "Go to Definition in Split" },
     h = { "<cmd>Gitsigns next_hunk<CR>", "Go to next hunk" },
     H = { "<cmd>Gitsigns prev_hunk<CR>", "Go to previous hunk" },
     l = { "<cmd>Lspsaga show_line_diagnostics<CR>", "Show Line Diagnostics" },
@@ -94,12 +87,12 @@ local mappings = {
   },
   t = {
     name = "TypeScript Actions",
-    a = { "<cmd>TypescriptAddMissingImports<CR>", "Add Missing Imports" },
-    r = { "<cmd>TypescriptRenameFile<CR>", "Rename File" },
-    f = { "<cmd>TypescriptFixAll<CR>", "Fix All" },
-    d = { "<cmd>TypescriptGoToSourceDefinition<CR>", "Go to Definition" },
-    o = { "<cmd>TypescriptOrganizeImports<CR>", "Organize Imports" },
-    u = { "<cmd>TypescriptRemoveUnused<CR>", "Remove Unused" },
+    a = { "<cmd>TSToolsAddMissingImports<CR>", "Add Missing Imports" },
+    -- r = { "<cmd>TypescriptRenameFile<CR>", "Rename File" },
+    f = { "<cmd>TSToolsFixAll<CR>", "Fix All" },
+    d = { "<cmd>TSToolsGoToSourceDefinition<CR>", "Go to Definition" },
+    o = { "<cmd>TSToolsOrganizeImports<CR>", "Organize Imports" },
+    u = { "<cmd>TSToolsRemoveUnused<CR>", "Remove Unused" },
   },
   K = { "<cmd>Lspsaga hover_doc<CR>", "Hover Doc" },
 }

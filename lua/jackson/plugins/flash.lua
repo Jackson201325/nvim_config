@@ -6,6 +6,7 @@ end
 
 flash.setup({
   labels = "asdfghjklqwertyuiopzxcvbnm",
+
   search = {
     -- search/jump in all windows
     multi_window = true,
@@ -13,16 +14,6 @@ flash.setup({
     forward = true,
     -- when `false`, find only matches in the given direction
     wrap = true,
-    ---@type Flash.Pattern.Mode
-    -- Each mode will take ignorecase and smartcase into account.
-    -- * exact: exact match
-    -- * search: regular search
-    -- * fuzzy: fuzzy search
-    -- * fun(str): custom function that returns a pattern
-    --   For example, to only match at the beginning of a word:
-    --   mode = function(str)
-    --     return "\\<" .. str
-    --   end,
     mode = "fuzzy",
     -- behave like `incsearch`
     incremental = false,
@@ -47,6 +38,7 @@ flash.setup({
     -- it will either end in a jump or terminate the search
     max_length = nil, ---@type number?
   },
+
   jump = {
     -- save location in the jumplist
     jumplist = true,
@@ -69,6 +61,7 @@ flash.setup({
     -- 1: when pos == "end" and pos < current position
     offset = nil, ---@type number
   },
+
   label = {
     -- allow uppercase labels
     uppercase = true,
@@ -110,6 +103,7 @@ flash.setup({
       return { { opts.match.label, opts.hl_group } }
     end,
   },
+
   highlight = {
     -- show a backdrop with hl FlashBackdrop
     backdrop = true,
@@ -124,6 +118,7 @@ flash.setup({
       label = "FlashLabel",
     },
   },
+
   -- action to perform when picking a label.
   -- defaults to the jumping logic depending on the mode.
   ---@type fun(match:Flash.Match, state:Flash.State)|nil

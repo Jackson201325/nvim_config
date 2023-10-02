@@ -26,9 +26,9 @@ null_ls.setup({
     -- formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote" } }),
     -- formatting.prettier_eslint.with({ extra_args = { "--single-quote" } }),
     -- formatting.prettier.with({ extra_args = { "--no-semi", "--double-quote" } }),
-    diagnostics.eslint,
-    diagnostics.tsc,
-    formatting.prettier,
+    -- diagnostics.eslint,
+    -- diagnostics.tsc,
+    formatting.prettier_eslint,
 
     -- Ruby
     formatting.rubocop.with({ timeout = 10000 }),

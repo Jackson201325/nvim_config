@@ -1,7 +1,11 @@
 local servers = {
   "astro",
   "cssls",
+  "docker_compose_language_service",
+  "dockerls",
   "dotls",
+  "emmet_ls",
+  "eslint",
   "gopls",
   "html",
   "jsonls",
@@ -12,11 +16,7 @@ local servers = {
   "solargraph",
   "sqlls",
   "tailwindcss",
-  "tsserver",
-  "docker_compose_language_service",
-  "dockerls",
-  "emmet_ls",
-  "eslint",
+  -- "tsserver",
 }
 
 -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
