@@ -24,9 +24,16 @@ telescope.setup({
     initial_mode = "insert",
     layout_config = {
       prompt_position = "top",
-      horizontal = { width = 0.7, height = 0.8 },
-      -- height = 0.9,
-      -- width = 0.5,
+      horizontal = {
+        width_padding = 0.1,
+        height_padding = 0.1,
+        preview_width = 0.6, -- Adjust this value to make the preview window wider
+      },
+      vertical = {
+        width_padding = 0.05,
+        height_padding = 1,
+        preview_height = 0.5, -- Adjust this value to make the preview window taller
+      }
     },
     prompt_prefix = " ",
     selection_caret = " ",
@@ -109,16 +116,9 @@ telescope.setup({
       },
     },
     pickers = {
-      -- Default configuration for builtin pickers goes here:
-      -- picker_name = {
-      --   picker_config_key = value,
-      --   ...
-      -- }
       colorscheme = {
         enable_preview = true,
       },
-      -- Now the picker_config_key will be applied every time you call this
-      -- builtin picker
     },
   },
   extensions = {
