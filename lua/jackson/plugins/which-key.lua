@@ -211,7 +211,6 @@ local mappings = {
   s = {
     name = "Search",
     a = { "<cmd>Telescope autocommands<cr>", "Auto Commands" },
-    b = { "<cmd>Lspsaga show_buf_diagnostics<cr>", "Buffer Diagnostics" },
     c = { "<cmd>Telescope commands<cr>", "Commands" },
     g = { "<cmd> lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", "Grep with Args" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
@@ -254,7 +253,6 @@ local mappings = {
     L = { "<cmd>LspLog<cr>", "Lsp Log" },
     n = { "<cmd>NullLsInfo<cr>", "Null LS Info" },
     N = { "<cmd>NullLsLog<CR>", "Null LS Log" },
-    o = { "<cmd>Lspsaga outline<cr>", "LSP outline" },
     q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
   },

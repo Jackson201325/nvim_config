@@ -43,7 +43,6 @@ packer.startup(function(use)
 	use("hrsh7th/cmp-path") -- Autocompletion for paths
 	use("hrsh7th/cmp-cmdline") -- Autocompletion for cmdline
 	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-nvim-lua")
 	use("onsails/lspkind-nvim")
 
 	-- snippets
@@ -57,99 +56,6 @@ packer.startup(function(use)
 	use("neovim/nvim-lspconfig")
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("folke/neodev.nvim")
-
-	-- LSP support
-	use({
-		"nvimdev/lspsaga.nvim",
-		after = "nvim-lspconfig",
-		config = function()
-			require("lspsaga").setup({
-				-- preview = {
-				--   lines_above = 0,
-				--   lines_below = 10,
-				-- },
-
-				scroll_preview = {
-					scroll_down = "<C-n>",
-					scroll_up = "<C-p>",
-				},
-
-				symbol_in_winbar = {
-					enable = false,
-				},
-
-				-- See Customizing Lspsaga's Appearance
-				ui = {
-					-- This option only works in Neovim 0.9
-					title = true,
-					-- -- Border type can be single, double, rounded, solid, shadow.
-					border = "rounded",
-					-- winblend = 0,
-					-- expand = "",
-					-- collapse = "",
-					-- code_action = "💡",
-					-- incoming = " ",
-					-- outgoing = " ",
-					-- hover = " ",
-					-- kind = {},
-				},
-
-				outline = {
-					enable = false,
-					-- win_position = "left",
-					-- win_width = 30,
-					-- preview_width = 1.9,
-					-- detail = true,
-					-- close_after_jump = true,
-					-- auto_preview = true,
-					-- show_detail = true,
-					-- auto_refresh = true,
-					-- auto_close = true,
-					-- auto_resize = true,
-					-- custom_sort = nil,
-					keys = {
-						toggle_or_jump = "o",
-						quit = "q",
-					},
-				},
-
-				-- For default options for each command, see below
-				finder = {
-					max_height = 0.5,
-					min_width = 5,
-					keys = {
-						jump_to = "p",
-						expand_or_jump = "o",
-						vsplit = "s",
-						split = "i",
-						tabe = "t",
-						tabnew = "r",
-						quit = { "q", "<ESC>" },
-						close_in_preview = "<ESC>",
-					},
-				},
-
-				code_action = {
-					num_shortcut = true,
-					show_server_name = true,
-					extend_gitsigns = true,
-					keys = {
-						quit = "q",
-						exec = "<CR>",
-					},
-				},
-
-				lightbulb = {
-					enable = false,
-					-- enable_in_insert = true,
-					-- sign = true,
-					-- sign_priority = 40,
-					-- virtual_text = true,
-				},
-			})
-		end,
-	})
-	use("roobert/tailwindcss-colorizer-cmp.nvim")
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
@@ -224,6 +130,7 @@ packer.startup(function(use)
 	use("m-demare/hlargs.nvim")
 
 	-- UI
+	use("roobert/tailwindcss-colorizer-cmp.nvim")
 	use("lewis6991/gitsigns.nvim")
 	use("xiyaowong/transparent.nvim")
 	use("goolord/alpha-nvim")
@@ -279,12 +186,62 @@ packer.startup(function(use)
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
 		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({
+				panel = {
+					enabled = true,
+					auto_refresh = false,
+					keymap = {
+						jump_prev = "[[",
+						jump_next = "]]",
+						accept = "<CR>",
+						refresh = "gr",
+						open = "<M-CR>",
+					},
+					layout = {
+						position = "bottom", -- | top | left | right
+						ratio = 0.4,
+					},
+				},
+				suggestion = {
+					enabled = true,
+					auto_trigger = false,
+					debounce = 75,
+					keymap = {
+						accept = "<M-l>",
+						accept_word = false,
+						accept_line = false,
+						next = "<M-]>",
+						prev = "<M-[>",
+						dismiss = "<C-]>",
+					},
+				},
+				filetypes = {
+					yaml = false,
+					markdown = false,
+					help = false,
+					gitcommit = false,
+					gitrebase = false,
+					hgcommit = false,
+					svn = false,
+					cvs = false,
+					["."] = false,
+				},
+				copilot_node_command = "node", -- Node.js version must be > 16.x
+				server_opts_overrides = {},
+			})
+		end,
 	})
 	use({
 		"zbirenbaum/copilot-cmp",
 		after = { "copilot.lua" },
+		config = function()
+			require("copilot_cmp").setup({
+				suggestion = { enabled = false },
+				panel = { enabled = false },
+			})
+		end,
 	})
-
 	-- Sessions Management
 	use("olimorris/persisted.nvim")
 

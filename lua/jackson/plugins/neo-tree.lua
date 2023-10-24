@@ -26,7 +26,6 @@ neotree.setup({
   -- popup_border_style is for input and confirmation dialogs.
   -- Configurtaion of floating window is done in the individual source sections.
   -- "NC" is a special style that works well with NormalNC set
-  close_floats_on_escape_key = true,
   default_source = "filesystem",
   enable_diagnostics = true,
   enable_git_status = true,
@@ -440,7 +439,7 @@ neotree.setup({
       visible = false,                    -- when true, they will just be displayed differently than normal items
       force_visible_in_empty_folder = false, -- when true, hidden files will be shown if the root folder is otherwise empty
       show_hidden_count = true,           -- when true, the number of hidden items in each folder will be shown as the last entry
-      hide_dotfiles = true,
+      hide_dotfiles = false,
       hide_gitignored = true,
       hide_hidden = true, -- only works on Windows for hidden files/directories
       hide_by_name = {

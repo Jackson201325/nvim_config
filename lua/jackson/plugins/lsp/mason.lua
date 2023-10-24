@@ -4,7 +4,7 @@ local servers = {
 	"docker_compose_language_service",
 	"dockerls",
   "elixirls",
-	"emmet_ls",
+	-- "emmet_ls",
 	"eslint",
 	"html",
 	"jsonls",
