@@ -156,7 +156,6 @@ bufferline.setup({
 			fg = { attribute = "fg", highlight = "TabLine" },
 			bg = { attribute = "bg", highlight = "TabLine" },
 		},
-
 		separator = {
 			fg = { attribute = "bg", highlight = "TabLine" },
 			bg = { attribute = "bg", highlight = "TabLine" },

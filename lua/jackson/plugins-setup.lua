@@ -127,7 +127,6 @@ packer.startup(function(use)
 		requires = "nvim-treesitter/nvim-treesitter",
 	})
 	use({ "mg979/vim-visual-multi", branch = "master" })
-	use("m-demare/hlargs.nvim")
 
 	-- UI
 	use("roobert/tailwindcss-colorizer-cmp.nvim")

@@ -1,12 +1,7 @@
 local servers = {
-	"astro",
-	"cssls",
-	"docker_compose_language_service",
 	"dockerls",
-  "elixirls",
-	-- "emmet_ls",
+	"elixirls",
 	"eslint",
-	"html",
 	"jsonls",
 	"lua_ls",
 	"prismals",

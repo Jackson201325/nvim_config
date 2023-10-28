@@ -68,9 +68,10 @@ cmp.setup({
 	sorting = {
 		priority_weight = 2,
 		comparators = {
+
 			-- Below is the default comparitor list and order for nvim-cmp
+      cmp.config.compare.score,
 			cmp.config.compare.kind,
-			cmp.config.compare.score,
 			cmp.config.compare.exact,
 			cmp.config.compare.offset,
 			-- cmp.config.compare.scopes, --this is commented in nvim-cmp too
@@ -98,9 +99,9 @@ cmp.setup({
 	},
 	sources = {
 		{ name = "nvim_lsp", keyword_length = 1, priority = 1 },
-		{ name = "copilot", keyword_length = 1, priority = 2 },
-		{ name = "luasnip", keyword_length = 1, priority = 2 },
-		{ name = "nvim_lua", keyword_length = 1, priority = 3 },
+		{ name = "luasnip", keyword_length = 1, priority = 3 },
+    { name = "copilot", keyword_length = 2, priority = 2 },
+    { name = "nvim_lua", keyword_length = 2, priority = 3 },
 		{ name = "path", keyword_length = 2 },
 		{ name = "buffer", keyword_length = 2 },
 	},
@@ -111,12 +112,5 @@ cmp.setup({
 	window = {
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
-	},
-	completion = {
-		autocomplete = {
-			"InsertEnter",
-		},
-		completeopt = "menu,menuone,noinsert",
-		keyword_length = 2,
 	},
 })
