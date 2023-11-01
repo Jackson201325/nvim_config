@@ -1,6 +1,7 @@
 local servers = {
 	"dockerls",
 	"elixirls",
+	"ember",
 	"eslint",
 	"jsonls",
 	"lua_ls",
