@@ -56,7 +56,7 @@ packer.startup(function(use)
 	use("neovim/nvim-lspconfig")
 	use("nvimtools/none-ls.nvim")
 	use("folke/neodev.nvim")
-  use("kchmck/vim-coffee-script")
+	use("kchmck/vim-coffee-script")
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")

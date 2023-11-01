@@ -100,7 +100,7 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp", keyword_length = 1, priority = 1 },
 		{ name = "luasnip", keyword_length = 1, priority = 3 },
-    { name = "copilot", keyword_length = 2, priority = 2 },
+    { name = "copilot", keyword_length = 1, priority = 2 },
     { name = "nvim_lua", keyword_length = 2, priority = 3 },
 		{ name = "path", keyword_length = 2 },
 		{ name = "buffer", keyword_length = 2 },

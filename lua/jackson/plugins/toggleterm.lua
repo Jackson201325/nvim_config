@@ -88,7 +88,7 @@ function BYEBUG_SERVER_TOGGLE()
 end
 
 local rails_server = terminal:new({
-  cmd = "bundle exec rails s -p 3001",
+  cmd = "bundle exec rails s -p 3000",
   close_on_exit = false,
   direction = "float",
   float_opts = {
