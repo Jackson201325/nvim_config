@@ -54,8 +54,9 @@ packer.startup(function(use)
 	use("williamboman/mason.nvim")
 	use("williamboman/mason-lspconfig.nvim")
 	use("neovim/nvim-lspconfig")
-	use("jose-elias-alvarez/null-ls.nvim")
+	use("nvimtools/none-ls.nvim")
 	use("folke/neodev.nvim")
+  use("kchmck/vim-coffee-script")
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
@@ -138,13 +139,7 @@ packer.startup(function(use)
 	use("RRethy/vim-illuminate")
 	use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
 	use({ "kevinhwang91/nvim-bqf", ft = "qf" })
-	use({
-		"junegunn/fzf",
-		run = function()
-			vim.fn["fzf#install"]()
-		end,
-	})
-	use("luukvbaal/statuscol.nvim")
+	-- use("luukvbaal/statuscol.nvim")
 	use({
 		"folke/noice.nvim",
 		requires = { "MunifTanjim/nui.nvim" },
@@ -153,7 +148,7 @@ packer.startup(function(use)
 	-- Movement
 	use("mbbill/undotree")
 	use("ThePrimeagen/harpoon")
-	use("christoomey/vim-tmux-navigator")
+	-- use("christoomey/vim-tmux-navigator")
 	use("tpope/vim-repeat")
 	use("folke/flash.nvim")
 
