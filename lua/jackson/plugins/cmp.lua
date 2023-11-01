@@ -70,11 +70,11 @@ cmp.setup({
 		comparators = {
 
 			-- Below is the default comparitor list and order for nvim-cmp
+      cmp.config.compare.kind,
+      cmp.config.compare.exact,
       cmp.config.compare.score,
-			cmp.config.compare.kind,
-			cmp.config.compare.exact,
 			cmp.config.compare.offset,
-			-- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+      cmp.config.compare.scopes, --this is commented in nvim-cmp too
 			cmp.config.compare.sort_text,
 			cmp.config.compare.length,
 			cmp.config.compare.order,

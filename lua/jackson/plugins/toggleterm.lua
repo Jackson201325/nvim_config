@@ -42,7 +42,7 @@ function NPM_SERVER_TOGGLE()
 end
 
 local foreman = terminal:new({
-  cmd = "bundle exec ./bin/dev",
+  cmd = "bundle exec foreman start web",
   close_on_exit = true,
   direction = "float",
   float_opts = {
