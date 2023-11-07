@@ -46,6 +46,15 @@ M.setup = function()
 
 	vim.diagnostic.config(config)
 
+	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+		underline = true,
+		virtual_text = {
+			spacing = 5,
+			severity_limit = "Warning",
+		},
+		update_in_insert = true,
+	})
+
 	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 		border = "rounded",
 	})
@@ -56,8 +65,8 @@ M.setup = function()
 end
 
 M.on_attach = function(client, bufnr)
-	-- if client.name == "solargraph" or client.name == "tsserver" then
-	if client.name == "solargraph" then
+  -- if client.name == "solargraph" then
+	if client.name == "solargraph" or client.name == "tsserver" then
 		client.server_capabilities.documentFormattingProvider = false
 	end
 

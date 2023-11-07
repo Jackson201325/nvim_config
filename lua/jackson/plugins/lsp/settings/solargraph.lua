@@ -21,7 +21,7 @@ return {
 			hover = true,
 			symbols = true,
 			references = true,
-			formatting = true,
+			formatting = false,
 		},
 	},
 }
