@@ -55,7 +55,7 @@ opt.splitbelow = true      -- Put new windows below current
 opt.splitright = true      -- Put new windows right of current
 opt.timeoutlen = 300
 opt.undofile = true
-opt.undolevels = 1000
+opt.undolevels = 10000
 opt.updatetime = 200               -- Save swap file and trigger CursorHold
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winbar = "%=%m %f"

@@ -43,11 +43,11 @@ tk.setup({
 
 local colorscheme = "tokyonight-night"
 
-local status_ok, _ = pcall(function()
+local status, _ = pcall(function()
   vim.cmd("colorscheme " .. colorscheme)
 end)
 
-if not status_ok then
+if not status then
   vim.notify("colorscheme: " .. colorscheme .. " not found!")
   return
 end
