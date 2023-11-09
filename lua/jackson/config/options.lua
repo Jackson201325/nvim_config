@@ -47,6 +47,7 @@ opt.scrolloff = 4          -- Lines of contex
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 opt.shortmess:append({ W = true, I = true, c = true })
 opt.showcmd = true
+opt.syntax = "off"
 opt.showmode = false       -- Dont show mode since we have a statusline
 opt.sidescrolloff = 8
 opt.signcolumn = "yes"     -- Always show the signcolumn, otherwise it would shift the text each time

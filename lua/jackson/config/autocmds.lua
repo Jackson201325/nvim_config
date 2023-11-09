@@ -3,14 +3,6 @@ local function augroup(name)
 	return vim.api.nvim_create_augroup("jackson_vim_" .. name, { clear = true })
 end
 
-vim.cmd [[
-  autocmd VimEnter * syntax off
-  autocmd VimEnter * echom "VimEnter autocmd triggered" | syntax off
-  autocmd VimEnter * echom "VimEnter autocmd triggered"
-  autocmd FileType * syntax off
-  autocmd VimEnter *.rb syntax off
-]]
-
 -- Check if we need to reload the file when it changed
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 	group = augroup("checktime"),
