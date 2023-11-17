@@ -244,7 +244,6 @@ packer.startup(function(use)
 
 	-- Indentation line
 	use("lukas-reineke/indent-blankline.nvim")
-	use("echasnovski/mini.indentscope")
 
 	-- Delete buffer but not split
 	use("echasnovski/mini.bufremove")

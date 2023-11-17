@@ -259,18 +259,23 @@ local mappings = {
 
   r = {
     name = "Run",
-    d = { "<cmd>lua DOCKER_UP_TOGGLE()<cr>", "Docker up" },
     f = { "<cmd>lua RAILS_FOREMAN_TOGGLE()<cr>", "Foreman" },
-    c = { "<cmd>lua RAILS_CONSOLE_TOGGLE()<cr>", "Rails Console" },
     s = { "<cmd>lua RAILS_SERVER_TOGGLE()<cr>", "Rails Server" },
-    r = { "<cmd>lua RAILS_ROUTES_TOGGLE()<cr>", "Rails Routes" },
-    b = { "<cmd>lua BYEBUG_SERVER_TOGGLE()<cr>", "Byebug server" },
+    r = {
+      name = "Rails",
+      b = { "<cmd>lua BYEBUG_SERVER_TOGGLE()<cr>", "Byebug server" },
+      r = { "<cmd>lua RAILS_ROUTES_TOGGLE()<cr>", "Rails Routes" },
+      c = { "<cmd>lua RAILS_CONSOLE_TOGGLE()<cr>", "Rails Console" },
+    },
+    d = { "<cmd>lua DOCKER_UP_TOGGLE()<cr>", "Docker up" },
+    b = { "<cmd>lua DOCKER_BASH_TOGGLE()<cr>", "Docker Bash" },
     n = { "<cmd>lua NPM_SERVER_TOGGLE()<cr>", "NPM server" },
   },
 
+  T = { "<cmd>terminal<cr>", "New Terminal" },
   t = {
     name = "Terminal",
-    t = { ":vsplit term://zsh<CR>", "Htop" },
+    t = { ":vsplit term://zsh<CR>", "New Split Terminal" },
     f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
     h = { "<cmd>ToggleTerm size=18 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=220 direction=vertical<cr>", "Vertical" },

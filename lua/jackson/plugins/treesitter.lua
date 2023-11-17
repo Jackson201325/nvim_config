@@ -34,7 +34,7 @@ configs.setup({
 	highlight = {
 		enable = true, -- false will disable the whole extension
 		-- disable = { "css" }, -- list of language that will be disabled
-		additional_vim_regex_highlighting = false,
+		additional_vim_regex_highlighting = true,
 	},
 	incremental_selection = {
 		enable = true,
@@ -45,31 +45,31 @@ configs.setup({
 			node_decremental = "<bs>",
 		},
 	},
-	-- playground = {
-	-- 	enable = false,
-	-- 	disable = {},
-	-- 	updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-	-- 	persist_queries = false, -- Whether the query persists across vim sessions
-	-- 	keybindings = {
-	-- 		toggle_query_editor = "o",
-	-- 		toggle_hl_groups = "i",
-	-- 		toggle_injected_languages = "t",
-	-- 		toggle_anonymous_nodes = "a",
-	-- 		toggle_language_display = "I",
-	-- 		focus_language = "f",
-	-- 		unfocus_language = "F",
-	-- 		update = "R",
-	-- 		goto_node = "<cr>",
-	-- 		show_help = "?",
-	-- 	},
-	-- },
+	playground = {
+		enable = false,
+		disable = {},
+		updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+		persist_queries = false, -- Whether the query persists across vim sessions
+		keybindings = {
+			toggle_query_editor = "o",
+			toggle_hl_groups = "i",
+			toggle_injected_languages = "t",
+			toggle_anonymous_nodes = "a",
+			toggle_language_display = "I",
+			focus_language = "f",
+			unfocus_language = "F",
+			update = "R",
+			goto_node = "<cr>",
+			show_help = "?",
+		},
+	},
 	autopairs = {
 		enable = true,
 	},
 	autotag = {
 		enable = true,
 	},
-	indent = { enable = true, disable = { } },
+	indent = { enable = true, disable = {} },
 	textobjects = {
 		lsp_interop = {
 			enable = true,
@@ -90,14 +90,18 @@ configs.setup({
 				-- You can use the capture groups defined in textobjects.scm
 				["af"] = "@function.outer",
 				["if"] = "@function.inner",
-				["ac"] = "@class.outer",
 				["ab"] = "@block.outer",
 				["ib"] = "@block.inner",
+				["ac"] = "@class.outer",
 				["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+				["is"] = "@scope.inner",
+				["as"] = "@scope.outer",
+				["aC"] = "@conditional.outer",
+				["iC"] = "@conditional.inner",
 				-- You can optionally set descriptions to the mappings (used in the desc parameter of
 				-- nvim_buf_set_keymap) which plugins like which-key display
 				-- You can also use captures from other query groups like `locals.scm`
-				["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+				-- ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
 			},
 			-- You can choose the select mode (default is charwise 'v')
 			--
@@ -120,7 +124,7 @@ configs.setup({
 			-- * query_string: eg '@function.inner'
 			-- * selection_mode: eg 'v'
 			-- and should return true of false
-			include_surrounding_whitespace = true,
+			include_surrounding_whitespace = false,
 		},
 		swap = {
 			enable = true,
@@ -135,7 +139,7 @@ configs.setup({
 			enable = true,
 			set_jumps = true, -- whether to set jumps in the jumplist
 			goto_next_start = {
-				["]]"] = "@function.outer",
+				["[["] = "@function.outer",
 				["]c"] = { query = "@class.outer", desc = "Next class start" },
 				--
 				-- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
@@ -154,7 +158,7 @@ configs.setup({
 			},
 			goto_previous_start = {
 				["[j"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
-				["[["] = "@function.outer",
+				["]]"] = "@function.outer",
 				["[c"] = "@class.outer",
 				["[b"] = { query = "@block.outer", desc = "Next block" },
 			},

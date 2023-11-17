@@ -31,9 +31,6 @@ local npm_server = terminal:new({
   cmd = "npm run dev",
   close_on_exit = true,
   direction = "float",
-  float_opts = {
-    border = "curved",
-  },
   hidden = true,
 })
 
@@ -45,9 +42,6 @@ local foreman = terminal:new({
   cmd = "bundle exec foreman start web",
   close_on_exit = true,
   direction = "float",
-  float_opts = {
-    border = "curved",
-  },
   hidden = true,
 })
 
@@ -59,27 +53,40 @@ local rails_routes = terminal:new({
   cmd = "bundle exec rails routes",
   close_on_exit = false,
   direction = "float",
-  float_opts = {
-    border = "curved",
-  },
 })
 
 function RAILS_ROUTES_TOGGLE()
   rails_routes:toggle()
 end
 
-local rails_console = terminal:new({ cmd = "bundle exec rails c", hidden = true })
+local rails_console = terminal:new({
+  cmd = "bundle exec rails c",
+  hidden = true,
+  direction = "float",
+  close_on_exit = true,
+})
 
 function RAILS_CONSOLE_TOGGLE()
   rails_console:toggle()
 end
 
+-- local ember_server = terminal:new({
+--   -- cmd = "nvm use 14.21.1 && ember serve --proxy http://localhost:5000",
+--   cmd = "source $HOME/.nvm/nvm.sh && nvm use 14.21.1 && ember serve --proxy http://localhost:5000",
+--   -- close_on_exit = true,
+--   close_on_exit = false,
+--   hidden = true,
+--   direction = "float",
+-- })
+--
+-- function EMBER_SERVER_TOGGLE()
+--   ember_server:toggle()
+-- end
+
 local byebug_server = terminal:new({
   cmd = "bundle exec byebug -R localhost:8989",
   close_on_exit = true,
-  float_opts = {
-    border = "curved",
-  },
+  direction = "float",
   hidden = true,
 })
 
@@ -91,9 +98,6 @@ local rails_server = terminal:new({
   cmd = "bundle exec rails s -p 3000",
   close_on_exit = false,
   direction = "float",
-  float_opts = {
-    border = "curved",
-  },
   hidden = true,
 })
 
@@ -104,17 +108,25 @@ end
 local docker_up = terminal:new({
   cmd = "docker-compose up",
   close_on_exit = false,
-  auto_scroll = false,
   direction = "float",
-  float_opts = {
-    border = "curved",
-  },
   hidden = true,
 })
 
 function DOCKER_UP_TOGGLE()
   docker_up:toggle()
 end
+
+local docker_bash = terminal:new({
+  cmd = "docker-compose run --rm web bash",
+  close_on_exit = false,
+  direction = "float",
+  hidden = true,
+})
+
+function DOCKER_BASH_TOGGLE()
+  docker_bash:toggle()
+end
+
 
 local htop = terminal:new({ direction = "float", cmd = "htop", hidden = true })
 
@@ -126,8 +138,9 @@ toggleterm.setup({
   size = 20,
   open_mapping = [[<c-t>]],
   hide_numbers = true,
+  -- persist_mode = true,
   shade_filetypes = {},
-  auto_scroll = false, -- automatically scroll to the bottom on terminal output
+  auto_scroll = true, -- automatically scroll to the bottom on terminal output
   shade_terminals = true,
   shading_factor = 2,
   start_in_insert = true,
@@ -137,7 +150,7 @@ toggleterm.setup({
   close_on_exit = true,
   shell = vim.o.shell,
   float_opts = {
-    border = "curved",
+    border = "none",
     winblend = 0,
     highlights = {
       border = "normal",
