@@ -19,7 +19,7 @@ keymap.set("n", "<C-o>", "<C-o>zz", opts)
 keymap.set("n", "<C-i>", "<C-i>zz", opts)
 
 -- Do not yank with x
-keymap.set("n", "x", '"_x', opts)
+-- keymap.set("n", "x", '"_x', opts)
 
 -- Do not yank with c
 keymap.set({ "n", "v" }, "c", '"_c', opts)

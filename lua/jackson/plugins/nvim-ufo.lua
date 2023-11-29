@@ -64,8 +64,7 @@ nvim_ufo.setup({
     -- if you prefer treesitter provider rather than lsp,
     -- return ftMap[filetype] or {'treesitter', 'indent'}
     -- return ftMap[filetype]
-    -- return { "lsp", "indent" }
-    return { "indent" }
+    return { "lsp", "indent" }
   end,
   enable_get_fold_virt_text = true
 })

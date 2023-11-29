@@ -38,5 +38,9 @@ null_ls.setup({
 
 		-- Elixir
 		formatting.mix,
+
+    -- SQL
+    -- formatting.sqlformatter,
+    null_ls.builtins.formatting.sql_formatter
 	},
 })

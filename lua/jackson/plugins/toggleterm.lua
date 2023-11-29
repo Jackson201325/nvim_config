@@ -95,7 +95,7 @@ function BYEBUG_SERVER_TOGGLE()
 end
 
 local rails_server = terminal:new({
-  cmd = "bundle exec rails s -p 3000",
+  cmd = "bundle exec rails s",
   close_on_exit = false,
   direction = "float",
   hidden = true,
@@ -140,7 +140,7 @@ toggleterm.setup({
   hide_numbers = true,
   -- persist_mode = true,
   shade_filetypes = {},
-  auto_scroll = true, -- automatically scroll to the bottom on terminal output
+  auto_scroll = false, -- automatically scroll to the bottom on terminal output
   shade_terminals = true,
   shading_factor = 2,
   start_in_insert = true,

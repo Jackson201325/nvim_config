@@ -5,7 +5,7 @@ if not status_ok then
 end
 
 flash.setup({
-  labels = "asdfghjklqwertyuiopzxcvbnm",
+  labels = "ASDFGHJKLQWERTYUIOPZXCVBNM",
 
   search = {
     -- search/jump in all windows
