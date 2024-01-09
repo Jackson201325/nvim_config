@@ -6,7 +6,7 @@ local servers = {
 	"jsonls",
 	"lua_ls",
 	"prismals",
-  "pyright",
+	"pyright",
 	"solargraph",
 	"sqlls",
 	"tailwindcss",

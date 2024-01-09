@@ -47,12 +47,14 @@ M.setup = function()
 	vim.diagnostic.config(config)
 
 	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-		underline = true,
-		virtual_text = {
-			spacing = 5,
-			severity_limit = "Warning",
-		},
-		update_in_insert = true,
+		-- underline = true,
+		-- virtual_text = {
+		-- 	spacing = 5,
+		-- 	severity_limit = "Warning",
+		-- },
+    border = "rounded",
+    underline = true,
+		-- update_in_insert = true,
 	})
 
 	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
@@ -65,7 +67,6 @@ M.setup = function()
 end
 
 M.on_attach = function(client, bufnr)
-  -- if client.name == "solargraph" then
 	if client.name == "solargraph" or client.name == "tsserver" then
 		client.server_capabilities.documentFormattingProvider = false
 	end
@@ -73,10 +74,6 @@ M.on_attach = function(client, bufnr)
 	local istatus_ok, illuminate = pcall(require, "illuminate")
 	if istatus_ok then
 		illuminate.on_attach(client)
-	end
-
-	if not istatus_ok then
-		print("Failed to load illuminate")
 	end
 end
 
@@ -98,7 +95,7 @@ local mappings = {
 	-- t = {
 	--   name = "TypeScript Actions",
 	--   a = { "<cmd>TSToolsAddMissingImports<CR>", "Add Missing Imports" },
-	--   -- r = { "<cmd>TypescriptRenameFile<CR>", "Rename File" },
+  --   r = { "<cmd>TypescriptRenameFile<CR>", "Rename File" },
 	--   f = { "<cmd>TSToolsFixAll<CR>", "Fix All" },
 	--   d = { "<cmd>TSToolsGoToSourceDefinition<CR>", "Go to Definition" },
 	--   o = { "<cmd>TSToolsOrganizeImports<CR>", "Organize Imports" },

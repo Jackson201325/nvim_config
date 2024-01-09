@@ -14,14 +14,15 @@ null_ls.setup({
 		-- formatting.prettier.with({ extra_args = { "--no-semi", "--double-quote" } }),
 		-- diagnostics.eslint,
 		-- diagnostics.tsc,
-		-- formatting.prettierd,
-		formatting.prettier_eslint,
+		formatting.prettierd,
+		-- formatting.prettier_eslint,
 
 		-- Ruby
 		-- formatting.rubocop.with({ timeout = 10000 }),
 		formatting.rubocop,
+		-- diagnostics.rubocop,
 		-- diagnostics.rubocop.with({
-		--   method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+		-- 	method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
 		-- }),
 		-- diagnostics.reek,
 		-- formatting.rubyfmt,
@@ -30,7 +31,7 @@ null_ls.setup({
 		formatting.prismaFmt,
 
 		-- Eruby
-		-- formatting.erb_lint,
+		formatting.erb_lint,
 		-- diagnostics.erb_lint,
 
 		-- Lua
@@ -39,8 +40,18 @@ null_ls.setup({
 		-- Elixir
 		formatting.mix,
 
-    -- SQL
-    -- formatting.sqlformatter,
-    null_ls.builtins.formatting.sql_formatter
+		-- SQL
+		-- formatting.sql_formatter.with({
+		--   extra_args = { "tabWidth", "2", "keywordCase", "upper" },
+		-- }),
+		-- formatting.pg_format.with({
+		-- 	filetypes = { "sql" },
+		-- }),
+		formatting.sqlfmt,
+
+		-- Python
+		diagnostics.ruff,
+		diagnostics.mypy,
+		formatting.black,
 	},
 })

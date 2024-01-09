@@ -19,6 +19,7 @@ local has_words_before = function()
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+local compare = require("cmp.config.compare")
 require("luasnip/loaders/from_vscode").lazy_load()
 
 cmp.setup({
@@ -31,6 +32,8 @@ cmp.setup({
 		{ "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
 	},
 	mapping = {
+		["<C-u>"] = cmp.mapping.scroll_docs(-4),
+		["<C-d>"] = cmp.mapping.scroll_docs(4),
 		["<C-k>"] = cmp.mapping({
 			i = function()
 				if cmp.visible() then
@@ -40,9 +43,12 @@ cmp.setup({
 				end
 			end,
 		}),
+		["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }), { "i" }),
+		["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i" }),
 
-		["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-		["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }), { "i" }),
+		["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i" }),
+
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
@@ -70,16 +76,14 @@ cmp.setup({
 		comparators = {
 
 			-- Below is the default comparitor list and order for nvim-cmp
-			cmp.config.compare.kind,
-			cmp.config.compare.exact,
-			cmp.config.compare.score,
-			cmp.config.compare.offset,
-			cmp.config.compare.scopes, --this is commented in nvim-cmp too
-			cmp.config.compare.sort_text,
-			cmp.config.compare.length,
-			cmp.config.compare.order,
-			-- cmp.config.compare.recently_used,
-			-- cmp.config.compare.locality,
+			compare.exact,
+			compare.offset,
+			compare.score,
+			compare.recently_used,
+			compare.kind,
+			compare.sort_text,
+			compare.length,
+			compare.order,
 		},
 	},
 	matching = {
@@ -99,7 +103,7 @@ cmp.setup({
 	},
 	sources = {
 		{ name = "nvim_lsp", keyword_length = 1, priority = 1 },
-		{ name = "copilot", keyword_length = 1, priority = 2 },
+		{ name = "copilot", keyword_length = 1, priority = 1 },
 		{ name = "luasnip", keyword_length = 1, priority = 3 },
 		{ name = "nvim_lua", keyword_length = 2, priority = 3 },
 		{ name = "path", keyword_length = 2 },
@@ -112,5 +116,8 @@ cmp.setup({
 	window = {
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
+	},
+	experimental = {
+		ghost_text = false,
 	},
 })

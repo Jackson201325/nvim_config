@@ -3,6 +3,64 @@ if not status_ok then
 	return
 end
 
+local function remote_exists(remote)
+	local command = "git remote"
+	local handle = io.popen(command)
+
+	if not handle then
+		return false
+	end
+
+	local result = handle:read("*a")
+	handle:close()
+
+	for line in string.gmatch(result, "[^\r\n]+") do
+		if line == remote then
+			return true
+		end
+	end
+
+	return false
+end
+
+local function branch_exists(remote, branch)
+	if not remote_exists(remote) then
+		return false
+	end
+
+	local command = "git ls-remote --heads " .. remote .. " " .. branch
+	local status, handle = pcall(io.popen, command)
+	if not status or not handle then
+		return false
+	end
+
+	local result = handle:read("*a")
+	handle:close()
+
+	return result ~= ""
+end
+
+-- Rest of your script where you use branch_exists function...
+
+local function determine_base_branch()
+	local branches = {
+		{ remote = "upstream", branch = "master" },
+		{ remote = "upstream", branch = "main" },
+		{ remote = "origin", branch = "develop" },
+		{ remote = "origin", branch = "master" },
+		{ remote = "origin", branch = "main" },
+	}
+
+	for _, b in ipairs(branches) do
+		if branch_exists(b.remote, b.branch) then
+			return b.remote .. "/" .. b.branch
+		end
+	end
+
+	return nil -- or some default branch
+end
+
+-- local base_branch = determine_base_branch()
 local base_branch = "master"
 
 easypick.setup({

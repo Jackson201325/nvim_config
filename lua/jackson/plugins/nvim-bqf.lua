@@ -34,6 +34,6 @@ bfq.setup({
 	},
 })
 
-vim.cmd([[
-  set cmdheight=0
-]])
+-- vim.cmd([[
+--   set cmdheight=0
+-- ]])
