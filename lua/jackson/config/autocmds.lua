@@ -47,7 +47,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 
-
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "lspsaga", "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
 	callback = function()
