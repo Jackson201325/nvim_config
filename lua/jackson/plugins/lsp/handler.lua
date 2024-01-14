@@ -52,8 +52,8 @@ M.setup = function()
 		-- 	spacing = 5,
 		-- 	severity_limit = "Warning",
 		-- },
-    border = "rounded",
-    underline = true,
+		border = "rounded",
+		underline = true,
 		-- update_in_insert = true,
 	})
 
@@ -88,14 +88,14 @@ local mappings = {
 		H = { "<cmd>Gitsigns prev_hunk<CR>", "Go to previous hunk" },
 		i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Go to implementation" },
 		l = { "<cmd>lua vim.diagnostic.open_float()<cr>", "Show Line Diagnostics" },
-		r = { "<cmd>lua vim.lsp.buf.references()<CR>", "LSP Finder" },
-		R = { "<cmd>Telescope lsp_references<CR>", "References" },
+		R = { "<cmd>lua vim.lsp.buf.references()<CR>", "LSP Finder" },
+		r = { "<cmd>Telescope lsp_references<CR>", "References" },
 		t = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "Go to Type definition" },
 	},
 	-- t = {
 	--   name = "TypeScript Actions",
 	--   a = { "<cmd>TSToolsAddMissingImports<CR>", "Add Missing Imports" },
-  --   r = { "<cmd>TypescriptRenameFile<CR>", "Rename File" },
+	--   r = { "<cmd>TypescriptRenameFile<CR>", "Rename File" },
 	--   f = { "<cmd>TSToolsFixAll<CR>", "Fix All" },
 	--   d = { "<cmd>TSToolsGoToSourceDefinition<CR>", "Go to Definition" },
 	--   o = { "<cmd>TSToolsOrganizeImports<CR>", "Organize Imports" },

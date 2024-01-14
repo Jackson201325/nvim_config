@@ -140,7 +140,7 @@ local lsp = function()
   if #active_clients == 0 then
     return msg
   else
-    return " LSP: " .. table.concat(active_clients, ", ")
+    return "  LSP: " .. table.concat(active_clients, ", ")
   end
 end
 
