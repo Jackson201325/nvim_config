@@ -101,10 +101,10 @@ keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", opts)
 keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor", noremap = true, silent = true })
 
 keymap.set(
-	{ "n", "x" },
-	"fw",
-	live_grep_args_shortcuts.grep_word_under_cursor,
-	{ desc = "Find Word in project under cursor", noremap = true, silent = true }
+  { "n", "x" },
+  "fw",
+  live_grep_args_shortcuts.grep_word_under_cursor,
+  { desc = "Find Word in project under cursor", noremap = true, silent = true }
 )
 
 -- Move between buffers
