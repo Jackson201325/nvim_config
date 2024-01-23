@@ -38,6 +38,18 @@ function NPM_SERVER_TOGGLE()
   npm_server:toggle()
 end
 
+local yarn_server = terminal:new({
+  cmd = "yarn start",
+  close_on_exit = true,
+  direction = "float",
+  hidden = true,
+})
+
+function YARN_SERVER_TOGGLE()
+  yarn_server:toggle()
+end
+
+
 local foreman = terminal:new({
   cmd = "bundle exec foreman start web",
   close_on_exit = true,

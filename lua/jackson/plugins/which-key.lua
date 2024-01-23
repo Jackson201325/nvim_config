@@ -111,7 +111,7 @@ local setup = {
     scroll_up = "<c-u>",   -- binding to scroll up inside the popup
   },
   window = {
-    border = "none",       -- none, single, double, shadow
+    border = "none",          -- none, single, double, shadow
     position = "bottom",      -- bottom, top
     margin = { 1, 0, 1, 0 },  -- extra window margin [top, right, bottom, left]
     padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
@@ -259,17 +259,18 @@ local mappings = {
 
   r = {
     name = "Run",
+    b = { "<cmd>lua DOCKER_BASH_TOGGLE()<cr>", "Docker Bash" },
+    d = { "<cmd>lua DOCKER_UP_TOGGLE()<cr>", "Docker up" },
     f = { "<cmd>lua RAILS_FOREMAN_TOGGLE()<cr>", "Foreman" },
-    s = { "<cmd>lua RAILS_SERVER_TOGGLE()<cr>", "Rails Server" },
+    n = { "<cmd>lua NPM_SERVER_TOGGLE()<cr>", "NPM server" },
     r = {
       name = "Rails",
       b = { "<cmd>lua BYEBUG_SERVER_TOGGLE()<cr>", "Byebug server" },
       r = { "<cmd>lua RAILS_ROUTES_TOGGLE()<cr>", "Rails Routes" },
       c = { "<cmd>lua RAILS_CONSOLE_TOGGLE()<cr>", "Rails Console" },
     },
-    d = { "<cmd>lua DOCKER_UP_TOGGLE()<cr>", "Docker up" },
-    b = { "<cmd>lua DOCKER_BASH_TOGGLE()<cr>", "Docker Bash" },
-    n = { "<cmd>lua NPM_SERVER_TOGGLE()<cr>", "NPM server" },
+    s = { "<cmd>lua RAILS_SERVER_TOGGLE()<cr>", "Rails Server" },
+    y = { "<cmd>lua YARN_SERVER_TOGGLE()<cr>", "Yarn Start" },
   },
 
   T = { "<cmd>terminal<cr>", "New Terminal" },

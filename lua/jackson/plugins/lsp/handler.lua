@@ -83,6 +83,7 @@ local mappings = {
 		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
 		c = { "<cmd>lua vim.diagnostic.open_float()<cr>", "Show Cursor Diagnostics" },
 		d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Go to Definition" },
+		-- d = { "<Cmd>Lspsaga goto_type_definition<CR>", "Go to Definition" },
 		D = { ":vsplit | lua vim.lsp.buf.definition()<cr>", "Go to Definition in Split" },
 		h = { "<cmd>Gitsigns next_hunk<CR>", "Go to next hunk" },
 		H = { "<cmd>Gitsigns prev_hunk<CR>", "Go to previous hunk" },
@@ -91,17 +92,18 @@ local mappings = {
 		R = { "<cmd>lua vim.lsp.buf.references()<CR>", "LSP Finder" },
 		r = { "<cmd>Telescope lsp_references<CR>", "References" },
 		t = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "Go to Type definition" },
+    p = {"<cmd>Lspsaga peek_definition<CR>", "Peek Definition"},
 	},
-	-- t = {
-	--   name = "TypeScript Actions",
-	--   a = { "<cmd>TSToolsAddMissingImports<CR>", "Add Missing Imports" },
-	--   r = { "<cmd>TypescriptRenameFile<CR>", "Rename File" },
-	--   f = { "<cmd>TSToolsFixAll<CR>", "Fix All" },
-	--   d = { "<cmd>TSToolsGoToSourceDefinition<CR>", "Go to Definition" },
-	--   o = { "<cmd>TSToolsOrganizeImports<CR>", "Organize Imports" },
-	--   u = { "<cmd>TSToolsRemoveUnused<CR>", "Remove Unused" },
-	-- },
-	K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover Doc" },
+	t = {
+	  name = "TypeScript Actions",
+	  a = { "<cmd>TSToolsAddMissingImports<CR>", "Add Missing Imports" },
+	  r = { "<cmd>TypescriptRenameFile<CR>", "Rename File" },
+	  f = { "<cmd>TSToolsFixAll<CR>", "Fix All" },
+	  d = { "<cmd>TSToolsGoToSourceDefinition<CR>", "Go to Definition" },
+	  o = { "<cmd>TSToolsOrganizeImports<CR>", "Organize Imports" },
+	  u = { "<cmd>TSToolsRemoveUnused<CR>", "Remove Unused" },
+	},
+	K = { "<cmd>Lspsaga hover_doc<CR>", "Hover Doc" },
 }
 
 local opts = {

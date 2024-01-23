@@ -10,7 +10,7 @@ local servers = {
 	"solargraph",
 	"sqlls",
 	"tailwindcss",
-	"tsserver",
+	-- "tsserver",
 }
 
 -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
