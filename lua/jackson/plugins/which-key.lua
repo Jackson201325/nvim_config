@@ -242,7 +242,6 @@ local mappings = {
     g = { "<cmd>lua LAZYGIT_TOGGLE()<CR>", "Lazygit" },
     d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
     o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-    c = { "<cmd>Easypick Changed Files<cr>", "Changed Files" },
   },
 
   l = {
@@ -274,6 +273,13 @@ local mappings = {
   },
 
   T = { "<cmd>terminal<cr>", "New Terminal" },
+
+  n = {
+    name = "Noice",
+    d = { "<cmd>NoiceDismiss<cr>", "Dismiss" },
+    h = { "<cmd>NoiceHistory<cr>", "History" },
+  },
+
   t = {
     name = "Terminal",
     t = { ":vsplit term://zsh<CR>", "New Split Terminal" },

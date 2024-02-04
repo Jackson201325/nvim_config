@@ -2,15 +2,16 @@ local servers = {
 	"dockerls",
 	"elixirls",
 	"ember",
-	"eslint",
 	"jsonls",
 	"lua_ls",
 	"prismals",
 	"pyright",
 	"solargraph",
 	"sqlls",
-	"tailwindcss",
-	-- "tsserver",
+	"tsserver",
+	-- "ruby_ls",
+	-- "tailwindcss",
+	-- "eslint",
 }
 
 -- IMPORTANT: make sure to setup neodev BEFORE lspconfig

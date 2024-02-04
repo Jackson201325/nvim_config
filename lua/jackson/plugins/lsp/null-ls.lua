@@ -28,9 +28,6 @@ null_ls.setup({
     -- diagnostics.reek,
     -- formatting.rubyfmt,
 
-    -- Prisma
-    formatting.prismaFmt,
-
     -- Eruby
     formatting.erb_lint,
     -- diagnostics.erb_lint,

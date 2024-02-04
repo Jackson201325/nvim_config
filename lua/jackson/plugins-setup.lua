@@ -34,9 +34,15 @@ packer.startup(function(use)
 	-- Color scheme
 	use("folke/tokyonight.nvim")
 
-	-- Replacing surroundings
-	use("tpope/vim-surround")
-
+	use({
+		"kylechui/nvim-surround",
+		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
+		end,
+	})
 	-- CMP plugins
 	use("hrsh7th/nvim-cmp") -- Autocompletion plugin
 	use("hrsh7th/cmp-buffer") -- Autocompletion for buffers
@@ -57,62 +63,62 @@ packer.startup(function(use)
 	use("nvimtools/none-ls.nvim")
 	use("folke/neodev.nvim")
 	use("kchmck/vim-coffee-script")
-	use({
-		"pmizio/typescript-tools.nvim",
-		requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		config = function()
-			require("typescript-tools").setup({
-				-- on_attach = function() ... end,
-				--  handlers = { ... },
-
-				settings = {
-					-- spawn additional tsserver instance to calculate diagnostics on it
-					separate_diagnostic_server = true,
-					-- "change"|"insert_leave" determine when the client asks the server about diagnostic
-					publish_diagnostic_on = "insert_leave",
-					-- array of strings("fix_all"|"add_missing_imports"|"remove_unused"|
-					-- "remove_unused_imports"|"organize_imports") -- or string "all"
-					-- to include all supported code actions
-					-- specify commands exposed as code_actions
-					expose_as_code_action = {},
-					-- string|nil - specify a custom path to `tsserver.js` file, if this is nil or file under path
-					-- not exists then standard path resolution strategy is applied
-					tsserver_path = nil,
-					-- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
-					-- (see 💅 `styled-components` support section)
-					tsserver_plugins = {
-						"@styled/typescript-styled-plugin",
-					},
-					-- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
-					-- memory limit in megabytes or "auto"(basically no limit)
-					tsserver_max_memory = "auto",
-					-- described below
-					tsserver_format_options = {},
-					tsserver_file_preferences = {},
-					-- locale of all tsserver messages, supported locales you can find here:
-					-- https://github.com/microsoft/TypeScript/blob/3c221fc086be52b19801f6e8d82596d04607ede6/src/compiler/utilitiesPublic.ts#L620
-					tsserver_locale = "en",
-					-- mirror of VSCode's `typescript.suggest.completeFunctionCalls`
-					complete_function_calls = false,
-					include_completions_with_insert_text = true,
-					-- CodeLens
-					-- WARNING: Experimental feature also in VSCode, because it might hit performance of server.
-					-- possible values: ("off"|"all"|"implementations_only"|"references_only")
-					code_lens = "off",
-					-- by default code lenses are displayed on all referencable values and for some of you it can
-					-- be too much this option reduce count of them by removing member references from lenses
-					disable_member_code_lens = true,
-					-- JSXCloseTag
-					-- WARNING: it is disabled by default (maybe you configuration or distro already uses nvim-ts-autotag,
-					-- that maybe have a conflict if enable this feature. )
-					jsx_close_tag = {
-						enable = false,
-						filetypes = { "javascriptreact", "typescriptreact" },
-					},
-				},
-			})
-		end,
-	})
+	-- use({
+	-- 	"pmizio/typescript-tools.nvim",
+	-- 	requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+	-- 	config = function()
+	-- 		require("typescript-tools").setup({
+	-- 			-- on_attach = function() ... end,
+	-- 			--  handlers = { ... },
+	--
+	-- 			settings = {
+	-- 				-- spawn additional tsserver instance to calculate diagnostics on it
+	-- 				separate_diagnostic_server = true,
+	-- 				-- "change"|"insert_leave" determine when the client asks the server about diagnostic
+	-- 				publish_diagnostic_on = "insert_leave",
+	-- 				-- array of strings("fix_all"|"add_missing_imports"|"remove_unused"|
+	-- 				-- "remove_unused_imports"|"organize_imports") -- or string "all"
+	-- 				-- to include all supported code actions
+	-- 				-- specify commands exposed as code_actions
+	-- 				expose_as_code_action = {},
+	-- 				-- string|nil - specify a custom path to `tsserver.js` file, if this is nil or file under path
+	-- 				-- not exists then standard path resolution strategy is applied
+	-- 				tsserver_path = nil,
+	-- 				-- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
+	-- 				-- (see 💅 `styled-components` support section)
+	-- 				tsserver_plugins = {
+	-- 					"@styled/typescript-styled-plugin",
+	-- 				},
+	-- 				-- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
+	-- 				-- memory limit in megabytes or "auto"(basically no limit)
+	-- 				tsserver_max_memory = "auto",
+	-- 				-- described below
+	-- 				tsserver_format_options = {},
+	-- 				tsserver_file_preferences = {},
+	-- 				-- locale of all tsserver messages, supported locales you can find here:
+	-- 				-- https://github.com/microsoft/TypeScript/blob/3c221fc086be52b19801f6e8d82596d04607ede6/src/compiler/utilitiesPublic.ts#L620
+	-- 				tsserver_locale = "en",
+	-- 				-- mirror of VSCode's `typescript.suggest.completeFunctionCalls`
+	-- 				complete_function_calls = false,
+	-- 				include_completions_with_insert_text = true,
+	-- 				-- CodeLens
+	-- 				-- WARNING: Experimental feature also in VSCode, because it might hit performance of server.
+	-- 				-- possible values: ("off"|"all"|"implementations_only"|"references_only")
+	-- 				code_lens = "off",
+	-- 				-- by default code lenses are displayed on all referencable values and for some of you it can
+	-- 				-- be too much this option reduce count of them by removing member references from lenses
+	-- 				disable_member_code_lens = true,
+	-- 				-- JSXCloseTag
+	-- 				-- WARNING: it is disabled by default (maybe you configuration or distro already uses nvim-ts-autotag,
+	-- 				-- that maybe have a conflict if enable this feature. )
+	-- 				jsx_close_tag = {
+	-- 					enable = true,
+	-- 					filetypes = { "javascriptreact", "typescriptreact" },
+	-- 				},
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- })
 	use({
 		"nvimdev/lspsaga.nvim",
 		after = "nvim-lspconfig",
@@ -133,10 +139,16 @@ packer.startup(function(use)
 		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 	})
 	use("nvim-telescope/telescope-project.nvim")
-	use({ "axkirillov/easypick.nvim", requires = "nvim-telescope/telescope.nvim" })
 
 	-- Coding
+	use({
+		"nvim-pack/nvim-spectre",
+		config = function()
+			require("spectre").setup()
+		end,
+	})
 	use("windwp/nvim-ts-autotag")
+	use("windwp/nvim-autopairs")
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 	use({
 		"nvim-treesitter/nvim-treesitter-context",
@@ -144,7 +156,6 @@ packer.startup(function(use)
 			require("treesitter-context").setup({})
 		end,
 	})
-	use("windwp/nvim-autopairs")
 	use("tpope/vim-endwise")
 	use("numToStr/Comment.nvim")
 	use({
@@ -213,7 +224,7 @@ packer.startup(function(use)
 	use({ "kevinhwang91/nvim-bqf", ft = "qf" })
 	use({
 		"folke/noice.nvim",
-		requires = { "MunifTanjim/nui.nvim" },
+		requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
 	})
 
 	-- Movement
@@ -221,7 +232,23 @@ packer.startup(function(use)
 	use("christoomey/vim-tmux-navigator")
 	use("tpope/vim-repeat")
 	use("folke/flash.nvim")
-
+	use({
+		"karb94/neoscroll.nvim",
+		config = function()
+			require("neoscroll").setup({
+				-- All these keys will be mapped to their corresponding default scrolling animation
+				mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
+				hide_cursor = true, -- Hide cursor while scrolling
+				stop_eof = true, -- Stop at <EOF> when scrolling downwards
+				use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+				respect_scrolloff = false, -- Keep the cursor at the same position while scrolling
+				cursor_scrolls_alone = true, -- The cursor will keep on scrolling even when the window cannot scroll further
+				easing_function = "cubic", -- Default easing function
+				pre_hook = nil, -- Function to run before the scrolling animation starts
+				post_hook = nil, -- Function to run after the scrolling animation ends
+			})
+		end,
+	})
 	-- Neo Tree
 	use({
 		"nvim-neo-tree/neo-tree.nvim",
