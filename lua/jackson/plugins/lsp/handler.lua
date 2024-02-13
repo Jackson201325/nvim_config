@@ -29,7 +29,7 @@ M.setup = function()
   local config = {
     virtual_text = false, -- disable virtual text
     signs = {
-      active = signs,   -- show signs
+      active = signs,     -- show signs
     },
     update_in_insert = true,
     underline = true,
@@ -82,6 +82,30 @@ M.on_attach = function(client, bufnr)
   end
 end
 
+function OrganizeImports()
+  local params = {
+    command = "_typescript.organizeImports",
+    arguments = { vim.api.nvim_buf_get_name(0), { skipDestructiveCodeActions = true } },
+  }
+  vim.lsp.buf.execute_command(params)
+end
+
+function GoToSourceDefinition()
+  local params = {
+    command = "_typescript.goToSourceDefinition",
+    arguments = { vim.api.nvim_buf_get_name(0) },
+  }
+  vim.lsp.buf.execute_command(params)
+end
+
+function RemoveUnused()
+  local params = {
+    command = "_typescript.removeUnused",
+    arguments = { vim.api.nvim_buf_get_name(0) },
+  }
+  vim.lsp.buf.execute_command(params)
+end
+
 local mappings = {
   g = {
     name = "Actions",
@@ -104,18 +128,21 @@ local mappings = {
     r = { "<cmd>TypescriptRenameFile<CR>", "Rename File" },
     f = { "<cmd>TSToolsFixAll<CR>", "Fix All" },
     d = { "<cmd>TSToolsGoToSourceDefinition<CR>", "Go to Definition" },
+    -- d = { "<cmd>lua GoToSourceDefinition()<CR>", "Go to Definition" },
     o = { "<cmd>TSToolsOrganizeImports<CR>", "Organize Imports" },
+    -- o = { "<cmd>lua OrganizeImports()<CR>", "Organize Imports" },
     u = { "<cmd>TSToolsRemoveUnused<CR>", "Remove Unused" },
+    -- u = { "<cmd>lua RemoveUnused()<CR>", "Remove Unused" },
   },
   K = { "<cmd>Lspsaga hover_doc<CR>", "Hover Doc" },
 }
 
 local opts = {
-  mode = "n",    -- NORMAL mode
-  buffer = nil,  -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
+  mode = "n",     -- NORMAL mode
+  buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true,  -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
+  nowait = true,  -- use `nowait` when creating keymaps
 }
 
 which_key.register(mappings, opts)

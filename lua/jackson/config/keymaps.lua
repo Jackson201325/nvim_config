@@ -1,4 +1,3 @@
----@class vimGlobalVars
 local vimGlobals = vim.g
 
 vimGlobals.mapleader = " "
@@ -23,22 +22,23 @@ keymap.set("n", "<C-i>", "<C-i>zz", opts)
 
 -- Do not yank with c
 keymap.set({ "n", "v" }, "c", '"_c', opts)
+keymap.set({ "n", "v" }, "x", '"_x', opts)
 
 -- Do not yank with dd
 -- keymap.set("n", "dd", '"_dd', opts)
 
-keymap.set({ "n" }, "vw", "viw")
-keymap.set({ "n" }, "vp", 'viw"_dP')
-keymap.set({ "n" }, "vP", 'viW"_dP')
+keymap.set({ "n" }, "vw", "viw", opts)
+keymap.set({ "n" }, "vp", 'viw"_dP', opts)
+keymap.set({ "n" }, "vP", 'viW"_dP', opts)
 
-keymap.set({ "n" }, "dw", "viwd")
-keymap.set({ "n" }, "dW", "viWd")
+keymap.set({ "n" }, "dw", "diw", opts)
+keymap.set({ "n" }, "dW", "diW", opts)
 
-keymap.set({ "n" }, "yw", "viwy")
-keymap.set({ "n" }, "yW", "viWy")
+keymap.set({ "n" }, "yw", "yiw", opts)
+keymap.set({ "n" }, "yW", "yiW", opts)
 
-keymap.set({ "n" }, "cw", "viwc")
-keymap.set({ "n" }, "cW", "viWc")
+keymap.set({ "n" }, "cw", "ciw", opts)
+keymap.set({ "n" }, "cW", "ciW", opts)
 
 -- --To set in the cursor in the middle when jumping
 -- keymap.set("n", "(", "{zz", opts)
@@ -59,7 +59,7 @@ keymap.set("n", "<C-u>", "<C-u>zz", opts)
 keymap.set("n", "<C-d>", "<C-d>zz", opts)
 
 -- Paste over
-keymap.set("x", "p", '"_dP', opts)
+-- keymap.set("x", "p", '"_dp', opts)
 
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G", opts)
@@ -82,7 +82,7 @@ keymap.set("n", "<C-q>", ":qa<cr>", { desc = "Quit all" })
 keymap.set("i", "jj", "<cmd>noh<cr><ESC>", opts)
 keymap.set("i", "kk", "<cmd>noh<cr><ESC>", opts)
 keymap.set("i", "kj", "<cmd>noh<cr><ESC>", opts)
-keymap.set("n", "0", "^", opts)
+-- keymap.set("n", "0", "^", opts)
 
 -- Move to window using the <ctrl> hjkl keys
 keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", noremap = true, silent = true })
