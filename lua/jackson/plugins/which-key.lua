@@ -151,6 +151,7 @@ local mappings = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
     "Buffers",
   },
+  ["B"] = { "<cmd>b#<cr>", "Go back" },
   ["c"] = { "<cmd>lua require('mini.bufremove').delete(0, false)<CR>", "Close Buffer" },
   ["C"] = { '<cmd>%bdelete|edit #|normal `"<CR>', "Close All Window except this one" },
   ["d"] = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Buffer Diagnostics" },
@@ -172,11 +173,13 @@ local mappings = {
   ["x"] = { "<cmd>quit<CR>", "Close Split" },
   ["w"] = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
   ["<space>"] = { "<cmd>lua require('telescope.builtin').find_files()<cr>", "Find files" },
-  ["/"] = { "<cmd> lua require('telescope').extensions.live_grep_args.live_grep_args({})<CR>", "Grep with Args" },
+  ["/"] = { "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args({})<CR>", "Grep with Args" },
   ["="] = { "<C-w>=", "Split Equal" },
   ["-"] = { "<C-w>s", "Split window below" },
   ["\\"] = { "<C-w>v", "Split window right" },
   ["q"] = { "<cmd>copen<cr>", "Open Quickfix" },
+  ["<tab>"] = { "<cmd>tabnext<cr>", "Next tab" },
+  ["<s-tab>"] = { "<cmd>tabprevious<cr>", "Previous tab" },
 
   f = {
     name = "Find",

@@ -51,7 +51,7 @@ flash.setup({
     -- clear highlight after jump
     nohlsearch = false,
     -- automatically jump when there is only one match
-    autojump = false,
+    autojump = true,
     -- You can force inclusive/exclusive jumps by setting the
     -- `inclusive` option. By default it will be automatically
     -- set based on the mode.
@@ -208,6 +208,7 @@ flash.setup({
         matches = false,
       },
     },
+
     treesitter_search = {
       jump = { pos = "range" },
       search = { multi_window = true, wrap = true, incremental = false },

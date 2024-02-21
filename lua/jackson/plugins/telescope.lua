@@ -13,13 +13,13 @@ telescope.load_extension("live_grep_args")
 
 telescope.setup({
   defaults = {
-    vimgrep_arguments = {
-      "rg",
-      "--no-heading",
-      "--with-filename",
-      "--line-number",
-      "--column",
-    },
+    -- vimgrep_arguments = {
+    --   "rg",
+    --   "--no-heading",
+    --   "--with-filename",
+    --   "--line-number",
+    --   "--column",
+    -- },
     sorting_strategy = "ascending",
     initial_mode = "insert",
     layout_config = {
@@ -46,7 +46,7 @@ telescope.setup({
 
         ["<esc>"] = actions.close,
 
-        ["<C-k>"] = lga_actions.quote_prompt({ postfix = " --iglob !**/*_spec.rb --iglob !spec/** --no-ignore" }),
+        ["<C-k>"] = lga_actions.quote_prompt({ postfix = " --iglob !**/*_spec.rb --iglob !spec/** --iglob !**/**test**/** -w" }),
         ["<Down>"] = actions.move_selection_next,
         ["<Up>"] = actions.move_selection_previous,
 
@@ -131,7 +131,7 @@ telescope.setup({
       fuzzy = true,                   -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
       override_file_sorter = true,    -- override the file sorter
-      case_mode = "ignore_case",       -- or "ignore_case" or "respect_case"
+      case_mode = "ignore_case",      -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
     },
     persisted = {

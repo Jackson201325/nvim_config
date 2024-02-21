@@ -3,6 +3,7 @@ local opt = vim.opt
 -- line numbers
 opt.number = true         -- Print line number
 opt.relativenumber = true -- Relative line numbers
+-- opt.colorcolumn = "80"    -- Add a color column at 80 characters
 
 -- tabs & indentation
 opt.list = true        -- Show some invisible characters (tabs...
@@ -31,7 +32,7 @@ opt.backspace = "indent,eol,start"
 
 opt.autowrite = true
 opt.clipboard = "unnamedplus"
-opt.cmdheight = 0 -- More space for displaying messages
+-- opt.cmdheight = 0            -- More space for displaying messages
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 3         -- Hide * markup for bold and italic
 opt.confirm = true           -- Confirm to save changes before exiting modified buffer
@@ -41,19 +42,19 @@ opt.grepprg = "rg --vimgrep"
 opt.inccommand = "nosplit" -- preview incremental substitute
 opt.laststatus = 0
 opt.foldlevelstart = 99
-opt.mouse = "a"            -- Enable muse mode
-opt.pumblend = 10          -- Popup blend
-opt.pumheight = 10         -- Maximum number of entries in a popup
-opt.scrolloff = 4          -- Lines of contex
+opt.mouse = "a"    -- Enable muse mode
+opt.pumblend = 10  -- Popup blend
+opt.pumheight = 10 -- Maximum number of entries in a popup
+opt.scrolloff = 12  -- Lines of contex
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 opt.shortmess:append({ W = true, I = true, c = true })
 opt.showcmd = true
-opt.showmode = false       -- Dont show mode since we have a statusline
+opt.showmode = false   -- Dont show mode since we have a statusline
 opt.sidescrolloff = 8
-opt.signcolumn = "yes"     -- Always show the signcolumn, otherwise it would shift the text each time
+opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 opt.spelllang = { "en" }
-opt.splitbelow = true      -- Put new windows below current
-opt.splitright = true      -- Put new windows right of current
+opt.splitbelow = true  -- Put new windows below current
+opt.splitright = true  -- Put new windows right of current
 opt.timeoutlen = 300
 opt.undofile = true
 opt.undolevels = 10000
