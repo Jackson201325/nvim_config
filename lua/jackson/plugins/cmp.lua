@@ -43,15 +43,25 @@ cmp.setup({
 				end
 			end,
 		}),
-		["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }), { "i" }),
-		["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i" }),
 
-		["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }), { "i" }),
-		["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i" }),
+		["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.ConfirmBehavior.Insert }), { "i" }),
+		["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.ConfirmBehavior.Insert }), { "i" }),
+
+		-- ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+		-- ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+
+		["<CR>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
+			-- cmp.select_next_item()
 			elseif luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
 			elseif has_words_before() then
@@ -74,15 +84,14 @@ cmp.setup({
 	sorting = {
 		priority_weight = 2,
 		comparators = {
-
 			-- Below is the default comparitor list and order for nvim-cmp
-			compare.exact,
-			compare.offset,
-			compare.score,
-			compare.recently_used,
 			compare.kind,
-			compare.sort_text,
+			compare.score,
+			compare.exact,
 			compare.length,
+			compare.offset,
+			compare.recently_used,
+			compare.sort_text,
 			compare.order,
 		},
 	},
@@ -104,8 +113,8 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp", keyword_length = 1, priority = 1 },
 		{ name = "copilot", keyword_length = 1, priority = 1 },
-		{ name = "luasnip", keyword_length = 1, priority = 3 },
-		{ name = "nvim_lua", keyword_length = 2, priority = 3 },
+		{ name = "luasnip", keyword_length = 2, priority = 3 },
+		{ name = "nvim_lua", keyword_length = 2, priority = 2 },
 		{ name = "path", keyword_length = 2 },
 		{ name = "buffer", keyword_length = 2 },
 	},
@@ -118,6 +127,27 @@ cmp.setup({
 		documentation = cmp.config.window.bordered(),
 	},
 	experimental = {
-		ghost_text = false,
+		ghost_text = true,
 	},
+})
+
+cmp.setup.cmdline({ "/", "?" }, {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = "buffer" },
+	},
+})
+
+cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{
+			name = "cmdline",
+			options = {
+				ignore_cmds = { "Man", "!" },
+			},
+		},
+	}),
 })
