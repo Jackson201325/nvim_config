@@ -49,7 +49,6 @@ function YARN_SERVER_TOGGLE()
   yarn_server:toggle()
 end
 
-
 local foreman = terminal:new({
   cmd = "bundle exec foreman start web",
   close_on_exit = true,
@@ -119,6 +118,7 @@ end
 
 local docker_up = terminal:new({
   cmd = "docker-compose up",
+  -- cmd = "docker compose up web jobs webpack",
   close_on_exit = false,
   direction = "float",
   hidden = true,
@@ -138,7 +138,6 @@ local docker_bash = terminal:new({
 function DOCKER_BASH_TOGGLE()
   docker_bash:toggle()
 end
-
 
 local htop = terminal:new({ direction = "float", cmd = "htop", hidden = true })
 
@@ -160,7 +159,7 @@ toggleterm.setup({
   persist_size = true,
   direction = "horizontal",
   close_on_exit = true,
-  shell = vim.o.shell,
+  -- shell = vim.o.shell,
   float_opts = {
     border = "none",
     winblend = 0,

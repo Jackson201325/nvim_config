@@ -14,9 +14,6 @@ null_ls.setup({
     -- Ruby
     formatting.rubocop,
 
-    -- Lua
-    -- formatting.stylua,
-
     -- Elixir
     formatting.mix,
 

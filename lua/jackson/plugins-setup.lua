@@ -158,7 +158,6 @@ packer.startup(function(use)
       })
     end,
   })
-  -- use("tpope/vim-endwise")
   use("numToStr/Comment.nvim")
   use({
     "ahmedkhalf/project.nvim",
@@ -246,37 +245,7 @@ packer.startup(function(use)
   use("christoomey/vim-tmux-navigator")
   use("tpope/vim-repeat")
   use("folke/flash.nvim")
-  use({
-    "karb94/neoscroll.nvim",
-    config = function()
-      require("neoscroll").setup({
-        -- All these keys will be mapped to their corresponding default scrolling animation
-        mappings = {
-          "<C-u>",
-          "<C-d>",
-          "<C-b>",
-          "<C-f>",
-          "<C-y>",
-          "<C-e>",
-          "zt",
-          "zz",
-          "zb",
-          "}",
-          "{",
-          "(",
-          ")",
-        },
-        hide_cursor = true,          -- Hide cursor while scrolling
-        stop_eof = true,             -- Stop at <EOF> when scrolling downwards
-        use_local_scrolloff = true,  -- Use the local scope of scrolloff instead of the global scope
-        respect_scrolloff = false,   -- Keep the cursor at the same position while scrolling
-        cursor_scrolls_alone = true, -- The cursor will keep on scrolling even when the window cannot scroll further
-        easing_function = "cubic",   -- Default easing function
-        pre_hook = nil,              -- Function to run before the scrolling animation starts
-        post_hook = nil,             -- Function to run after the scrolling animation ends
-      })
-    end,
-  })
+
   -- Neo Tree
   use({
     "nvim-neo-tree/neo-tree.nvim",
