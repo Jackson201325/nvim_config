@@ -164,6 +164,7 @@ local mappings = {
     "<cmd>lua require('telescope.builtin').treesitter({ query = 'function', symbol_width = 60, previewer = false, initial_mode = normal, layout_config = { width = 0.2, height = 0.2 } })<CR>",
     "Open Symbols outline",
   },
+  ["P"] = { "<cmd>lua vim.fn.setreg('+', vim.fn.expand('%:p'))<CR>", "Copy File Path" },
   ["F"] = { "<cmd>lua require('telescope.builtin').find_files({no_ignore = true})<cr>", "Hidden" },
   ["j"] = { "<cmd>lua vim.api.nvim_win_set_height(0, vim.api.nvim_win_get_height(0) - 15)<CR>", "Decrease Height" },
   ["k"] = { "<cmd>lua vim.api.nvim_win_set_height(0, vim.api.nvim_win_get_height(0) + 15)<CR>", "Increase Height" },

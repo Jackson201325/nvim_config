@@ -50,7 +50,7 @@ opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 opt.shortmess:append({ W = true, I = true, c = true })
 opt.showcmd = true
 opt.showmode = false   -- Dont show mode since we have a statusline
-opt.sidescrolloff = 8
+opt.sidescrolloff = 4
 opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 opt.spelllang = { "en" }
 opt.splitbelow = true  -- Put new windows below current

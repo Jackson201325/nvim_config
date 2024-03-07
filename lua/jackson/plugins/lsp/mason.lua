@@ -11,7 +11,7 @@ local servers = {
   "sqlls",
   "tsserver",
   -- "ruby_ls",
-  -- "tailwindcss",
+  "tailwindcss",
 }
 
 -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
