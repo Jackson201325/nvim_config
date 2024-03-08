@@ -9,7 +9,7 @@ local servers = {
   "pyright",
   "solargraph",
   "sqlls",
-  "tsserver",
+  -- "tsserver",
   -- "ruby_ls",
   "tailwindcss",
 }

@@ -122,6 +122,7 @@ local mappings = {
     t = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "Go to Type definition" },
     p = { "<cmd>Lspsaga peek_definition<CR>", "Peek Definition" },
   },
+
   t = {
     name = "TypeScript Actions",
     a = { "<cmd>TSToolsAddMissingImports<CR>", "Add Missing Imports" },
