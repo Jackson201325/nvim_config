@@ -45,7 +45,7 @@ opt.foldlevelstart = 99
 opt.mouse = "a"    -- Enable muse mode
 opt.pumblend = 10  -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
-opt.scrolloff = 12  -- Lines of contex
+opt.scrolloff = 4  -- Lines of contex
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 opt.shortmess:append({ W = true, I = true, c = true })
 opt.showcmd = true

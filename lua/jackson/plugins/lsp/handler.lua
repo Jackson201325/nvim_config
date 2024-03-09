@@ -76,34 +76,17 @@ M.on_attach = function(client, bufnr)
     client.server_capabilities.documentFormattingProvider = false
   end
 
+  if client.name == "eslint" then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end
+
   local istatus_ok, illuminate = pcall(require, "illuminate")
   if istatus_ok then
     illuminate.on_attach(client)
   end
-end
-
-function OrganizeImports()
-  local params = {
-    command = "_typescript.organizeImports",
-    arguments = { vim.api.nvim_buf_get_name(0), { skipDestructiveCodeActions = true } },
-  }
-  vim.lsp.buf.execute_command(params)
-end
-
-function GoToSourceDefinition()
-  local params = {
-    command = "_typescript.goToSourceDefinition",
-    arguments = { vim.api.nvim_buf_get_name(0) },
-  }
-  vim.lsp.buf.execute_command(params)
-end
-
-function RemoveUnused()
-  local params = {
-    command = "_typescript.removeUnused",
-    arguments = { vim.api.nvim_buf_get_name(0) },
-  }
-  vim.lsp.buf.execute_command(params)
 end
 
 local mappings = {
@@ -126,14 +109,13 @@ local mappings = {
   t = {
     name = "TypeScript Actions",
     a = { "<cmd>TSToolsAddMissingImports<CR>", "Add Missing Imports" },
-    r = { "<cmd>TypescriptRenameFile<CR>", "Rename File" },
+    r = { "<cmd>TSToolsFileReferences<CR>", "Find references" },
+    R = { "<cmd>TSToolsRenameFile<CR>", "Rename File" },
     f = { "<cmd>TSToolsFixAll<CR>", "Fix All" },
     d = { "<cmd>TSToolsGoToSourceDefinition<CR>", "Go to Definition" },
-    -- d = { "<cmd>lua GoToSourceDefinition()<CR>", "Go to Definition" },
     o = { "<cmd>TSToolsOrganizeImports<CR>", "Organize Imports" },
-    -- o = { "<cmd>lua OrganizeImports()<CR>", "Organize Imports" },
-    u = { "<cmd>TSToolsRemoveUnused<CR>", "Remove Unused" },
-    -- u = { "<cmd>lua RemoveUnused()<CR>", "Remove Unused" },
+    u = { "<cmd>TSToolsRemoveUnusedImports<CR>", "Remove Unused Import" },
+    U = { "<cmd>TSToolsRemoveUnused<CR>", "Remove Unused Statement" },
   },
   K = { "<cmd>Lspsaga hover_doc<CR>", "Hover Doc" },
 }
