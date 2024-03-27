@@ -92,14 +92,18 @@ end
 local mappings = {
   g = {
     name = "Actions",
-    a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-    -- c = { "<cmd>lua vim.diagnostic.open_float()<cr>", "Show Cursor Diagnostics" },
+    -- a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+    a = { ":Lspsaga code_action<cr>", "Code Action" },
+    c = { "<cmd>lua vim.diagnostic.open_float()<cr>", "Show Cursor Diagnostics" },
+    -- goto_definition
     d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Go to Definition" },
     D = { ":vsplit | lua vim.lsp.buf.definition()<cr>", "Go to Definition in Split" },
     h = { "<cmd>Gitsigns next_hunk<CR>", "Go to next hunk" },
     H = { "<cmd>Gitsigns prev_hunk<CR>", "Go to previous hunk" },
     i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Go to implementation" },
-    l = { "<cmd>lua vim.diagnostic.open_float()<cr>", "Show Line Diagnostics" },
+    -- l = { "<cmd>lua vim.diagnostic.open_float()<cr>", "Show Line Diagnostics" },
+    l = { ":Lspsaga diagnostic_jump_next<CR>", "Show Line Diagnostics next" },
+    L = { ":Lspsaga diagnostic_jump_prev<CR>", "Show Line Diagnostics previous" },
     R = { "<cmd>lua vim.lsp.buf.references()<CR>", "LSP Finder" },
     r = { "<cmd>Telescope lsp_references<CR>", "References" },
     t = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "Go to Type definition" },
@@ -117,7 +121,7 @@ local mappings = {
     u = { "<cmd>TSToolsRemoveUnusedImports<CR>", "Remove Unused Import" },
     U = { "<cmd>TSToolsRemoveUnused<CR>", "Remove Unused Statement" },
   },
-  K = { "<cmd>Lspsaga hover_doc<CR>", "Hover Doc" },
+  K = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Doc" },
 }
 
 local opts = {
