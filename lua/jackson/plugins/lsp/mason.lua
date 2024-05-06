@@ -1,17 +1,20 @@
 local servers = {
+  "biome",
   "dockerls",
   "elixirls",
   "ember",
-  "eslint",
+  -- "eslint",
+  "graphql",
   "jsonls",
   "lua_ls",
   "prismals",
   "pyright",
   "solargraph",
   "sqlls",
-  -- "tsserver",
-  -- "ruby_ls",
   "tailwindcss",
+  "volar",
+  -- "ruby_ls",
+  -- "tsserver",
 }
 
 -- IMPORTANT: make sure to setup neodev BEFORE lspconfig

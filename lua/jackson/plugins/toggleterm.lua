@@ -122,6 +122,7 @@ local docker_up = terminal:new({
   close_on_exit = false,
   direction = "float",
   hidden = true,
+  auto_scroll = false
 })
 
 function DOCKER_UP_TOGGLE()

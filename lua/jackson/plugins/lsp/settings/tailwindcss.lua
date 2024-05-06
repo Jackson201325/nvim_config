@@ -1,6 +1,13 @@
 return {
   settings = {
     tailwindCSS = {
+      experimental = {
+        callees = { 'cva', 'classNames', 'cx' },
+        classRegex = {
+          { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+          { "cx\\(([^)]*)\\)",  "(?:'|\"|`)([^']*)(?:'|\"|`)" }
+        },
+      },
       classAttributes = { "class", "className", "classList", "ngClass" },
       lint = {
         cssConflict = "warning",

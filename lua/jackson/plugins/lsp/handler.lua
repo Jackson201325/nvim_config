@@ -72,6 +72,7 @@ M.on_attach = function(client, bufnr)
       or client.name == "tsserver"
       or client.name == "ruby_ls"
       or client.name == "primsls"
+      or client.name == "biome"
   then
     client.server_capabilities.documentFormattingProvider = false
   end

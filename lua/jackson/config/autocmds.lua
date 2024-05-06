@@ -160,7 +160,7 @@ function _G.set_terminal_keymaps()
   vim.api.nvim_buf_set_keymap(0, "t", "<c-l>", [[<c-\><c-n><c-w>l]], opts)
 end
 
-vim.cmd("syntax off")
+-- vim.cmd("syntax off")
 vim.cmd("autocmd! termopen term://* lua set_terminal_keymaps()")
 vim.cmd([[
 autocmd TermEnter term://*toggleterm#*

@@ -101,10 +101,10 @@ keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", opts)
 keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor", noremap = true, silent = true })
 
 keymap.set(
-	{ "n", "x" },
-	"fw",
-	live_grep_args_shortcuts.grep_word_under_cursor,
-	{ desc = "Find Word in project under cursor", noremap = true, silent = true }
+  { "n", "x" },
+  "fw",
+  live_grep_args_shortcuts.grep_word_under_cursor,
+  { desc = "Find Word in project under cursor", noremap = true, silent = true }
 )
 
 -- Move between buffers
@@ -115,36 +115,43 @@ vim.api.nvim_set_keymap("n", "<silent><c-t>", '<Cmd>exe v:count1 . "ToggleTerm"<
 vim.api.nvim_set_keymap("i", "<silent><c-t>", '<Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>', { silent = true })
 
 vim.api.nvim_create_user_command("TelescopePRFiles", function()
-	local project_base_branches = {
-		readygop = "origin/main",
-		["readygop-ui"] = "origin/main",
-		has_data_imports = "origin/master",
-	}
+  local project_base_branches = {
+    readygop = "origin/main",
+    ["readygop-ui"] = "origin/main",
+    has_data_imports = "origin/master",
+    -- ["wedin-clone"] = "origin/main",
+  }
 
-	-- Get the name of the current Git repository from the remote URL
-	local remote_url = vim.fn.systemlist("git config --get remote.origin.url")[1]
-	local project_name = remote_url:match("^.+/(.+).git$") -- Extract project name from URL
+  -- Get the name of the current Git repository from the remote URL
+  local remote_url = vim.fn.systemlist("git config --get remote.origin.url")[1]
+  local project_name = remote_url:match("^.+/(.+).git$") -- Extract project name from URL
 
-	local fynsinc = remote_url:find("FinSync")
-	local ins = remote_url:find("instructure")
+  print('project_name: ', project_name)
 
-	-- Determine the base branch based on the project name or organization
-	local base_branch
-	if fynsinc then
-		base_branch = "origin/develop"
-	elseif ins then
-		base_branch = "origin/master"
-	else
-		base_branch = project_base_branches[project_name] or "upstream/master" -- Use the mapping table or default to 'origin/master'
-	end
+  local fynsinc = remote_url:find("FinSync")
+  local ins = remote_url:find("instructure")
+  local wedding = remote_url:find("wed")
 
-	local pr_branch = vim.fn.systemlist("git branch --show-current")[1] -- Get current branch name
+  -- Determine the base branch based on the project name or organization
+  local base_branch
+  if fynsinc then
+    base_branch = "origin/develop"
+  elseif ins then
+    base_branch = "origin/master"
+  elseif wedding then
+    base_branch = "origin/main"
+  else
+    base_branch = project_base_branches[project_name] or
+        "upstream/master" -- Use the mapping table or default to 'origin/master'
+  end
 
-	require("telescope.builtin").git_files({
-		prompt_title = "PR Files: " .. base_branch,
-		cwd = vim.fn.systemlist("git rev-parse --show-toplevel")[1],
-		git_command = { "git", "diff", "--name-only", base_branch .. "..." .. pr_branch },
-	})
+  local pr_branch = vim.fn.systemlist("git branch --show-current")[1] -- Get current branch name
+
+  require("telescope.builtin").git_files({
+    prompt_title = "PR Files: " .. base_branch,
+    cwd = vim.fn.systemlist("git rev-parse --show-toplevel")[1],
+    git_command = { "git", "diff", "--name-only", base_branch .. "..." .. pr_branch },
+  })
 end, {})
 
 vim.api.nvim_set_keymap("n", "<leader>gc", ":TelescopePRFiles<CR>", { noremap = true, silent = false })

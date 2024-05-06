@@ -9,7 +9,8 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup({
   sources = {
     -- JS / TS
-    formatting.prettier,
+    -- formatting.prettier,
+    formatting.biome,
 
     -- Ruby
     formatting.rubocop,
@@ -18,10 +19,14 @@ null_ls.setup({
     formatting.mix,
 
     -- SQL
-    formatting.sqlfmt,
+    -- formatting.sqlfmt,
+    formatting.sql_formatter.with({ extra_args = { "-l", "postgresql" } }),
+
+    -- Tailwind CSS
+    formatting.rustywind,
 
     -- Python
-    diagnostics.ruff,
+    -- diagnostics.ruff,
     diagnostics.mypy,
     formatting.black,
   },
