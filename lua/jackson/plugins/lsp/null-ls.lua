@@ -9,8 +9,8 @@ local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup({
   sources = {
     -- JS / TS
-    -- formatting.prettier,
-    formatting.biome,
+    formatting.prettier.with({ filetypes = { "svelte" } }),
+    formatting.biome.with({ filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc" } }),
 
     -- Ruby
     formatting.rubocop,

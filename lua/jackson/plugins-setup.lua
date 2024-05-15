@@ -417,6 +417,7 @@ packer.startup(function(use)
     end,
   })
 
+  use("ThePrimeagen/harpoon")
   -- Delete buffer but not split
   use("echasnovski/mini.bufremove")
 

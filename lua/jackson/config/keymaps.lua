@@ -59,7 +59,7 @@ keymap.set("n", "<C-u>", "<C-u>zz", opts)
 keymap.set("n", "<C-d>", "<C-d>zz", opts)
 
 -- Paste over
--- keymap.set("x", "p", '"_dp', opts)
+keymap.set("x", "p", '"_dp', opts)
 
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G", opts)

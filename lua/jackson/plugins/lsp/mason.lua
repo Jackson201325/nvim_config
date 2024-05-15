@@ -2,8 +2,6 @@ local servers = {
   "biome",
   "dockerls",
   "elixirls",
-  "ember",
-  -- "eslint",
   "graphql",
   "jsonls",
   "lua_ls",
@@ -13,6 +11,9 @@ local servers = {
   "sqlls",
   "tailwindcss",
   "volar",
+  "svelte"
+  -- "ember",
+  -- "eslint",
   -- "ruby_ls",
   -- "tsserver",
 }
