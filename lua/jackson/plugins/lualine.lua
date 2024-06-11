@@ -164,6 +164,7 @@ lualine.setup({
     lualine_c = {
       filesize,
       spaces,
+      -- filename,
       "enconding",
     },
     lualine_x = {

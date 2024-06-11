@@ -28,8 +28,9 @@ keymap.set({ "n", "v" }, "x", '"_x', opts)
 -- keymap.set("n", "dd", '"_dd', opts)
 
 keymap.set({ "n" }, "vw", "viw", opts)
-keymap.set({ "n" }, "vp", 'viw"_dP', opts)
-keymap.set({ "n" }, "vP", 'viW"_dP', opts)
+keymap.set({ "n" }, "vp", 'viwP', opts)
+keymap.set({ "n" }, "Vp", 'VP', opts)
+-- keymap.set({ "n" }, "vP", 'viW"_dP', opts)
 
 keymap.set({ "n" }, "dw", "diw", opts)
 keymap.set({ "n" }, "dW", "diW", opts)
@@ -45,18 +46,24 @@ keymap.set({ "n" }, "cW", "ciW", opts)
 -- keymap.set("n", ")", "}zz", opts)
 
 --To set in the cursor in the middle when jumping
-keymap.set({ "n", "v" }, ")", "{", opts)
-keymap.set({ "n", "v" }, "(", "}", opts)
+keymap.set({ "n", "v" }, ")", "(", opts)
+keymap.set({ "n", "v" }, "(", ")", opts)
 
 --To set in the cursor in the middle when jumping
 keymap.set({ "n", "v" }, "}", "{", opts)
 keymap.set({ "n", "v" }, "{", "}", opts)
+
+-- keymap.set({ "v" }, "}", "{j", opts)
+-- keymap.set({ "v" }, "{", "}k", opts)
 
 keymap.set("n", "N", "Nzz", opts)
 keymap.set("n", "n", "nzz", opts)
 
 keymap.set("n", "<C-u>", "<C-u>zz", opts)
 keymap.set("n", "<C-d>", "<C-d>zz", opts)
+
+keymap.set("n", "<C-e>", "<C-e>j", opts)
+keymap.set("n", "<C-y>", "<C-y>k", opts)
 
 -- Paste over
 keymap.set("x", "p", '"_dp', opts)
@@ -82,7 +89,7 @@ keymap.set("n", "<C-q>", ":qa<cr>", { desc = "Quit all" })
 keymap.set("i", "jj", "<cmd>noh<cr><ESC>", opts)
 keymap.set("i", "kk", "<cmd>noh<cr><ESC>", opts)
 keymap.set("i", "kj", "<cmd>noh<cr><ESC>", opts)
--- keymap.set("n", "0", "^", opts)
+keymap.set("n", "0", "0^", opts)
 
 -- Move to window using the <ctrl> hjkl keys
 keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", noremap = true, silent = true })

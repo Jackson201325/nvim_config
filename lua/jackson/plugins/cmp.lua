@@ -111,8 +111,8 @@ cmp.setup({
     end,
   },
   sources = {
-    { name = "copilot",  keyword_length = 1, priority = 1 },
     { name = "nvim_lsp", keyword_length = 1, priority = 1, max_item_count = 80 },
+    { name = "copilot",  keyword_length = 1, priority = 2 },
     { name = "nvim_lua", keyword_length = 2, priority = 2 },
     { name = "luasnip",  keyword_length = 2, priority = 2 },
     { name = "path",     keyword_length = 2 },
