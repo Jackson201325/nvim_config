@@ -56,8 +56,8 @@ keymap.set({ "n", "v" }, "{", "}", opts)
 -- keymap.set({ "v" }, "}", "{j", opts)
 -- keymap.set({ "v" }, "{", "}k", opts)
 
-keymap.set("n", "N", "Nzz", opts)
-keymap.set("n", "n", "nzz", opts)
+-- keymap.set("n", "N", "Nzz", opts)
+-- keymap.set("n", "n", "nzz", opts)
 
 keymap.set("n", "<C-u>", "<C-u>zz", opts)
 keymap.set("n", "<C-d>", "<C-d>zz", opts)
