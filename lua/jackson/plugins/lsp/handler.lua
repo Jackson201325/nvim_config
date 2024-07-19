@@ -91,38 +91,30 @@ M.on_attach = function(client, bufnr)
 end
 
 local mappings = {
-  g = {
-    name = "Actions",
-    -- a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-    a = { ":Lspsaga code_action<cr>", "Code Action" },
-    c = { "<cmd>lua vim.diagnostic.open_float()<cr>", "Show Cursor Diagnostics" },
-    -- goto_definition
-    d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Go to Definition" },
-    D = { ":vsplit | lua vim.lsp.buf.definition()<cr>", "Go to Definition in Split" },
-    h = { "<cmd>Gitsigns next_hunk<CR>", "Go to next hunk" },
-    H = { "<cmd>Gitsigns prev_hunk<CR>", "Go to previous hunk" },
-    i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Go to implementation" },
-    -- l = { "<cmd>lua vim.diagnostic.open_float()<cr>", "Show Line Diagnostics" },
-    l = { ":Lspsaga diagnostic_jump_next<CR>", "Show Line Diagnostics next" },
-    L = { ":Lspsaga diagnostic_jump_prev<CR>", "Show Line Diagnostics previous" },
-    R = { "<cmd>lua vim.lsp.buf.references()<CR>", "LSP Finder" },
-    r = { "<cmd>Telescope lsp_references<CR>", "References" },
-    t = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "Go to Type definition" },
-    p = { "<cmd>Lspsaga peek_definition<CR>", "Peek Definition" },
-  },
-
-  t = {
-    name = "TypeScript Actions",
-    a = { "<cmd>TSToolsAddMissingImports<CR>", "Add Missing Imports" },
-    r = { "<cmd>TSToolsFileReferences<CR>", "Find references" },
-    R = { "<cmd>TSToolsRenameFile<CR>", "Rename File" },
-    f = { "<cmd>TSToolsFixAll<CR>", "Fix All" },
-    d = { "<cmd>TSToolsGoToSourceDefinition<CR>", "Go to Definition" },
-    o = { "<cmd>TSToolsOrganizeImports<CR>", "Organize Imports" },
-    u = { "<cmd>TSToolsRemoveUnusedImports<CR>", "Remove Unused Import" },
-    U = { "<cmd>TSToolsRemoveUnused<CR>", "Remove Unused Statement" },
-  },
-  K = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Doc" },
+  { "K",  "<cmd>lua vim.lsp.buf.hover()<cr>",           desc = "Hover Doc",                      nowait = true, remap = false },
+  { "g",  group = "Actions", },
+  { "gD", ":vsplit | lua vim.lsp.buf.definition()<cr>", desc = "Go to Definition in Split",      nowait = true, remap = false },
+  { "gH", "<cmd>Gitsigns prev_hunk<CR>",                desc = "Go to previous hunk",            nowait = true, remap = false },
+  { "gL", ":Lspsaga diagnostic_jump_prev<CR>",          desc = "Show Line Diagnostics previous", nowait = true, remap = false },
+  { "gR", "<cmd>lua vim.lsp.buf.references()<CR>",      desc = "LSP Finder",                     nowait = true, remap = false },
+  { "ga", ":Lspsaga code_action<cr>",                   desc = "Code Action",                    nowait = true, remap = false },
+  { "gc", "<cmd>lua vim.diagnostic.open_float()<cr>",   desc = "Show Cursor Diagnostics",        nowait = true, remap = false },
+  { "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>",      desc = "Go to Definition",               nowait = true, remap = false },
+  { "gh", "<cmd>Gitsigns next_hunk<CR>",                desc = "Go to next hunk",                nowait = true, remap = false },
+  { "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>",  desc = "Go to implementation",           nowait = true, remap = false },
+  { "gl", ":Lspsaga diagnostic_jump_next<CR>",          desc = "Show Line Diagnostics next",     nowait = true, remap = false },
+  { "gp", "<cmd>Lspsaga peek_definition<CR>",           desc = "Peek Definition",                nowait = true, remap = false },
+  { "gr", "<cmd>Telescope lsp_references<CR>",          desc = "References",                     nowait = true, remap = false },
+  { "gt", "<cmd>lua vim.lsp.buf.type_definition()<cr>", desc = "Go to Type definition",          nowait = true, remap = false },
+  { "t",  group = "TypeScript Actions",                 nowait = true,                           remap = false },
+  { "tR", "<cmd>TSToolsRenameFile<CR>",                 desc = "Rename File",                    nowait = true, remap = false },
+  { "tU", "<cmd>TSToolsRemoveUnused<CR>",               desc = "Remove Unused Statement",        nowait = true, remap = false },
+  { "ta", "<cmd>TSToolsAddMissingImports<CR>",          desc = "Add Missing Imports",            nowait = true, remap = false },
+  { "td", "<cmd>TSToolsGoToSourceDefinition<CR>",       desc = "Go to Definition",               nowait = true, remap = false },
+  { "tf", "<cmd>TSToolsFixAll<CR>",                     desc = "Fix All",                        nowait = true, remap = false },
+  { "to", "<cmd>TSToolsOrganizeImports<CR>",            desc = "Organize Imports",               nowait = true, remap = false },
+  { "tr", "<cmd>TSToolsFileReferences<CR>",             desc = "Find references",                nowait = true, remap = false },
+  { "tu", "<cmd>TSToolsRemoveUnusedImports<CR>",        desc = "Remove Unused Import",           nowait = true, remap = false },
 }
 
 local opts = {
@@ -133,6 +125,6 @@ local opts = {
   nowait = true,  -- use `nowait` when creating keymaps
 }
 
-which_key.register(mappings, opts)
+which_key.add(mappings, opts)
 
 return M
