@@ -23,6 +23,8 @@ dashboard.section.header.val = {
                           ♥♥♥♥♥♥     ♥♥        ♥♥   ♥♥ ♥♥   ♥♥   ♥♥♥♥                                                  
 }
 
+-- trying
+
 dashboard.section.buttons.val = {
   dashboard.button("f", "󰈞  Find file", ":Telescope find_files <CR>"),
   dashboard.button("p", "  Find project", ":Telescope projects <CR>"),
